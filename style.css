@@ -103,7 +103,8 @@ a:hover {
 
 .main-nav {
     display: flex;
-    align-items: center;
+    list-style: none;
+    gap: 2rem;
 }
 
 .nav-links {
@@ -144,6 +145,33 @@ a:hover {
     transition: all var(--transition-speed) ease-in-out;
 }
 
+/* New: Language Selector in Header */
+.language-selector {
+    display: flex;
+    gap: 0.5rem;
+    margin-left: 2rem; /* Add some space from the navigation */
+}
+
+.lang-button {
+    background: transparent;
+    border: 1px solid var(--text-color);
+    color: var(--text-color);
+    padding: 0.5rem 0.8rem;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: background var(--transition-speed), color var(--transition-speed), border-color var(--transition-speed);
+    font-weight: 600;
+}
+
+.lang-button.active {
+    background: var(--primary-color);
+    border-color: var(--primary-color);
+    color: white;
+}
+.lang-button:hover:not(.active) {
+    background: rgba(255, 255, 255, 0.1);
+}
+
 /* Hero Section */
 .hero {
     min-height: 100vh;
@@ -168,26 +196,6 @@ a:hover {
     max-width: 600px;
     margin-bottom: 2rem;
     animation: fade-in 1.5s ease-out;
-}
-
-.language-selector {
-    display: flex;
-    gap: 0.5rem;
-}
-
-.lang-button {
-    background: var(--background-color);
-    border: 1px solid var(--glass-border);
-    color: var(--text-color);
-    padding: 0.5rem 1rem;
-    border-radius: 50px;
-    cursor: pointer;
-    transition: background var(--transition-speed), color var(--transition-speed);
-}
-
-.lang-button.active {
-    background: var(--primary-color);
-    color: white;
 }
 
 /* Tools Section */
@@ -548,5 +556,11 @@ a:hover {
     }
     .footer-grid {
         grid-template-columns: 1fr;
+    }
+    .language-selector {
+        margin-left: 0;
+        position: absolute;
+        top: 1rem;
+        right: 1rem;
     }
 }
