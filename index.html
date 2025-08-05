@@ -118,24 +118,84 @@
         
         <!-- Mobile Menu -->
         <div class="mobile-menu" id="mobile-menu">
+            <div class="mobile-menu-header">
+                <div class="mobile-menu-logo">
+                    <img src="logo.png" alt="VIN NESIA" width="32" height="32">
+                    <span class="mobile-logo-text">VIN NESIA</span>
+                </div>
+                <button class="mobile-menu-close" onclick="toggleMobileMenu()">✕</button>
+            </div>
+            
             <nav class="mobile-nav">
-                <a href="#home" onclick="toggleMobileMenu()">
-                    <span data-lang="en">🏠 Home</span>
-                    <span data-lang="id" style="display: none;">🏠 Beranda</span>
-                </a>
-                <a href="#tools" onclick="toggleMobileMenu()">
-                    <span data-lang="en">🛠️ All Tools</span>
-                    <span data-lang="id" style="display: none;">🛠️ Semua Tools</span>
-                </a>
-                <a href="#blog" onclick="toggleMobileMenu()">
-                    <span data-lang="en">📝 Blog</span>
-                    <span data-lang="id" style="display: none;">📝 Blog</span>
-                </a>
-                <a href="#about" onclick="toggleMobileMenu()">
-                    <span data-lang="en">ℹ️ About Us</span>
-                    <span data-lang="id" style="display: none;">ℹ️ Tentang Kami</span>
-                </a>
+                <div class="mobile-nav-section">
+                    <h4 class="mobile-nav-title">
+                        <span data-lang="en">Navigation</span>
+                        <span data-lang="id" style="display: none;">Navigasi</span>
+                    </h4>
+                    <a href="#home" onclick="toggleMobileMenu()">
+                        <span class="nav-icon">🏠</span>
+                        <span data-lang="en">Home</span>
+                        <span data-lang="id" style="display: none;">Beranda</span>
+                    </a>
+                    <a href="#tools" onclick="toggleMobileMenu()">
+                        <span class="nav-icon">🛠️</span>
+                        <span data-lang="en">All Tools</span>
+                        <span data-lang="id" style="display: none;">Semua Tools</span>
+                    </a>
+                    <a href="#blog" onclick="toggleMobileMenu()">
+                        <span class="nav-icon">📝</span>
+                        <span data-lang="en">Blog</span>
+                        <span data-lang="id" style="display: none;">Blog</span>
+                    </a>
+                    <a href="#about" onclick="toggleMobileMenu()">
+                        <span class="nav-icon">ℹ️</span>
+                        <span data-lang="en">About Us</span>
+                        <span data-lang="id" style="display: none;">Tentang Kami</span>
+                    </a>
+                </div>
+                
+                <div class="mobile-nav-section">
+                    <h4 class="mobile-nav-title">
+                        <span data-lang="en">Support</span>
+                        <span data-lang="id" style="display: none;">Dukungan</span>
+                    </h4>
+                    <a href="#" onclick="toggleMobileMenu()">
+                        <span class="nav-icon">❓</span>
+                        <span data-lang="en">FAQ</span>
+                        <span data-lang="id" style="display: none;">FAQ</span>
+                    </a>
+                    <a href="#" onclick="showDonationModal(); toggleMobileMenu()">
+                        <span class="nav-icon">💝</span>
+                        <span data-lang="en">Donate</span>
+                        <span data-lang="id" style="display: none;">Donasi</span>
+                    </a>
+                </div>
+                
+                <div class="mobile-nav-section">
+                    <h4 class="mobile-nav-title">
+                        <span data-lang="en">Legal</span>
+                        <span data-lang="id" style="display: none;">Hukum</span>
+                    </h4>
+                    <a href="#" onclick="toggleMobileMenu()">
+                        <span class="nav-icon">🔒</span>
+                        <span data-lang="en">Privacy Policy</span>
+                        <span data-lang="id" style="display: none;">Kebijakan Privasi</span>
+                    </a>
+                    <a href="#" onclick="toggleMobileMenu()">
+                        <span class="nav-icon">📋</span>
+                        <span data-lang="en">Terms of Service</span>
+                        <span data-lang="id" style="display: none;">Syarat Layanan</span>
+                    </a>
+                </div>
             </nav>
+            
+            <div class="mobile-menu-footer">
+                <div class="mobile-social-links">
+                    <a href="#" aria-label="Instagram">📷</a>
+                    <a href="#" aria-label="WhatsApp">📱</a>
+                </div>
+                <p class="mobile-copyright">© 2025 VIN NESIA</p>
+            </div>
         </div>
     </header>
     
