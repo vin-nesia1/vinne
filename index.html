@@ -5,11 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>VIN NESIA - Professional Online Tools | Free Web Utilities</title>
 
+    <!-- Security Headers -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net https://www.googletagmanager.com https://cdnjs.cloudflare.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://*.supabase.co https://www.google-analytics.com;">
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
+    <meta http-equiv="X-Frame-Options" content="DENY">
+    <meta http-equiv="X-XSS-Protection" content="1; mode=block">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
+
     <!-- SEO Meta Tags -->
     <meta name="description" content="VIN NESIA offers free professional online tools including password generator, QR scanner, image converter, currency calculator, and JSON formatter. Fast, secure, and mobile-friendly.">
     <meta name="keywords" content="online tools, password generator, QR scanner, image converter, currency calculator, JSON formatter, free web utilities, VIN NESIA">
     <meta name="author" content="VIN NESIA">
     <meta name="robots" content="index, follow">
+    <meta name="theme-color" content="#8B5CF6">
 
     <!-- Canonical URL -->
     <link rel="canonical" href="https://vinnesia.my.id/">
@@ -20,6 +28,7 @@
     <meta property="og:title" content="VIN NESIA - Professional Online Tools">
     <meta property="og:description" content="Free professional online tools for everyday use. Password generator, QR scanner, image converter, and more.">
     <meta property="og:image" content="https://vinnesia.my.id/og-image.jpg">
+    <meta property="og:site_name" content="VIN NESIA">
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
@@ -31,48 +40,40 @@
     <!-- Favicon -->
     <link rel="icon" type="image/x-icon" href="favicon.ico">
     <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+    <link rel="manifest" href="manifest.json">
 
-    <!-- Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-3PYZXZFNER"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag() { dataLayer.push(arguments); }
-        gtag('js', new Date());
-        gtag('config', 'G-3PYZXZFNER');
-    </script>
+    <!-- Preconnect to external resources -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://www.googletagmanager.com">
+    <link rel="preconnect" href="https://cdn.jsdelivr.net">
 
-    <!-- Supabase -->
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+    <!-- DNS Prefetch -->
+    <link rel="dns-prefetch" href="//www.google-analytics.com">
 
-    <!-- Preload critical resources -->
-    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" as="style">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-
-    <!-- Stylesheet -->
+    <!-- Critical CSS will be inlined here -->
     <style>
-        /* CSS Variables */
+        /* Critical above-the-fold CSS */
         :root {
             --primary: #8B5CF6;
             --primary-dark: #7C3AED;
             --secondary: #F59E0B;
             --bg-dark: #0F0F0F;
             --bg-card: #1A1A1A;
-            --bg-hover: #2A2A2A;
             --text-primary: #FFFFFF;
             --text-secondary: #A3A3A3;
-            --text-muted: #737373;
             --border: #2A2A2A;
-            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
             --gradient: linear-gradient(135deg, #8B5CF6 0%, #7C3AED 100%);
         }
-
-        /* Reset & Base */
+        
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
-
+        
         body {
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
             background: var(--bg-dark);
@@ -80,1463 +81,334 @@
             line-height: 1.6;
             overflow-x: hidden;
         }
-
-        /* Skip to content */
-        .skip-link {
-            position: absolute;
-            top: -40px;
-            left: 6px;
-            background: var(--primary);
-            color: white;
-            padding: 8px;
-            text-decoration: none;
-            border-radius: 4px;
-            z-index: 1000;
-        }
-
-        .skip-link:focus {
-            top: 6px;
-        }
-
-        /* Loading Skeleton */
-        .skeleton {
-            background: linear-gradient(90deg, #2A2A2A 25%, #3A3A3A 50%, #2A2A2A 75%);
-            background-size: 200% 100%;
-            animation: loading 1.5s infinite;
-            border-radius: 8px;
-        }
-
-        @keyframes loading {
-            0% { background-position: 200% 0; }
-            100% { background-position: -200% 0; }
-        }
-
-        /* Cookie Banner */
-        .cookie-banner {
+        
+        .loading-screen {
             position: fixed;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: var(--bg-card);
-            border-top: 1px solid var(--border);
-            padding: 1rem;
-            z-index: 1000;
-            transform: translateY(100%);
-            transition: transform 0.3s ease;
-        }
-
-        .cookie-banner.show {
-            transform: translateY(0);
-        }
-
-        /* Header */
-        header {
-            background: rgba(26, 26, 26, 0.95);
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid var(--border);
-            position: sticky;
             top: 0;
-            z-index: 100;
-        }
-
-        .header-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 1rem;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            height: 70px;
-        }
-
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            text-decoration: none;
-            color: var(--text-primary);
-        }
-
-        .logo img {
-            width: 40px;
-            height: 40px;
-            border-radius: 8px;
-        }
-
-        .logo-text {
-            font-size: 1.5rem;
-            font-weight: 700;
-            background: var(--gradient);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        /* Navigation */
-        .nav-desktop {
-            display: none;
-            gap: 2rem;
-        }
-
-        .nav-desktop a {
-            color: var(--text-secondary);
-            text-decoration: none;
-            font-weight: 500;
-            transition: all 0.3s ease;
-            position: relative;
-        }
-
-        .nav-desktop a:hover {
-            color: var(--primary);
-        }
-
-        .nav-desktop a::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
             left: 0;
-            width: 0;
-            height: 2px;
-            background: var(--gradient);
-            transition: width 0.3s ease;
-        }
-
-        .nav-desktop a:hover::after {
             width: 100%;
-        }
-
-        /* Language Toggle */
-        .lang-toggle {
-            display: flex;
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            border-radius: 8px;
-            overflow: hidden;
-        }
-
-        .lang-toggle button {
-            padding: 8px 12px;
-            background: none;
-            border: none;
-            color: var(--text-secondary);
-            cursor: pointer;
-            transition: all 0.3s ease;
-            font-size: 0.875rem;
-            font-weight: 500;
-        }
-
-        .lang-toggle button.active {
-            background: var(--primary);
-            color: white;
-        }
-
-        /* User Section */
-        .user-section {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-        }
-
-        .auth-buttons {
-            display: flex;
-            gap: 0.5rem;
-        }
-
-        .btn-auth {
-            padding: 8px 16px;
-            border: 1px solid var(--border);
-            background: var(--bg-card);
-            color: var(--text-primary);
-            border-radius: 6px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            text-decoration: none;
-            font-size: 0.875rem;
-            font-weight: 500;
-        }
-
-        .btn-auth:hover {
-            background: var(--primary);
-            border-color: var(--primary);
-            transform: translateY(-1px);
-        }
-
-        .user-info {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            padding: 8px 12px;
-            background: var(--bg-card);
-            border-radius: 8px;
-            border: 1px solid var(--border);
-        }
-
-        .user-avatar {
-            width: 24px;
-            height: 24px;
-            border-radius: 50%;
-            background: var(--gradient);
-        }
-
-        /* Mobile Menu */
-        .mobile-menu-btn {
-            display: block;
-            background: none;
-            border: none;
-            color: var(--text-primary);
-            font-size: 1.5rem;
-            cursor: pointer;
-            padding: 8px;
-            transition: all 0.3s ease;
-            border-radius: 8px;
-        }
-
-        .mobile-menu-btn:hover {
-            background: var(--bg-hover);
-            transform: scale(1.1);
-        }
-
-        .mobile-menu {
-            position: fixed;
-            top: 0;
-            left: -100%;
-            width: 85%;
-            max-width: 350px;
-            height: 100vh;
-            background: linear-gradient(135deg, rgba(26, 26, 26, 0.98) 0%, rgba(35, 35, 35, 0.98) 100%);
-            backdrop-filter: blur(20px);
-            transition: left 0.4s cubic-bezier(0.23, 1, 0.320, 1);
-            z-index: 1000;
-            overflow-y: auto;
-            box-shadow: 0 0 50px rgba(0, 0, 0, 0.5);
-            border-right: 1px solid var(--border);
-        }
-
-        .mobile-menu.active {
-            left: 0;
-        }
-
-        .mobile-menu-header {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 1.5rem;
-            border-bottom: 1px solid var(--border);
-            background: rgba(139, 92, 246, 0.1);
-        }
-
-        .mobile-menu-logo {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-
-        .mobile-logo-text {
-            font-size: 1.25rem;
-            font-weight: 700;
-            background: var(--gradient);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .mobile-menu-close {
-            background: none;
-            border: none;
-            color: var(--text-secondary);
-            font-size: 1.5rem;
-            cursor: pointer;
-            padding: 8px;
-            border-radius: 50%;
-            transition: all 0.3s ease;
-            width: 40px;
-            height: 40px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .mobile-menu-close:hover {
-            background: var(--bg-hover);
-            color: var(--text-primary);
-            transform: rotate(90deg);
-        }
-
-        .mobile-nav {
-            padding: 1rem 0;
-        }
-
-        .mobile-nav-section {
-            margin-bottom: 2rem;
-        }
-
-        .mobile-nav-title {
-            font-size: 0.875rem;
-            font-weight: 600;
-            color: var(--primary);
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            margin: 0 0 1rem 1.5rem;
-            padding-bottom: 0.5rem;
-            border-bottom: 1px solid rgba(139, 92, 246, 0.2);
-        }
-
-        .mobile-nav a {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            color: var(--text-primary);
-            text-decoration: none;
-            font-size: 1rem;
-            font-weight: 500;
-            padding: 1rem 1.5rem;
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .mobile-nav a::before {
-            content: '';
-            position: absolute;
-            left: 0;
-            top: 0;
             height: 100%;
-            width: 4px;
-            background: var(--gradient);
-            transform: scaleY(0);
-            transition: transform 0.3s ease;
-        }
-
-        .mobile-nav a:hover {
-            background: rgba(139, 92, 246, 0.1);
-            color: var(--primary);
-            padding-left: 2rem;
-        }
-
-        .mobile-nav a:hover::before {
-            transform: scaleY(1);
-        }
-
-        .nav-icon {
-            font-size: 1.2rem;
-            width: 24px;
-            text-align: center;
-        }
-
-        .mobile-menu-footer {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            padding: 1.5rem;
-            border-top: 1px solid var(--border);
-            background: rgba(15, 15, 15, 0.8);
-            backdrop-filter: blur(10px);
-        }
-
-        .mobile-social-links {
-            display: flex;
-            gap: 1rem;
-            justify-content: center;
-            margin-bottom: 1rem;
-        }
-
-        .mobile-social-links a {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 44px;
-            height: 44px;
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            border-radius: 12px;
-            font-size: 1.2rem;
-            transition: all 0.3s ease;
-        }
-
-        .mobile-social-links a:hover {
-            background: var(--primary);
-            border-color: var(--primary);
-            transform: translateY(-2px);
-        }
-
-        .mobile-copyright {
-            text-align: center;
-            font-size: 0.875rem;
-            color: var(--text-muted);
-            margin: 0;
-        }
-
-        /* Mobile Menu Overlay */
-        .mobile-menu.active::before {
-            content: '';
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(0, 0, 0, 0.5);
-            z-index: -1;
-        }
-
-        /* Tools Grid */
-        .tools-grid {
-            display: grid;
-            gap: 2rem;
-            grid-template-columns: repeat(2, 1fr);
-        }
-
-        .tool-card {
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            border-radius: 16px;
-            padding: 2rem;
-            transition: all 0.4s cubic-bezier(0.23, 1, 0.320, 1);
-            text-decoration: none;
-            color: inherit;
-            position: relative;
-            overflow: hidden;
-            opacity: 0;
-            transform: translateY(30px);
-            display: flex;
-            flex-direction: column;
-            height: 100%;
-            min-height: 280px;
-        }
-
-        .tool-card.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .tool-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 4px;
-            background: var(--gradient);
-            transform: scaleX(0);
-            transition: transform 0.4s ease;
-        }
-
-        .tool-card::after {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(139, 92, 246, 0.1) 0%, transparent 70%);
-            opacity: 0;
-            transition: opacity 0.4s ease;
-            pointer-events: none;
-        }
-
-        .tool-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(139, 92, 246, 0.2);
-            border-color: var(--primary);
-        }
-
-        .tool-card:hover::before {
-            transform: scaleX(1);
-        }
-
-        .tool-card:hover::after {
-            opacity: 1;
-        }
-
-        .tool-icon {
-            width: 56px;
-            height: 56px;
-            background: var(--gradient);
-            border-radius: 16px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 1.5rem;
-            font-size: 1.5rem;
-            position: relative;
-            box-shadow: 0 8px 25px rgba(139, 92, 246, 0.3);
-            transition: all 0.3s ease;
-        }
-
-        .tool-card:hover .tool-icon {
-            transform: scale(1.1) rotate(5deg);
-            box-shadow: 0 12px 35px rgba(139, 92, 246, 0.4);
-        }
-
-        .tool-title {
-            font-size: 1.25rem;
-            font-weight: 600;
-            margin-bottom: 0.75rem;
-            color: var(--text-primary);
-            line-height: 1.3;
-        }
-
-        .tool-description {
-            color: var(--text-secondary);
-            line-height: 1.6;
-            margin-bottom: 1.5rem;
-            flex-grow: 1;
-            font-size: 0.95rem;
-        }
-
-        .tool-features {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.5rem;
-            margin-top: auto;
-        }
-
-        .feature-tag {
-            background: rgba(139, 92, 246, 0.15);
-            color: var(--primary);
-            padding: 6px 12px;
-            border-radius: 20px;
-            font-size: 0.75rem;
-            font-weight: 500;
-            border: 1px solid rgba(139, 92, 246, 0.2);
-            transition: all 0.3s ease;
-        }
-
-        .tool-card:hover .feature-tag {
-            background: rgba(139, 92, 246, 0.25);
-            border-color: rgba(139, 92, 246, 0.4);
-            transform: translateY(-1px);
-        }
-
-        .usage-indicator {
-            position: absolute;
-            top: 1rem;
-            right: 1rem;
-            background: rgba(245, 158, 11, 0.15);
-            color: var(--secondary);
-            padding: 6px 10px;
-            border-radius: 12px;
-            font-size: 0.7rem;
-            font-weight: 600;
-            border: 1px solid rgba(245, 158, 11, 0.2);
-            backdrop-filter: blur(10px);
-        }
-
-        /* Hero Section */
-        .hero {
-            padding: 4rem 1rem;
-            text-align: center;
-            background: radial-gradient(ellipse at center, rgba(139, 92, 246, 0.1) 0%, transparent 70%);
-        }
-
-        .hero-container {
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .hero h1 {
-            font-size: clamp(2.5rem, 5vw, 4rem);
-            font-weight: 700;
-            margin-bottom: 1.5rem;
-            background: var(--gradient);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            line-height: 1.2;
-        }
-
-        .hero p {
-            font-size: 1.25rem;
-            color: var(--text-secondary);
-            margin-bottom: 2rem;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .hero-cta {
-            display: flex;
-            gap: 1rem;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-
-        .btn-primary {
-            padding: 12px 24px;
-            background: var(--gradient);
-            color: white;
-            border: none;
-            border-radius: 8px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            text-decoration: none;
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(139, 92, 246, 0.3);
-        }
-
-        .btn-secondary {
-            padding: 12px 24px;
-            background: transparent;
-            color: var(--text-primary);
-            border: 1px solid var(--border);
-            border-radius: 8px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            text-decoration: none;
-        }
-
-        .btn-secondary:hover {
-            background: var(--bg-hover);
-            border-color: var(--primary);
-        }
-
-        /* Statistics Section */
-        .stats {
-            padding: 3rem 1rem;
-            background: var(--bg-card);
-            border-top: 1px solid var(--border);
-            border-bottom: 1px solid var(--border);
-        }
-
-        .stats-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 2rem;
-            text-align: center;
-        }
-
-        .stat-item {
-            opacity: 0;
-            transform: translateY(20px);
-            transition: all 0.6s ease;
-        }
-
-        .stat-item.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .stat-number {
-            font-size: 2.5rem;
-            font-weight: 700;
-            color: var(--primary);
-            display: block;
-            margin-bottom: 0.5rem;
-        }
-
-        .stat-label {
-            color: var(--text-secondary);
-            font-weight: 500;
-        }
-
-        /* Tools Section */
-        .tools {
-            padding: 4rem 1rem;
-        }
-
-        .tools-container {
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .section-header {
-            text-align: center;
-            margin-bottom: 3rem;
-        }
-
-        .section-title {
-            font-size: 2.5rem;
-            font-weight: 700;
-            margin-bottom: 1rem;
-            background: var(--gradient);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .section-subtitle {
-            font-size: 1.125rem;
-            color: var(--text-secondary);
-            max-width: 600px;
-            margin: 0 auto;
-        }
-
-        /* Donation Section */
-        .donation {
-            padding: 3rem 1rem;
-            background: var(--bg-card);
-            border-top: 1px solid var(--border);
-            text-align: center;
-        }
-
-        .donation-container {
-            max-width: 600px;
-            margin: 0 auto;
-        }
-
-        .donation h2 {
-            font-size: 2rem;
-            font-weight: 700;
-            margin-bottom: 1rem;
-            color: var(--secondary);
-        }
-
-        .donation p {
-            color: var(--text-secondary);
-            margin-bottom: 2rem;
-            line-height: 1.6;
-        }
-
-        .btn-donate {
-            background: linear-gradient(135deg, var(--secondary) 0%, #F97316 100%);
-            color: white;
-            padding: 12px 24px;
-            border: none;
-            border-radius: 8px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            text-decoration: none;
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .btn-donate:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(245, 158, 11, 0.3);
-        }
-
-        /* Footer */
-        footer {
             background: var(--bg-dark);
-            border-top: 1px solid var(--border);
-            padding: 3rem 1rem 1rem;
-        }
-
-        .footer-container {
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .footer-content {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            margin-bottom: 2rem;
-        }
-
-        .footer-section h3 {
-            font-size: 1.125rem;
-            font-weight: 600;
-            margin-bottom: 1rem;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .footer-section.brand h3 {
-            color: var(--secondary);
-            font-size: 1.5rem;
-        }
-
-        .footer-section h3:not(.brand h3) {
-            color: var(--primary);
-        }
-
-        .footer-links {
-            list-style: none;
-            display: flex;
-            flex-direction: column;
-            gap: 0.5rem;
-        }
-
-        .footer-links a {
-            color: var(--text-secondary);
-            text-decoration: none;
-            transition: color 0.3s ease;
-        }
-
-        .footer-links a:hover {
-            color: var(--primary);
-        }
-
-        .social-links {
-            display: flex;
-            gap: 1rem;
-            margin-top: 1rem;
-        }
-
-        .social-links a {
             display: flex;
             align-items: center;
             justify-content: center;
-            width: 40px;
-            height: 40px;
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            border-radius: 8px;
-            color: var(--text-secondary);
-            text-decoration: none;
-            transition: all 0.3s ease;
+            z-index: 9999;
+            transition: opacity 0.5s ease;
         }
-
-        .social-links a:hover {
-            background: var(--primary);
-            color: white;
-            transform: translateY(-2px);
-        }
-
-        .footer-bottom {
-            border-top: 1px solid var(--border);
-            padding-top: 2rem;
-            text-align: center;
-            color: var(--text-muted);
-        }
-
-        .footer-bottom p {
-            margin-bottom: 0.5rem;
-        }
-
-        .disclaimer {
-            font-size: 0.875rem;
-            color: #EF4444;
-            margin-top: 1rem;
-        }
-
-        /* Breadcrumb */
-        .breadcrumb {
-            padding: 1rem;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .breadcrumb nav {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            font-size: 0.875rem;
-            color: var(--text-secondary);
-        }
-
-        .breadcrumb a {
-            color: var(--primary);
-            text-decoration: none;
-        }
-
-        .breadcrumb a:hover {
-            text-decoration: underline;
-        }
-
-        /* Modal Styles */
-        .modal {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.8);
-            backdrop-filter: blur(5px);
-            z-index: 1000;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            opacity: 0;
-            visibility: hidden;
-            transition: all 0.3s ease;
-        }
-
-        .modal.show {
-            opacity: 1;
-            visibility: visible;
-        }
-
-        .modal-content {
-            background: var(--bg-card);
-            border-radius: 12px;
-            border: 1px solid var(--border);
-            max-width: 500px;
-            width: 90%;
-            max-height: 90vh;
-            overflow-y: auto;
-            transform: scale(0.8);
-            transition: transform 0.3s ease;
-        }
-
-        .modal.show .modal-content {
-            transform: scale(1);
-        }
-
-        .modal-header {
-            padding: 1.5rem;
-            border-bottom: 1px solid var(--border);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .modal-header h2 {
-            font-size: 1.5rem;
-            font-weight: 600;
-            color: var(--text-primary);
-        }
-
-        .modal-close {
-            background: none;
-            border: none;
-            font-size: 1.5rem;
-            color: var(--text-secondary);
-            cursor: pointer;
-            padding: 8px;
-            border-radius: 4px;
-            transition: all 0.3s ease;
-        }
-
-        .modal-close:hover {
-            background: var(--bg-hover);
-            color: var(--text-primary);
-        }
-
-        .modal-body {
-            padding: 1.5rem;
-        }
-
-        .social-login-buttons {
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
-            margin-top: 1.5rem;
-        }
-
-        .social-btn {
-            padding: 12px 16px;
-            border: 1px solid var(--border);
-            border-radius: 8px;
-            background: var(--bg-hover);
-            color: var(--text-primary);
-            cursor: pointer;
-            transition: all 0.3s ease;
-            font-weight: 500;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-        }
-
-        .social-btn:hover {
-            transform: translateY(-1px);
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-        }
-
-        .social-btn.github:hover {
-            background: #333;
-            border-color: #333;
-        }
-
-        .social-btn.discord:hover {
-            background: #5865F2;
-            border-color: #5865F2;
-        }
-
-        .social-btn.facebook:hover {
-            background: #1877F2;
-            border-color: #1877F2;
-        }
-
-        .donation-options {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 1rem;
-            margin-top: 1.5rem;
-        }
-
-        .donation-btn {
-            padding: 12px 16px;
-            border: 1px solid var(--border);
-            border-radius: 8px;
-            background: var(--bg-hover);
-            color: var(--text-primary);
-            cursor: pointer;
-            transition: all 0.3s ease;
-            font-weight: 500;
-        }
-
-        .donation-btn:hover {
-            background: var(--secondary);
-            border-color: var(--secondary);
-            transform: translateY(-1px);
-        }
-
-        /* Ripple Effect */
-        .ripple {
-            position: relative;
-            overflow: hidden;
-        }
-
-        .ripple::after {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 0;
-            height: 0;
+        
+        .loading-spinner {
+            width: 50px;
+            height: 50px;
+            border: 3px solid var(--border);
+            border-top: 3px solid var(--primary);
             border-radius: 50%;
-            background: rgba(255, 255, 255, 0.3);
-            transform: translate(-50%, -50%);
-            transition: width 0.6s, height 0.6s;
+            animation: spin 1s linear infinite;
         }
-
-        .ripple:active::after {
-            width: 300px;
-            height: 300px;
-        }
-
-        /* Scroll animations */
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .fade-in-up {
-            animation: fadeInUp 0.6s ease forwards;
-        }
-
-        /* Progress indicators */
-        .loading-bar {
-            position: fixed;
-            top: 0;
-            left: 0;
-            height: 3px;
-            background: var(--gradient);
-            z-index: 1000;
-            transition: width 0.3s ease;
-        }
-
-        /* Accessibility */
-        @media (prefers-reduced-motion: reduce) {
-            *,
-            *::before,
-            *::after {
-                animation-duration: 0.01ms !important;
-                animation-iteration-count: 1 !important;
-                transition-duration: 0.01ms !important;
-            }
-        }
-
-        /* Focus styles */
-        button:focus,
-        a:focus,
-        input:focus {
-            outline: 2px solid var(--primary);
-            outline-offset: 2px;
-        }
-
-        /* High contrast mode */
-        @media (prefers-contrast: high) {
-            :root {
-                --border: #FFFFFF;
-                --text-secondary: #FFFFFF;
-            }
-        }
-
-        /* Responsive Design */
-        @media (min-width: 768px) {
-            .nav-desktop {
-                display: flex;
-            }
-
-            .mobile-menu-btn {
-                display: none;
-            }
-
-            .tools-grid {
-                grid-template-columns: repeat(3, 1fr);
-                gap: 2.5rem;
-            }
-
-            .tool-card {
-                min-height: 320px;
-                padding: 2.5rem;
-            }
-
-            .tool-icon {
-                width: 64px;
-                height: 64px;
-                font-size: 1.75rem;
-                border-radius: 18px;
-            }
-
-            .tool-title {
-                font-size: 1.375rem;
-                margin-bottom: 1rem;
-            }
-
-            .tool-description {
-                font-size: 1rem;
-                margin-bottom: 2rem;
-            }
-
-            .donation-options {
-                grid-template-columns: repeat(4, 1fr);
-            }
-
-            .section-title {
-                font-size: 3rem;
-            }
-
-            .section-subtitle {
-                font-size: 1.2rem;
-            }
-        }
-
-        @media (max-width: 767px) {
-            .tools-grid {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 1.25rem;
-            }
-
-            .tool-card {
-                padding: 1.25rem;
-                min-height: 240px;
-            }
-
-            .tool-icon {
-                width: 44px;
-                height: 44px;
-                font-size: 1.125rem;
-                margin-bottom: 1rem;
-            }
-
-            .tool-title {
-                font-size: 1rem;
-                margin-bottom: 0.5rem;
-            }
-
-            .tool-description {
-                font-size: 0.8rem;
-                line-height: 1.4;
-                margin-bottom: 1rem;
-            }
-
-            .feature-tag {
-                font-size: 0.65rem;
-                padding: 4px 8px;
-            }
-
-            .hero {
-                padding: 2.5rem 1rem;
-            }
-
-            .hero h1 {
-                font-size: 2.25rem;
-                margin-bottom: 1rem;
-            }
-
-            .hero p {
-                font-size: 1rem;
-                margin-bottom: 1.5rem;
-            }
-
-            .hero-cta {
-                flex-direction: column;
-                align-items: center;
-                gap: 0.75rem;
-            }
-
-            .btn-primary,
-            .btn-secondary {
-                width: 100%;
-                max-width: 280px;
-                justify-content: center;
-                padding: 14px 24px;
-            }
-
-            .donation-options {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 0.75rem;
-            }
-
-            .stats-container {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 1.25rem;
-            }
-
-            .stat-number {
-                font-size: 2rem;
-            }
-
-            .usage-indicator {
-                font-size: 0.6rem;
-                padding: 3px 6px;
-                top: 0.75rem;
-                right: 0.75rem;
-            }
-
-            .section-title {
-                font-size: 2rem;
-            }
-
-            .section-subtitle {
-                font-size: 1rem;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .mobile-menu {
-                width: 92%;
-            }
-
-            .footer-content {
-                grid-template-columns: 1fr;
-                gap: 1.5rem;
-            }
-
-            .tools-grid {
-                gap: 1rem;
-            }
-
-            .tool-card {
-                padding: 1rem;
-                min-height: 220px;
-                border-radius: 12px;
-            }
-
-            .tool-icon {
-                width: 40px;
-                height: 40px;
-                font-size: 1rem;
-                border-radius: 12px;
-            }
-
-            .tool-title {
-                font-size: 0.95rem;
-            }
-
-            .tool-description {
-                font-size: 0.75rem;
-            }
-
-            .feature-tag {
-                font-size: 0.6rem;
-                padding: 3px 6px;
-            }
-
-            .hero h1 {
-                font-size: 1.875rem;
-            }
-
-            .btn-primary,
-            .btn-secondary {
-                max-width: 260px;
-                padding: 12px 20px;
-                font-size: 0.9rem;
-            }
-
-            .stats-container {
-                gap: 1rem;
-            }
-
-            .stat-number {
-                font-size: 1.75rem;
-            }
-
-            .stat-label {
-                font-size: 0.875rem;
-            }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
         }
     </style>
+
+    <!-- Preload critical resources -->
+    <link rel="preload" href="style.css" as="style">
+    <link rel="preload" href="script.js" as="script">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" as="style">
+
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Main Stylesheet -->
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-3PYZXZFNER"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-3PYZXZFNER', {
+            anonymize_ip: true,
+            cookie_flags: 'secure;samesite=strict'
+        });
+    </script>
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": "VIN NESIA",
+        "url": "https://vinnesia.my.id",
+        "description": "Professional online tools for everyone. Free web utilities including password generator, QR scanner, image converter, and more.",
+        "publisher": {
+            "@type": "Organization",
+            "name": "VIN NESIA"
+        },
+        "potentialAction": {
+            "@type": "SearchAction",
+            "target": "https://vinnesia.my.id/search?q={search_term_string}",
+            "query-input": "required name=search_term_string"
+        }
+    }
+    </script>
 </head>
 <body>
+    <!-- Loading Screen -->
+    <div class="loading-screen" id="loading-screen">
+        <div class="loading-spinner"></div>
+    </div>
+
     <!-- Skip to content -->
     <a href="#main-content" class="skip-link">Skip to main content</a>
 
-    <!-- Loading bar -->
-    <div class="loading-bar" id="loading-bar" style="width: 0%"></div>
+    <!-- Progress Bar -->
+    <div class="progress-bar" id="progress-bar"></div>
 
     <!-- Cookie Banner -->
-    <div class="cookie-banner" id="cookie-banner">
-        <div style="max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;">
-            <p style="margin: 0; color: var(--text-secondary);">
+    <div class="cookie-banner" id="cookie-banner" role="banner" aria-label="Cookie consent">
+        <div class="cookie-content">
+            <p class="cookie-text">
                 <span data-lang="en">We use cookies to enhance your experience. By continuing to visit this site you agree to our use of cookies.</span>
                 <span data-lang="id" style="display: none;">Kami menggunakan cookie untuk meningkatkan pengalaman Anda. Dengan melanjutkan mengunjungi situs ini, Anda menyetujui penggunaan cookie kami.</span>
             </p>
-            <button onclick="acceptCookies()" class="btn-primary" style="padding: 8px 16px; font-size: 0.875rem;">
-                <span data-lang="en">Accept</span>
-                <span data-lang="id" style="display: none;">Terima</span>
-            </button>
+            <div class="cookie-actions">
+                <button onclick="acceptCookies()" class="btn-primary cookie-accept" aria-label="Accept cookies">
+                    <span data-lang="en">Accept</span>
+                    <span data-lang="id" style="display: none;">Terima</span>
+                </button>
+                <button onclick="rejectCookies()" class="btn-secondary cookie-reject" aria-label="Reject cookies">
+                    <span data-lang="en">Reject</span>
+                    <span data-lang="id" style="display: none;">Tolak</span>
+                </button>
+            </div>
         </div>
     </div>
 
     <!-- Header -->
-    <header>
+    <header role="banner">
         <div class="header-container">
-            <a href="#" class="logo">
-                <img src="logo.png" alt="VIN NESIA Logo" loading="lazy">
+            <a href="/" class="logo" aria-label="VIN NESIA Homepage">
+                <img src="logo.png" alt="VIN NESIA Logo" width="40" height="40" loading="eager">
                 <span class="logo-text">VIN NESIA</span>
             </a>
 
-            <nav class="nav-desktop">
+            <nav class="nav-desktop" role="navigation" aria-label="Main navigation">
                 <a href="#home" data-lang="en">Home</a>
                 <a href="#home" data-lang="id" style="display: none;">Beranda</a>
                 <a href="#tools" data-lang="en">All Tools</a>
                 <a href="#tools" data-lang="id" style="display: none;">Semua Tools</a>
-                <a href="#blog" data-lang="en">Blog</a>
-                <a href="#blog" data-lang="id" style="display: none;">Blog</a>
-                <a href="#about" data-lang="en">About Us</a>
-                <a href="#about" data-lang="id" style="display: none;">Tentang Kami</a>
+                <a href="/blog" data-lang="en">Blog</a>
+                <a href="/blog" data-lang="id" style="display: none;">Blog</a>
+                <a href="/about" data-lang="en">About Us</a>
+                <a href="/about" data-lang="id" style="display: none;">Tentang Kami</a>
             </nav>
 
-            <div class="user-section">
-                <div class="lang-toggle">
-                    <button onclick="setLanguage('en')" class="active" id="lang-en">EN</button>
-                    <button onclick="setLanguage('id')" id="lang-id">ID</button>
+            <div class="header-actions">
+                <!-- Theme Toggle -->
+                <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme" title="Switch theme">
+                    <span class="theme-icon">🌙</span>
+                </button>
+
+                <!-- Language Toggle -->
+                <div class="lang-toggle" role="group" aria-label="Language selection">
+                    <button onclick="setLanguage('en')" class="lang-btn active" id="lang-en" aria-pressed="true">EN</button>
+                    <button onclick="setLanguage('id')" class="lang-btn" id="lang-id" aria-pressed="false">ID</button>
                 </div>
 
-                <div class="auth-buttons" id="auth-buttons">
-                    <a href="#" class="btn-auth" onclick="showLoginModal()">
-                        <span data-lang="en">Login</span>
-                        <span data-lang="id" style="display: none;">Masuk</span>
-                    </a>
+                <!-- Search Button -->
+                <button class="search-toggle" onclick="toggleSearch()" aria-label="Search" title="Search tools">
+                    <span>🔍</span>
+                </button>
+
+                <!-- Auth Section -->
+                <div class="auth-section">
+                    <div class="auth-buttons" id="auth-buttons">
+                        <button class="btn-auth" onclick="showLoginModal()" aria-label="Login">
+                            <span data-lang="en">Login</span>
+                            <span data-lang="id" style="display: none;">Masuk</span>
+                        </button>
+                    </div>
+
+                    <div class="user-info" id="user-info" style="display: none;">
+                        <div class="user-avatar" id="user-avatar"></div>
+                        <span id="user-name"></span>
+                        <button class="user-menu-toggle" onclick="toggleUserMenu()" aria-label="User menu">▼</button>
+                        <div class="user-dropdown" id="user-dropdown">
+                            <a href="/profile" data-lang="en">Profile</a>
+                            <a href="/profile" data-lang="id" style="display: none;">Profil</a>
+                            <a href="/settings" data-lang="en">Settings</a>
+                            <a href="/settings" data-lang="id" style="display: none;">Pengaturan</a>
+                            <hr>
+                            <button onclick="logout()" data-lang="en">Logout</button>
+                            <button onclick="logout()" data-lang="id" style="display: none;">Keluar</button>
+                        </div>
+                    </div>
                 </div>
 
-                <div class="user-info" id="user-info" style="display: none;">
-                    <div class="user-avatar"></div>
-                    <span id="user-name"></span>
-                </div>
-
-                <button class="mobile-menu-btn" onclick="toggleMobileMenu()">☰</button>
+                <!-- Mobile Menu Button -->
+                <button class="mobile-menu-btn" onclick="toggleMobileMenu()" aria-label="Toggle mobile menu" aria-expanded="false">
+                    <span class="hamburger"></span>
+                    <span class="hamburger"></span>
+                    <span class="hamburger"></span>
+                </button>
             </div>
         </div>
 
-        <!-- Mobile Menu -->
-        <div class="mobile-menu" id="mobile-menu">
-            <div class="mobile-menu-header">
-                <div class="mobile-menu-logo">
-                    <img src="logo.png" alt="VIN NESIA" width="32" height="32">
-                    <span class="mobile-logo-text">VIN NESIA</span>
-                </div>
-                <button class="mobile-menu-close" onclick="toggleMobileMenu()">✕</button>
+        <!-- Search Overlay -->
+        <div class="search-overlay" id="search-overlay">
+            <div class="search-container">
+                <input type="search" class="search-input" placeholder="Search tools..." aria-label="Search tools" id="search-input">
+                <button class="search-close" onclick="toggleSearch()" aria-label="Close search">✕</button>
             </div>
+            <div class="search-results" id="search-results"></div>
+        </div>
 
-            <nav class="mobile-nav">
-                <div class="mobile-nav-section">
-                    <h4 class="mobile-nav-title">
-                        <span data-lang="en">Navigation</span>
-                        <span data-lang="id" style="display: none;">Navigasi</span>
-                    </h4>
-                    <a href="#home" onclick="toggleMobileMenu()">
-                        <span class="nav-icon">🏠</span>
-                        <span data-lang="en">Home</span>
-                        <span data-lang="id" style="display: none;">Beranda</span>
-                    </a>
-                    <a href="#tools" onclick="toggleMobileMenu()">
-                        <span class="nav-icon">🛠️</span>
-                        <span data-lang="en">All Tools</span>
-                        <span data-lang="id" style="display: none;">Semua Tools</span>
-                    </a>
-                    <a href="#blog" onclick="toggleMobileMenu()">
-                        <span class="nav-icon">📝</span>
-                        <span data-lang="en">Blog</span>
-                        <span data-lang="id" style="display: none;">Blog</span>
-                    </a>
-                    <a href="#about" onclick="toggleMobileMenu()">
-                        <span class="nav-icon">ℹ️</span>
-                        <span data-lang="en">About Us</span>
-                        <span data-lang="id" style="display: none;">Tentang Kami</span>
-                    </a>
+        <!-- Mobile Menu -->
+        <div class="mobile-menu" id="mobile-menu" role="navigation" aria-label="Mobile navigation">
+            <div class="mobile-overlay" onclick="toggleMobileMenu()"></div>
+            <div class="mobile-menu-content">
+                <div class="mobile-menu-header">
+                    <div class="mobile-menu-logo">
+                        <img src="logo.png" alt="VIN NESIA" width="32" height="32">
+                        <span class="mobile-logo-text">VIN NESIA</span>
+                    </div>
+                    <button class="mobile-menu-close" onclick="toggleMobileMenu()" aria-label="Close menu">✕</button>
                 </div>
 
-                <div class="mobile-nav-section">
-                    <h4 class="mobile-nav-title">
-                        <span data-lang="en">Support</span>
-                        <span data-lang="id" style="display: none;">Dukungan</span>
-                    </h4>
-                    <a href="#" onclick="toggleMobileMenu()">
-                        <span class="nav-icon">❓</span>
-                        <span data-lang="en">FAQ</span>
-                        <span data-lang="id" style="display: none;">FAQ</span>
-                    </a>
-                    <a href="#" onclick="showDonationModal(); toggleMobileMenu()">
-                        <span class="nav-icon">💝</span>
-                        <span data-lang="en">Donate</span>
-                        <span data-lang="id" style="display: none;">Donasi</span>
-                    </a>
-                </div>
+                <nav class="mobile-nav">
+                    <div class="mobile-nav-section">
+                        <h4 class="mobile-nav-title">
+                            <span data-lang="en">Navigation</span>
+                            <span data-lang="id" style="display: none;">Navigasi</span>
+                        </h4>
+                        <a href="#home" onclick="navigateAndClose('#home')">
+                            <span class="nav-icon">🏠</span>
+                            <span data-lang="en">Home</span>
+                            <span data-lang="id" style="display: none;">Beranda</span>
+                        </a>
+                        <a href="#tools" onclick="navigateAndClose('#tools')">
+                            <span class="nav-icon">🛠️</span>
+                            <span data-lang="en">All Tools</span>
+                            <span data-lang="id" style="display: none;">Semua Tools</span>
+                        </a>
+                        <a href="/blog" onclick="navigateAndClose('/blog')">
+                            <span class="nav-icon">📝</span>
+                            <span data-lang="en">Blog</span>
+                            <span data-lang="id" style="display: none;">Blog</span>
+                        </a>
+                        <a href="/about" onclick="navigateAndClose('/about')">
+                            <span class="nav-icon">ℹ️</span>
+                            <span data-lang="en">About Us</span>
+                            <span data-lang="id" style="display: none;">Tentang Kami</span>
+                        </a>
+                    </div>
 
-                <div class="mobile-nav-section">
-                    <h4 class="mobile-nav-title">
-                        <span data-lang="en">Legal</span>
-                        <span data-lang="id" style="display: none;">Hukum</span>
-                    </h4>
-                    <a href="#" onclick="toggleMobileMenu()">
-                        <span class="nav-icon">🔒</span>
-                        <span data-lang="en">Privacy Policy</span>
-                        <span data-lang="id" style="display: none;">Kebijakan Privasi</span>
-                    </a>
-                    <a href="#" onclick="toggleMobileMenu()">
-                        <span class="nav-icon">📋</span>
-                        <span data-lang="en">Terms of Service</span>
-                        <span data-lang="id" style="display: none;">Syarat Layanan</span>
-                    </a>
-                </div>
-            </nav>
+                    <div class="mobile-nav-section">
+                        <h4 class="mobile-nav-title">
+                            <span data-lang="en">Tools</span>
+                            <span data-lang="id" style="display: none;">Tools</span>
+                        </h4>
+                        <a href="https://password.vinnesia.my.id" target="_blank" rel="noopener">
+                            <span class="nav-icon">🔐</span>
+                            <span data-lang="en">Password Generator</span>
+                            <span data-lang="id" style="display: none;">Generator Password</span>
+                        </a>
+                        <a href="https://scan.vinnesia.my.id" target="_blank" rel="noopener">
+                            <span class="nav-icon">📱</span>
+                            <span data-lang="en">QR Scanner</span>
+                            <span data-lang="id" style="display: none;">Pemindai QR</span>
+                        </a>
+                        <a href="https://image.vinnesia.my.id" target="_blank" rel="noopener">
+                            <span class="nav-icon">🖼️</span>
+                            <span data-lang="en">Image Converter</span>
+                            <span data-lang="id" style="display: none;">Konverter Gambar</span>
+                        </a>
+                    </div>
 
-            <div class="mobile-menu-footer">
-                <div class="mobile-social-links">
-                    <a href="#" aria-label="Instagram">📷</a>
-                    <a href="#" aria-label="WhatsApp">📱</a>
+                    <div class="mobile-nav-section">
+                        <h4 class="mobile-nav-title">
+                            <span data-lang="en">Support</span>
+                            <span data-lang="id" style="display: none;">Dukungan</span>
+                        </h4>
+                        <a href="/faq" onclick="navigateAndClose('/faq')">
+                            <span class="nav-icon">❓</span>
+                            <span data-lang="en">FAQ</span>
+                            <span data-lang="id" style="display: none;">FAQ</span>
+                        </a>
+                        <a href="#" onclick="showDonationModal(); toggleMobileMenu()">
+                            <span class="nav-icon">💝</span>
+                            <span data-lang="en">Donate</span>
+                            <span data-lang="id" style="display: none;">Donasi</span>
+                        </a>
+                        <a href="/contact" onclick="navigateAndClose('/contact')">
+                            <span class="nav-icon">📧</span>
+                            <span data-lang="en">Contact</span>
+                            <span data-lang="id" style="display: none;">Kontak</span>
+                        </a>
+                    </div>
+
+                    <div class="mobile-nav-section">
+                        <h4 class="mobile-nav-title">
+                            <span data-lang="en">Legal</span>
+                            <span data-lang="id" style="display: none;">Hukum</span>
+                        </h4>
+                        <a href="/privacy" onclick="navigateAndClose('/privacy')">
+                            <span class="nav-icon">🔒</span>
+                            <span data-lang="en">Privacy Policy</span>
+                            <span data-lang="id" style="display: none;">Kebijakan Privasi</span>
+                        </a>
+                        <a href="/terms" onclick="navigateAndClose('/terms')">
+                            <span class="nav-icon">📋</span>
+                            <span data-lang="en">Terms of Service</span>
+                            <span data-lang="id" style="display: none;">Syarat Layanan</span>
+                        </a>
+                    </div>
+                </nav>
+
+                <div class="mobile-menu-footer">
+                    <div class="mobile-social-links">
+                        <a href="https://instagram.com/vinnesia.official" target="_blank" rel="noopener" aria-label="Instagram">📷</a>
+                        <a href="https://wa.me/6281234567890" target="_blank" rel="noopener" aria-label="WhatsApp">📱</a>
+                        <a href="https://github.com/vinnesia" target="_blank" rel="noopener" aria-label="GitHub">💻</a>
+                    </div>
+                    <p class="mobile-copyright">© 2025 VIN NESIA</p>
                 </div>
-                <p class="mobile-copyright">© 2025 VIN NESIA</p>
             </div>
         </div>
     </header>
 
     <!-- Breadcrumb -->
-    <div class="breadcrumb">
-        <nav aria-label="Breadcrumb">
-            <a href="#" data-lang="en">Home</a>
-            <a href="#" data-lang="id" style="display: none;">Beranda</a>
-            <span> / </span>
-            <span data-lang="en">Tools</span>
-            <span data-lang="id" style="display: none;">Alat</span>
+    <div class="breadcrumb" role="navigation" aria-label="Breadcrumb">
+        <nav>
+            <a href="/" data-lang="en">Home</a>
+            <a href="/" data-lang="id" style="display: none;">Beranda</a>
+            <span class="breadcrumb-separator" aria-hidden="true"> / </span>
+            <span class="breadcrumb-current" data-lang="en">Tools</span>
+            <span class="breadcrumb-current" data-lang="id" style="display: none;">Alat</span>
         </nav>
     </div>
 
     <!-- Main Content -->
-    <main id="main-content">
+    <main id="main-content" role="main">
         <!-- Hero Section -->
         <section class="hero" id="home">
             <div class="hero-container">
-                <h1>
+                <h1 class="hero-title">
                     <span data-lang="en">Professional Online Tools</span>
                     <span data-lang="id" style="display: none;">Alat Online Profesional</span>
                 </h1>
-                <p>
+                <p class="hero-subtitle">
                     <span data-lang="en">Fast, secure, and free web utilities for everyday use. No registration required, works on all devices.</span>
                     <span data-lang="id" style="display: none;">Utilitas web yang cepat, aman, dan gratis untuk penggunaan sehari-hari. Tanpa registrasi, bekerja di semua perangkat.</span>
                 </p>
                 <div class="hero-cta">
-                    <a href="#tools" class="btn-primary ripple">
+                    <a href="#tools" class="btn-primary ripple" onclick="trackEvent('cta_click', 'explore_tools')">
                         <span data-lang="en">🚀 Explore Tools</span>
                         <span data-lang="id" style="display: none;">🚀 Jelajahi Tools</span>
                     </a>
-                    <a href="#about" class="btn-secondary">
+                    <a href="/about" class="btn-secondary">
                         <span data-lang="en">📖 Learn More</span>
                         <span data-lang="id" style="display: none;">📖 Pelajari Lebih Lanjut</span>
                     </a>
@@ -1545,33 +417,33 @@
         </section>
 
         <!-- Statistics Section -->
-        <section class="stats">
+        <section class="stats" role="region" aria-label="Statistics">
             <div class="stats-container">
-                <div class="stat-item">
+                <div class="stat-item" data-stat="users">
                     <span class="stat-number" data-count="150000">0</span>
                     <span class="stat-label" data-lang="en">Happy Users</span>
                     <span class="stat-label" data-lang="id" style="display: none;">Pengguna Senang</span>
                 </div>
-                <div class="stat-item">
+                <div class="stat-item" data-stat="tools">
                     <span class="stat-number" data-count="6">0</span>
                     <span class="stat-label" data-lang="en">Powerful Tools</span>
                     <span class="stat-label" data-lang="id" style="display: none;">Tools Canggih</span>
                 </div>
-                <div class="stat-item">
+                <div class="stat-item" data-stat="uptime">
                     <span class="stat-number" data-count="99">0</span>
                     <span class="stat-label" data-lang="en">% Uptime</span>
                     <span class="stat-label" data-lang="id" style="display: none;">% Waktu Aktif</span>
                 </div>
-                <div class="stat-item">
+                <div class="stat-item" data-stat="support">
                     <span class="stat-number" data-count="24">0</span>
                     <span class="stat-label" data-lang="en">/ 7 Support</span>
-                    <span data-lang="id" style="display: none;">/ 7 Dukungan</span>
+                    <span class="stat-label" data-lang="id" style="display: none;">/ 7 Dukungan</span>
                 </div>
             </div>
         </section>
 
         <!-- Tools Section -->
-        <section class="tools" id="tools">
+        <section class="tools" id="tools" role="region" aria-label="Tools">
             <div class="tools-container">
                 <div class="section-header">
                     <h2 class="section-title">
@@ -1584,9 +456,9 @@
                     </p>
                 </div>
 
-                <div class="tools-grid">
-                    <a href="https://password.vinnesia.my.id" class="tool-card" target="_blank" rel="noopener">
-                        <div class="tool-icon">🔐</div>
+                <div class="tools-grid" role="list">
+                    <a href="https://password.vinnesia.my.id" class="tool-card" target="_blank" rel="noopener" role="listitem" onclick="trackEvent('tool_click', 'password_generator')">
+                        <div class="tool-icon" aria-hidden="true">🔐</div>
                         <h3 class="tool-title">
                             <span data-lang="en">Password Generator</span>
                             <span data-lang="id" style="display: none;">Generator Password</span>
@@ -1603,10 +475,14 @@
                             <span class="feature-tag" data-lang="en">No Storage</span>
                             <span class="feature-tag" data-lang="id" style="display: none;">Tanpa Penyimpanan</span>
                         </div>
+                        <div class="usage-indicator">
+                            <span data-lang="en">Most Used</span>
+                            <span data-lang="id" style="display: none;">Paling Digunakan</span>
+                        </div>
                     </a>
 
-                    <a href="https://scan.vinnesia.my.id" class="tool-card" target="_blank" rel="noopener">
-                        <div class="tool-icon">📱</div>
+                    <a href="https://scan.vinnesia.my.id" class="tool-card" target="_blank" rel="noopener" role="listitem" onclick="trackEvent('tool_click', 'qr_scanner')">
+                        <div class="tool-icon" aria-hidden="true">📱</div>
                         <h3 class="tool-title">
                             <span data-lang="en">QR Code Scanner</span>
                             <span data-lang="id" style="display: none;">Pemindai Kode QR</span>
@@ -1625,8 +501,8 @@
                         </div>
                     </a>
 
-                    <a href="https://image.vinnesia.my.id" class="tool-card" target="_blank" rel="noopener">
-                        <div class="tool-icon">🖼️</div>
+                    <a href="https://image.vinnesia.my.id" class="tool-card" target="_blank" rel="noopener" role="listitem" onclick="trackEvent('tool_click', 'image_converter')">
+                        <div class="tool-icon" aria-hidden="true">🖼️</div>
                         <h3 class="tool-title">
                             <span data-lang="en">Image Converter</span>
                             <span data-lang="id" style="display: none;">Konverter Gambar</span>
@@ -1645,8 +521,8 @@
                         </div>
                     </a>
 
-                    <a href="https://currency.vinnesia.my.id" class="tool-card" target="_blank" rel="noopener">
-                        <div class="tool-icon">💰</div>
+                    <a href="https://currency.vinnesia.my.id" class="tool-card" target="_blank" rel="noopener" role="listitem" onclick="trackEvent('tool_click', 'currency_calculator')">
+                        <div class="tool-icon" aria-hidden="true">💰</div>
                         <h3 class="tool-title">
                             <span data-lang="en">Currency Calculator</span>
                             <span data-lang="id" style="display: none;">Kalkulator Mata Uang</span>
@@ -1665,8 +541,8 @@
                         </div>
                     </a>
 
-                    <a href="https://qr.vinnesia.my.id" class="tool-card" target="_blank" rel="noopener">
-                        <div class="tool-icon">📄</div>
+                    <a href="https://qr.vinnesia.my.id" class="tool-card" target="_blank" rel="noopener" role="listitem" onclick="trackEvent('tool_click', 'qr_generator')">
+                        <div class="tool-icon" aria-hidden="true">📄</div>
                         <h3 class="tool-title">
                             <span data-lang="en">QR Code Generator</span>
                             <span data-lang="id" style="display: none;">Generator Kode QR</span>
@@ -1685,8 +561,8 @@
                         </div>
                     </a>
 
-                    <a href="https://json.vinnesia.my.id" class="tool-card" target="_blank" rel="noopener">
-                        <div class="tool-icon">🔧</div>
+                    <a href="https://json.vinnesia.my.id" class="tool-card" target="_blank" rel="noopener" role="listitem" onclick="trackEvent('tool_click', 'json_formatter')">
+                        <div class="tool-icon" aria-hidden="true">🔧</div>
                         <h3 class="tool-title">
                             <span data-lang="en">JSON Formatter</span>
                             <span data-lang="id" style="display: none;">Formatter JSON</span>
@@ -1705,38 +581,125 @@
                         </div>
                     </a>
                 </div>
+
+                <!-- Load More Button -->
+                <div class="tools-actions">
+                    <button class="btn-secondary load-more" onclick="loadMoreTools()" data-lang="en">
+                        Load More Tools
+                    </button>
+                    <button class="btn-secondary load-more" onclick="loadMoreTools()" data-lang="id" style="display: none;">
+                        Muat Lebih Banyak Tools
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Features Section -->
+        <section class="features" role="region" aria-label="Features">
+            <div class="features-container">
+                <div class="section-header">
+                    <h2 class="section-title">
+                        <span data-lang="en">Why Choose VIN NESIA?</span>
+                        <span data-lang="id" style="display: none;">Mengapa Pilih VIN NESIA?</span>
+                    </h2>
+                    <p class="section-subtitle">
+                        <span data-lang="en">Built with modern technology and user experience in mind</span>
+                        <span data-lang="id" style="display: none;">Dibangun dengan teknologi modern dan pengalaman pengguna yang baik</span>
+                    </p>
+                </div>
+
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon">⚡</div>
+                        <h3 class="feature-title" data-lang="en">Lightning Fast</h3>
+                        <h3 class="feature-title" data-lang="id" style="display: none;">Super Cepat</h3>
+                        <p class="feature-description" data-lang="en">Optimized for speed with instant results and minimal loading times.</p>
+                        <p class="feature-description" data-lang="id" style="display: none;">Dioptimalkan untuk kecepatan dengan hasil instan dan waktu loading minimal.</p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="feature-icon">🔒</div>
+                        <h3 class="feature-title" data-lang="en">100% Secure</h3>
+                        <h3 class="feature-title" data-lang="id" style="display: none;">100% Aman</h3>
+                        <p class="feature-description" data-lang="en">Your data never leaves your device. All processing happens locally.</p>
+                        <p class="feature-description" data-lang="id" style="display: none;">Data Anda tidak pernah meninggalkan perangkat. Semua proses terjadi secara lokal.</p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="feature-icon">📱</div>
+                        <h3 class="feature-title" data-lang="en">Mobile Friendly</h3>
+                        <h3 class="feature-title" data-lang="id" style="display: none;">Mobile Friendly</h3>
+                        <p class="feature-description" data-lang="en">Works perfectly on all devices - desktop, tablet, and mobile.</p>
+                        <p class="feature-description" data-lang="id" style="display: none;">Bekerja sempurna di semua perangkat - desktop, tablet, dan mobile.</p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="feature-icon">🆓</div>
+                        <h3 class="feature-title" data-lang="en">Always Free</h3>
+                        <h3 class="feature-title" data-lang="id" style="display: none;">Selalu Gratis</h3>
+                        <p class="feature-description" data-lang="en">No hidden fees, no subscriptions. All tools are completely free to use.</p>
+                        <p class="feature-description" data-lang="id" style="display: none;">Tanpa biaya tersembunyi, tanpa berlangganan. Semua tools gratis digunakan.</p>
+                    </div>
+                </div>
             </div>
         </section>
 
         <!-- Donation Section -->
-        <section class="donation">
+        <section class="donation" role="region" aria-label="Donation">
             <div class="donation-container">
-                <h2>
+                <h2 class="donation-title">
                     <span data-lang="en">💝 Support Our Work</span>
                     <span data-lang="id" style="display: none;">💝 Dukung Karya Kami</span>
                 </h2>
-                <p>
+                <p class="donation-description">
                     <span data-lang="en">Your voluntary donations help us maintain and improve these free tools for everyone. Every contribution, no matter how small, makes a difference in keeping our services running and developing new features.</span>
                     <span data-lang="id" style="display: none;">Donasi sukarela Anda membantu kami memelihara dan meningkatkan tools gratis ini untuk semua orang. Setiap kontribusi, tidak peduli sekecil apapun, membuat perbedaan dalam menjalankan layanan kami dan mengembangkan fitur baru.</span>
                 </p>
-                <a href="#" class="btn-donate ripple" onclick="showDonationModal()">
+                <button class="btn-donate ripple" onclick="showDonationModal(); trackEvent('donation_click', 'support_button')">
                     <span data-lang="en">☕ Buy Us Coffee</span>
                     <span data-lang="id" style="display: none;">☕ Belikan Kami Kopi</span>
-                </a>
+                </button>
+            </div>
+        </section>
+
+        <!-- Newsletter Section -->
+        <section class="newsletter" role="region" aria-label="Newsletter">
+            <div class="newsletter-container">
+                <h2 class="newsletter-title">
+                    <span data-lang="en">Stay Updated</span>
+                    <span data-lang="id" style="display: none;">Tetap Update</span>
+                </h2>
+                <p class="newsletter-description">
+                    <span data-lang="en">Get notified about new tools and updates</span>
+                    <span data-lang="id" style="display: none;">Dapatkan notifikasi tentang tools baru dan pembaruan</span>
+                </p>
+                <form class="newsletter-form" onsubmit="subscribeNewsletter(event)">
+                    <input type="email" class="newsletter-input" placeholder="Enter your email" required aria-label="Email address">
+                    <button type="submit" class="btn-primary newsletter-submit">
+                        <span data-lang="en">Subscribe</span>
+                        <span data-lang="id" style="display: none;">Berlangganan</span>
+                    </button>
+                </form>
             </div>
         </section>
     </main>
 
     <!-- Footer -->
-    <footer>
+    <footer role="contentinfo">
         <div class="footer-container">
             <div class="footer-content">
                 <div class="footer-section brand">
                     <h3>VIN NESIA</h3>
-                    <p style="color: var(--text-secondary); margin-top: 0.5rem;">
+                    <p class="footer-description">
                         <span data-lang="en">Professional online tools for everyone, everywhere.</span>
                         <span data-lang="id" style="display: none;">Tools online profesional untuk semua orang, di mana saja.</span>
                     </p>
+                    <div class="social-links">
+                        <a href="https://instagram.com/vinnesia.official" target="_blank" rel="noopener" aria-label="Instagram">📷</a>
+                        <a href="https://wa.me/6281234567890" target="_blank" rel="noopener" aria-label="WhatsApp">📱</a>
+                        <a href="https://github.com/vinnesia" target="_blank" rel="noopener" aria-label="GitHub">💻</a>
+                        <a href="https://twitter.com/vinnesia" target="_blank" rel="noopener" aria-label="Twitter">🐦</a>
+                    </div>
                 </div>
 
                 <div class="footer-section">
@@ -1745,10 +708,11 @@
                         <span data-lang="id" style="display: none;">Navigasi</span>
                     </h3>
                     <ul class="footer-links">
-                        <li><a href="#home" data-lang="en">Home</a><a href="#home" data-lang="id" style="display: none;">Beranda</a></li>
+                        <li><a href="/" data-lang="en">Home</a><a href="/" data-lang="id" style="display: none;">Beranda</a></li>
                         <li><a href="#tools" data-lang="en">All Tools</a><a href="#tools" data-lang="id" style="display: none;">Semua Tools</a></li>
-                        <li><a href="#blog" data-lang="en">Blog</a><a href="#blog" data-lang="id" style="display: none;">Blog</a></li>
-                        <li><a href="#about" data-lang="en">About Us</a><a href="#about" data-lang="id" style="display: none;">Tentang Kami</a></li>
+                        <li><a href="/blog" data-lang="en">Blog</a><a href="/blog" data-lang="id" style="display: none;">Blog</a></li>
+                        <li><a href="/about" data-lang="en">About Us</a><a href="/about" data-lang="id" style="display: none;">Tentang Kami</a></li>
+                        <li><a href="/sitemap.xml" data-lang="en">Sitemap</a><a href="/sitemap.xml" data-lang="id" style="display: none;">Peta Situs</a></li>
                     </ul>
                 </div>
 
@@ -1758,435 +722,254 @@
                         <span data-lang="id" style="display: none;">Bantuan</span>
                     </h3>
                     <ul class="footer-links">
-                        <li><a href="#" data-lang="en">How to Use Tools</a><a href="#" data-lang="id" style="display: none;">Cara Pakai Tools</a></li>
-                        <li><a href="#" data-lang="en">FAQ</a><a href="#" data-lang="id" style="display: none;">FAQ</a></li>
-                        <li><a href="#" data-lang="en">Contact Us</a><a href="#" data-lang="id" style="display: none;">Kontak Kami</a></li>
+                        <li><a href="/how-to-use" data-lang="en">How to Use Tools</a><a href="/how-to-use" data-lang="id" style="display: none;">Cara Pakai Tools</a></li>
+                        <li><a href="/faq" data-lang="en">FAQ</a><a href="/faq" data-lang="id" style="display: none;">FAQ</a></li>
+                        <li><a href="/contact" data-lang="en">Contact Us</a><a href="/contact" data-lang="id" style="display: none;">Kontak Kami</a></li>
+                        <li><a href="/feedback" data-lang="en">Feedback</a><a href="/feedback" data-lang="id" style="display: none;">Masukan</a></li>
                     </ul>
                 </div>
 
                 <div class="footer-section">
                     <h3>⚖️ Legal</h3>
                     <ul class="footer-links">
-                        <li><a href="#" data-lang="en">Privacy Policy</a><a href="#" data-lang="id" style="display: none;">Kebijakan Privasi</a></li>
-                        <li><a href="#" data-lang="en">Terms of Service</a><a href="#" data-lang="id" style="display: none;">Syarat Layanan</a></li>
-                        <li><a href="#" data-lang="en">Sitemap</a><a href="#" data-lang="id" style="display: none;">Peta Situs</a></li>
+                        <li><a href="/privacy" data-lang="en">Privacy Policy</a><a href="/privacy" data-lang="id" style="display: none;">Kebijakan Privasi</a></li>
+                        <li><a href="/terms" data-lang="en">Terms of Service</a><a href="/terms" data-lang="id" style="display: none;">Syarat Layanan</a></li>
+                        <li><a href="/cookies" data-lang="en">Cookie Policy</a><a href="/cookies" data-lang="id" style="display: none;">Kebijakan Cookie</a></li>
+                        <li><a href="/disclaimer" data-lang="en">Disclaimer</a><a href="/disclaimer" data-lang="id" style="display: none;">Penafian</a></li>
                     </ul>
                 </div>
 
                 <div class="footer-section">
-                    <h3>📧 Email</h3>
+                    <h3>📧 Contact</h3>
                     <ul class="footer-links">
                         <li><a href="mailto:admin@vinnesia.my.id">admin@vinnesia.my.id</a></li>
                         <li><a href="mailto:support@vinnesia.my.id">support@vinnesia.my.id</a></li>
                         <li><a href="mailto:privacy@vinnesia.my.id">privacy@vinnesia.my.id</a></li>
+                        <li><a href="mailto:business@vinnesia.my.id">business@vinnesia.my.id</a></li>
                     </ul>
-
-                    <div class="social-links">
-                        <a href="#" aria-label="Instagram" target="_blank" rel="noopener">📷</a>
-                        <a href="#" aria-label="WhatsApp" target="_blank" rel="noopener">📱</a>
-                    </div>
                 </div>
             </div>
 
             <div class="footer-bottom">
-                <p>© 2025 VIN NESIA. All rights reserved. Built with ❤️ for everyone.</p>
+                <div class="footer-bottom-content">
+                    <p class="copyright">© 2025 VIN NESIA. All rights reserved. Built with ❤️ for everyone.</p>
+                    <div class="footer-bottom-links">
+                        <a href="/security" data-lang="en">Security</a>
+                        <a href="/security" data-lang="id" style="display: none;">Keamanan</a>
+                        <span class="separator">•</span>
+                        <a href="/status" data-lang="en">Status</a>
+                        <a href="/status" data-lang="id" style="display: none;">Status</a>
+                        <span class="separator">•</span>
+                        <a href="/api" data-lang="en">API</a>
+                        <a href="/api" data-lang="id" style="display: none;">API</a>
+                    </div>
+                </div>
                 <p class="disclaimer">
-                    <span data-lang="en">VIN NESIA is not responsible for misuse of tools.</span>
-                    <span data-lang="id" style="display: none;">VIN NESIA tidak bertanggung jawab atas penyalahgunaan tools.</span>
+                    <span data-lang="en">VIN NESIA is not responsible for misuse of tools. Use at your own discretion.</span>
+                    <span data-lang="id" style="display: none;">VIN NESIA tidak bertanggung jawab atas penyalahgunaan tools. Gunakan dengan kebijaksanaan sendiri.</span>
                 </p>
             </div>
         </div>
     </footer>
 
     <!-- Login Modal -->
-    <div id="login-modal" class="modal" style="display: none;">
+    <div id="login-modal" class="modal" role="dialog" aria-labelledby="login-title" aria-hidden="true">
+        <div class="modal-overlay" onclick="hideLoginModal()"></div>
         <div class="modal-content">
             <div class="modal-header">
-                <h2 data-lang="en">Login to VIN NESIA</h2>
-                <h2 data-lang="id" style="display: none;">Masuk ke VIN NESIA</h2>
-                <button class="modal-close" onclick="hideLoginModal()">&times;</button>
+                <h2 id="login-title">
+                    <span data-lang="en">Login to VIN NESIA</span>
+                    <span data-lang="id" style="display: none;">Masuk ke VIN NESIA</span>
+                </h2>
+                <button class="modal-close" onclick="hideLoginModal()" aria-label="Close modal">&times;</button>
             </div>
             <div class="modal-body">
-                <p data-lang="en">Choose your preferred login method:</p>
-                <p data-lang="id" style="display: none;">Pilih metode login yang Anda sukai:</p>
+                <p class="modal-description">
+                    <span data-lang="en">Choose your preferred login method:</span>
+                    <span data-lang="id" style="display: none;">Pilih metode login yang Anda sukai:</span>
+                </p>
 
                 <div class="social-login-buttons">
-                    <button id="login-github" class="social-btn github">
-                        <span>🐙 GitHub</span>
+                    <button id="login-github" class="social-btn github" data-provider="github">
+                        <span class="social-icon">🐙</span>
+                        <span>GitHub</span>
+                        <div class="btn-loading" style="display: none;">⏳</div>
                     </button>
-                    <button id="login-discord" class="social-btn discord">
-                        <span>💬 Discord</span>
+                    <button id="login-discord" class="social-btn discord" data-provider="discord">
+                        <span class="social-icon">💬</span>
+                        <span>Discord</span>
+                        <div class="btn-loading" style="display: none;">⏳</div>
                     </button>
-                    <button id="login-facebook" class="social-btn facebook">
-                        <span>📘 Facebook</span>
+                    <button id="login-google" class="social-btn google" data-provider="google">
+                        <span class="social-icon">🔍</span>
+                        <span>Google</span>
+                        <div class="btn-loading" style="display: none;">⏳</div>
                     </button>
+                </div>
+
+                <div class="login-divider">
+                    <span data-lang="en">or</span>
+                    <span data-lang="id" style="display: none;">atau</span>
+                </div>
+
+                <form class="email-login-form" onsubmit="handleEmailLogin(event)">
+                    <input type="email" class="form-input" placeholder="Email" required aria-label="Email">
+                    <input type="password" class="form-input" placeholder="Password" required aria-label="Password">
+                    <button type="submit" class="btn-primary form-submit">
+                        <span data-lang="en">Login</span>
+                        <span data-lang="id" style="display: none;">Masuk</span>
+                    </button>
+                </form>
+
+                <div class="login-footer">
+                    <p>
+                        <span data-lang="en">Don't have an account? </span>
+                        <span data-lang="id" style="display: none;">Belum punya akun? </span>
+                        <a href="#" onclick="showRegisterModal()">
+                            <span data-lang="en">Sign up</span>
+                            <span data-lang="id" style="display: none;">Daftar</span>
+                        </a>
+                    </p>
                 </div>
             </div>
         </div>
     </div>
 
     <!-- Donation Modal -->
-    <div id="donation-modal" class="modal" style="display: none;">
+    <div id="donation-modal" class="modal" role="dialog" aria-labelledby="donation-title" aria-hidden="true">
+        <div class="modal-overlay" onclick="hideDonationModal()"></div>
         <div class="modal-content">
             <div class="modal-header">
-                <h2 data-lang="en">Support VIN NESIA</h2>
-                <h2 data-lang="id" style="display: none;">Dukung VIN NESIA</h2>
-                <button class="modal-close" onclick="hideDonationModal()">&times;</button>
+                <h2 id="donation-title">
+                    <span data-lang="en">Support VIN NESIA</span>
+                    <span data-lang="id" style="display: none;">Dukung VIN NESIA</span>
+                </h2>
+                <button class="modal-close" onclick="hideDonationModal()" aria-label="Close modal">&times;</button>
             </div>
             <div class="modal-body">
-                <p data-lang="en">Thank you for considering to support our work! Your donations help us keep these tools free and improve them continuously.</p>
-                <p data-lang="id" style="display: none;">Terima kasih telah mempertimbangkan untuk mendukung karya kami! Donasi Anda membantu kami menjaga tools ini tetap gratis dan terus meningkatkannya.</p>
+                <p class="modal-description">
+                    <span data-lang="en">Thank you for considering to support our work! Your donations help us keep these tools free and improve them continuously.</span>
+                    <span data-lang="id" style="display: none;">Terima kasih telah mempertimbangkan untuk mendukung karya kami! Donasi Anda membantu kami menjaga tools ini tetap gratis dan terus meningkatkannya.</span>
+                </p>
 
                 <div class="donation-options">
-                    <button class="donation-btn">☕ $3 - Coffee</button>
-                    <button class="donation-btn">🍕 $10 - Pizza</button>
-                    <button class="donation-btn">💝 $25 - Generous</button>
-                    <button class="donation-btn">🚀 Custom Amount</button>
+                    <button class="donation-btn" data-amount="3" onclick="processDonation(3)">
+                        <span class="donation-icon">☕</span>
+                        <span class="donation-amount">$3</span>
+                        <span class="donation-label" data-lang="en">Coffee</span>
+                        <span class="donation-label" data-lang="id" style="display: none;">Kopi</span>
+                    </button>
+                    <button class="donation-btn" data-amount="10" onclick="processDonation(10)">
+                        <span class="donation-icon">🍕</span>
+                        <span class="donation-amount">$10</span>
+                        <span class="donation-label" data-lang="en">Pizza</span>
+                        <span class="donation-label" data-lang="id" style="display: none;">Pizza</span>
+                    </button>
+                    <button class="donation-btn" data-amount="25" onclick="processDonation(25)">
+                        <span class="donation-icon">💝</span>
+                        <span class="donation-amount">$25</span>
+                        <span class="donation-label" data-lang="en">Generous</span>
+                        <span class="donation-label" data-lang="id" style="display: none;">Murah Hati</span>
+                    </button>
+                    <button class="donation-btn custom" onclick="showCustomDonation()">
+                        <span class="donation-icon">🚀</span>
+                        <span class="donation-label" data-lang="en">Custom Amount</span>
+                        <span class="donation-label" data-lang="id" style="display: none;">Jumlah Khusus</span>
+                    </button>
+                </div>
+
+                <div class="custom-donation" id="custom-donation" style="display: none;">
+                    <input type="number" class="custom-amount-input" placeholder="Enter amount" min="1" aria-label="Custom donation amount">
+                    <button class="btn-primary" onclick="processCustomDonation()">
+                        <span data-lang="en">Donate</span>
+                        <span data-lang="id" style="display: none;">Donasi</span>
+                    </button>
+                </div>
+
+                <div class="payment-methods">
+                    <h4>
+                        <span data-lang="en">Payment Methods</span>
+                        <span data-lang="id" style="display: none;">Metode Pembayaran</span>
+                    </h4>
+                    <div class="payment-icons">
+                        <span class="payment-icon" title="PayPal">💳</span>
+                        <span class="payment-icon" title="Stripe">💎</span>
+                        <span class="payment-icon" title="Crypto">₿</span>
+                        <span class="payment-icon" title="Bank Transfer">🏦</span>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- JavaScript (lanjutan) -->
-        <script>
-            // Supabase Configuration
-            const SUPABASE_URL = "https://YOUR_PROJECT.supabase.co"; // Ganti dengan URL Supabase Anda
-            const SUPABASE_ANON_KEY = "YOUR_ANON_KEY"; // Ganti dengan kunci anonim Supabase Anda
-            let supabaseClient;
+    <!-- Notification Container -->
+    <div id="notification-container" class="notification-container" aria-live="polite"></div>
 
-            // Inisialisasi Supabase
-            try {
-                supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
-            } catch (error) {
-                console.warn('Gagal menginisialisasi Supabase:', error);
-            }
+    <!-- Back to Top Button -->
+    <button id="back-to-top" class="back-to-top" onclick="scrollToTop()" aria-label="Back to top" style="display: none;">
+        ↑
+    </button>
 
-            // Variabel Global
-            let currentLanguage = 'en';
-            let statsAnimated = false;
-            let userStats = {
-                users: 150000,
-                tools: 6,
-                uptime: 99,
-                support: 24
-            };
+    <!-- Offline Indicator -->
+    <div id="offline-indicator" class="offline-indicator" style="display: none;">
+        <span data-lang="en">You're offline. Some features may not work.</span>
+        <span data-lang="id" style="display: none;">Anda sedang offline. Beberapa fitur mungkin tidak bekerja.</span>
+    </div>
 
-            // DOM Content Loaded
-            document.addEventListener('DOMContentLoaded', initializeApp);
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="script.js" defer></script>
 
-            // Inisialisasi Aplikasi
-            function initializeApp() {
-                // Set bahasa awal dari localStorage atau default ke 'en'
-                const savedLanguage = localStorage.getItem('language') || 'en';
-                setLanguage(savedLanguage);
+    <!-- Service Worker Registration -->
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', function() {
+                navigator.serviceWorker.register('/sw.js')
+                    .then(registration => console.log('SW registered'))
+                    .catch(error => console.log('SW registration failed'));
+            });
+        }
+    </script>
 
-                // Inisialisasi animasi scroll
-                initializeScrollAnimations();
-
-                // Inisialisasi pemeriksaan status autentikasi
-                checkAuthStatus();
-
-                // Tampilkan cookie banner jika belum diterima
-                showCookieBanner();
-
-                // Inisialisasi loading bar
-                initializeLoadingBar();
-
-                // Inisialisasi smooth scrolling
-                initializeSmoothScrolling();
-
-                // Inisialisasi penghitung statistik
-                initializeStatsCounter();
-
-                // Inisialisasi animasi kartu alat
-                initializeToolCardAnimations();
-
-                // Inisialisasi tombol login sosial
-                initializeSocialLogin();
-
-                console.log('VIN NESIA berhasil diinisialisasi');
-            }
-
-            // Manajemen Bahasa
-            function setLanguage(lang) {
-                currentLanguage = lang;
-
-                // Perbarui status tombol bahasa
-                document.getElementById('lang-en').classList.toggle('active', lang === 'en');
-                document.getElementById('lang-id').classList.toggle('active', lang === 'id');
-
-                // Tampilkan/sembunyikan elemen berdasarkan bahasa
-                document.querySelectorAll('[data-lang]').forEach(element => {
-                    element.style.display = element.getAttribute('data-lang') === lang ? '' : 'none';
+    <!-- Keyboard Shortcuts -->
+    <script>
+        document.addEventListener('keydown', function(e) {
+            // ESC key handlers
+            if (e.key === 'Escape') {
+                const modals = document.querySelectorAll('.modal');
+                modals.forEach(modal => {
+                    if (modal.style.display !== 'none') {
+                        const closeBtn = modal.querySelector('.modal-close');
+                        if (closeBtn) closeBtn.click();
+                    }
                 });
-
-                // Perbarui bahasa dokumen
-                document.documentElement.lang = lang;
-
-                // Simpan ke localStorage
-                localStorage.setItem('language', lang);
-
-                // Perbarui judul halaman
-                updatePageTitle(lang);
-
-                console.log(`Bahasa diubah ke: ${lang}`);
-            }
-
-            function updatePageTitle(lang) {
-                const titles = {
-                    en: 'VIN NESIA - Professional Online Tools | Free Web Utilities',
-                    id: 'VIN NESIA - Alat Online Profesional | Utilitas Web Gratis'
-                };
-                document.title = titles[lang] || titles.en;
-            }
-
-            // Menu Mobile
-            function toggleMobileMenu() {
+                
+                // Close mobile menu
                 const mobileMenu = document.getElementById('mobile-menu');
-                mobileMenu.classList.toggle('active');
-                document.body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : '';
-            }
-
-            // Fungsi Autentikasi
-            async function checkAuthStatus() {
-                if (!supabaseClient) return;
-
-                try {
-                    const { data: { user }, error } = await supabaseClient.auth.getUser();
-                    if (error) throw error;
-                    user ? showUserInfo(user) : showAuthButtons();
-                } catch (error) {
-                    console.error('Kesalahan pemeriksaan autentikasi:', error);
-                    showAuthButtons();
+                if (mobileMenu.classList.contains('active')) {
+                    toggleMobileMenu();
+                }
+                
+                // Close search
+                const searchOverlay = document.getElementById('search-overlay');
+                if (searchOverlay.classList.contains('active')) {
+                    toggleSearch();
                 }
             }
-
-            function showUserInfo(user) {
-                const authButtons = document.getElementById('auth-buttons');
-                const userInfo = document.getElementById('user-info');
-                const userName = document.getElementById('user-name');
-
-                authButtons.style.display = 'none';
-                userInfo.style.display = 'flex';
-                userName.textContent = user.email || user.user_metadata.full_name || 'User';
+            
+            // Ctrl/Cmd + K for search
+            if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
+                e.preventDefault();
+                toggleSearch();
             }
-
-            function showAuthButtons() {
-                const authButtons = document.getElementById('auth-buttons');
-                const userInfo = document.getElementById('user-info');
-
-                authButtons.style.display = 'flex';
-                userInfo.style.display = 'none';
+            
+            // Alt + L for language toggle
+            if (e.altKey && e.key === 'l') {
+                e.preventDefault();
+                const currentLang = document.documentElement.lang;
+                setLanguage(currentLang === 'en' ? 'id' : 'en');
             }
-
-            function initializeSocialLogin() {
-                if (!supabaseClient) return;
-
-                const providers = [
-                    { id: 'login-github', provider: 'github', name: 'GitHub' },
-                    { id: 'login-discord', provider: 'discord', name: 'Discord' },
-                    { id: 'login-facebook', provider: 'facebook', name: 'Facebook' }
-                ];
-
-                providers.forEach(({ id, provider, name }) => {
-                    const button = document.getElementById(id);
-                    if (button) {
-                        button.addEventListener('click', async () => {
-                            try {
-                                await supabaseClient.auth.signInWithOAuth({
-                                    provider,
-                                    options: { redirectTo: window.location.href }
-                                });
-                            } catch (error) {
-                                console.error(`Kesalahan login ${name}:`, error);
-                                showNotification('Login gagal. Silakan coba lagi.', 'error');
-                            }
-                        });
-                    }
-                });
-            }
-
-            // Fungsi Modal
-            function showLoginModal() {
-                const modal = document.getElementById('login-modal');
-                modal.style.display = 'flex';
-                setTimeout(() => modal.classList.add('show'), 10);
-                document.body.style.overflow = 'hidden';
-            }
-
-            function hideLoginModal() {
-                const modal = document.getElementById('login-modal');
-                modal.classList.remove('show');
-                setTimeout(() => {
-                    modal.style.display = 'none';
-                    document.body.style.overflow = '';
-                }, 300);
-            }
-
-            function showDonationModal() {
-                const modal = document.getElementById('donation-modal');
-                modal.style.display = 'flex';
-                setTimeout(() => modal.classList.add('show'), 10);
-                document.body.style.overflow = 'hidden';
-            }
-
-            function hideDonationModal() {
-                const modal = document.getElementById('donation-modal');
-                modal.classList.remove('show');
-                setTimeout(() => {
-                    modal.style.display = 'none';
-                    document.body.style.overflow = '';
-                }, 300);
-            }
-
-            // Tutup modal saat klik di luar
-            document.addEventListener('click', (e) => {
-                if (e.target.classList.contains('modal')) {
-                    if (e.target.id === 'login-modal') hideLoginModal();
-                    else if (e.target.id === 'donation-modal') hideDonationModal();
-                }
-            });
-
-            // Cookie Banner
-            function showCookieBanner() {
-                const cookieAccepted = localStorage.getItem('cookieAccepted');
-                if (!cookieAccepted) {
-                    const banner = document.getElementById('cookie-banner');
-                    setTimeout(() => banner.classList.add('show'), 1000);
-                }
-            }
-
-            function acceptCookies() {
-                const banner = document.getElementById('cookie-banner');
-                banner.classList.remove('show');
-                setTimeout(() => banner.style.display = 'none', 300);
-                localStorage.setItem('cookieAccepted', 'true');
-                console.log('Cookies diterima');
-            }
-
-            // Animasi Scroll
-            function initializeScrollAnimations() {
-                const observer = new IntersectionObserver((entries) => {
-                    entries.forEach(entry => {
-                        if (entry.isIntersecting) {
-                            entry.target.classList.add('visible');
-                            observer.unobserve(entry.target);
-                        }
-                    });
-                }, { threshold: 0.1 });
-
-                document.querySelectorAll('.tool-card, .stat-item').forEach(element => {
-                    observer.observe(element);
-                });
-            }
-
-            // Loading Bar
-            function initializeLoadingBar() {
-                const loadingBar = document.getElementById('loading-bar');
-                window.addEventListener('load', () => {
-                    loadingBar.style.width = '100%';
-                    setTimeout(() => loadingBar.style.opacity = '0', 500);
-                });
-            }
-
-            // Smooth Scrolling
-            function initializeSmoothScrolling() {
-                document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-                    anchor.addEventListener('click', (e) => {
-                        e.preventDefault();
-                        const targetId = anchor.getAttribute('href').substring(1);
-                        const target = document.getElementById(targetId);
-                        if (target) {
-                            target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                        }
-                    });
-                });
-            }
-
-            // Penghitung Statistik
-            function initializeStatsCounter() {
-                const observer = new IntersectionObserver((entries) => {
-                    if (entries[0].isIntersecting && !statsAnimated) {
-                        statsAnimated = true;
-                        animateStats();
-                    }
-                }, { threshold: 0.5 });
-
-                observer.observe(document.querySelector('.stats'));
-            }
-
-            function animateStats() {
-                const stats = document.querySelectorAll('.stat-number');
-                stats.forEach(stat => {
-                    const target = parseInt(stat.getAttribute('data-count'));
-                    let current = 0;
-                    const increment = target / 100;
-                    const animate = () => {
-                        current += increment;
-                        stat.textContent = Math.round(current);
-                        if (current < target) {
-                            requestAnimationFrame(animate);
-                        } else {
-                            stat.textContent = target;
-                        }
-                    };
-                    animate();
-                });
-            }
-
-            // Animasi Kartu Alat
-            function initializeToolCardAnimations() {
-                const cards = document.querySelectorAll('.tool-card');
-                cards.forEach((card, index) => {
-                    setTimeout(() => card.classList.add('visible'), index * 100);
-                });
-            }
-
-            // Notifikasi
-            function showNotification(message, type = 'info') {
-                const notification = document.createElement('div');
-                notification.className = `notification ${type}`;
-                notification.textContent = message;
-                notification.style.cssText = `
-                    position: fixed;
-                    bottom: 20px;
-                    right: 20px;
-                    padding: 12px 24px;
-                    background: ${type === 'error' ? '#EF4444' : '#10B981'};
-                    color: white;
-                    border-radius: 8px;
-                    z-index: 2000;
-                    opacity: 0;
-                    transform: translateY(20px);
-                    transition: all 0.3s ease;
-                `;
-                document.body.appendChild(notification);
-                setTimeout(() => {
-                    notification.style.opacity = '1';
-                    notification.style.transform = 'translateY(0)';
-                }, 10);
-                setTimeout(() => {
-                    notification.style.opacity = '0';
-                    notification.style.transform = 'translateY(20px)';
-                    setTimeout(() => notification.remove(), 300);
-                }, 3000);
-            }
-
-            // Error Handling
-            window.addEventListener('error', (event) => {
-                console.error('Kesalahan global:', event.error);
-                showNotification('Terjadi kesalahan. Silakan coba lagi.', 'error');
-            });
-
-            // Performance Monitoring
-            function monitorPerformance() {
-                if (window.performance) {
-                    const loadTime = performance.now();
-                    console.log(`Waktu pemuatan halaman: ${loadTime.toFixed(2)}ms`);
-                }
-            }
-
-            window.addEventListener('load', monitorPerformance);
-        </script>
+        });
+    </script>
 </body>
 </html>
