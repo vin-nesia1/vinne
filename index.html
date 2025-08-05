@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="VIN NESIA - Free online tools collection including password generator, QR scanner, image converter, currency converter, QR generator, and JSON formatter. Fast, secure, and easy to use.">
+    <meta name="keywords" content="online tools, password generator, QR scanner, image converter, currency converter, QR code generator, JSON formatter, free tools">
+    <meta name="author" content="VIN NESIA">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://vinnesia.my.id">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://vinnesia.my.id">
+    <meta property="og:title" content="VIN NESIA - Free Online Tools Collection">
+    <meta property="og:description" content="Access powerful online tools for free. Password generator, QR scanner, image converter, currency converter, and more. No registration required.">
+    <meta property="og:image" content="https://vinnesia.my.id/og-image.jpg">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://vinnesia.my.id">
+    <meta property="twitter:title" content="VIN NESIA - Free Online Tools Collection">
+    <meta property="twitter:description" content="Access powerful online tools for free. Password generator, QR scanner, image converter, currency converter, and more.">
+    <meta property="twitter:image" content="https://vinnesia.my.id/og-image.jpg">
+    
+    <title>VIN NESIA - Free Online Tools Collection</title>
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-3PYZXZFNER"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-3PYZXZFNER');
+    </script>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: {
+                            50: '#f3f1ff',
+                            100: '#ebe5ff',
+                            200: '#d9ceff',
+                            300: '#bea6ff',
+                            400: '#9f75ff',
+                            500: '#843dff',
+                            600: '#7514ff',
+                            700: '#6b04fd',
+                            800: '#5a03d4',
+                            900: '#4b05ad',
+                            950: '#2c0076',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-gray-900 text-white min-h-screen">
+    <!-- Skip to content -->
+    <a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:top-0 focus:left-0 bg-primary-600 text-white p-2 z-50">
+        Skip to content
+    </a>
+    
+    <!-- Navigation -->
+    <nav class="glass-effect fixed w-full top-0 z-40 border-b border-gray-800">
+        <div class="container mx-auto px-4 py-3">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center space-x-3">
+                    <img src="logo.png" alt="VIN NESIA Logo" class="w-10 h-10 rounded-lg">
+                    <h1 class="text-2xl font-bold gradient-text">VIN NESIA</h1>
+                </div>
+                
+                <div class="flex items-center space-x-4">
+                    <!-- Language Selector -->
+                    <select class="bg-gray-800 text-white border border-gray-700 rounded-lg px-3 py-1 text-sm">
+                        <option value="en">English</option>
+                        <option value="id">Indonesia</option>
+                    </select>
+                    
+                    <!-- Dark/Light Mode Toggle -->
+                    <button id="theme-toggle" class="p-2 rounded-lg bg-gray-800 hover:bg-gray-700 transition-colors">
+                        <i class="fas fa-moon"></i>
+                    </button>
+                    
+                    <!-- Donate Button -->
+                    <button class="bg-gradient-to-r from-primary-600 to-primary-500 hover:from-primary-700 hover:to-primary-600 px-4 py-2 rounded-lg font-medium transition-all ripple-effect">
+                        <i class="fas fa-heart mr-2"></i>Donate
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+    
+    <!-- Breadcrumb -->
+    <div class="container mx-auto px-4 pt-20 pb-4">
+        <nav class="text-sm text-gray-400">
+            <ol class="flex space-x-2">
+                <li><a href="#" class="hover:text-primary-400 transition-colors">Home</a></li>
+                <li><i class="fas fa-chevron-right mx-2"></i></li>
+                <li class="text-gray-300">Tools</li>
+            </ol>
+        </nav>
+    </div>
+    
+    <!-- Main Content -->
+    <main id="main-content" class="container mx-auto px-4 py-8">
+        <!-- Hero Section -->
+        <section class="text-center mb-12 fade-in-up">
+            <div class="max-w-4xl mx-auto">
+                <h2 class="text-5xl md:text-6xl font-bold mb-6 gradient-text float-animation">
+                    Free Online Tools
+                </h2>
+                <p class="text-xl text-gray-300 mb-8 leading-relaxed">
+                    Access powerful online tools for free. No registration required, privacy-focused, and lightning-fast performance.
+                </p>
+                
+                <!-- Search Bar -->
+                <div class="relative max-w-md mx-auto mb-8">
+                    <input 
+                        type="text" 
+                        id="search-tools"
+                        placeholder="Search tools..."
+                        class="w-full bg-gray-800 border border-gray-700 rounded-lg px-4 py-3 pl-12 focus:border-primary-500 focus:outline-none transition-colors"
+                    >
+                    <i class="fas fa-search absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
+                </div>
+                
+                <!-- Tool Categories -->
+                <div class="flex flex-wrap justify-center gap-3 mb-8">
+                    <button class="category-btn active bg-primary-600 hover:bg-primary-700 px-4 py-2 rounded-full text-sm font-medium transition-colors" data-category="all">
+                        All Tools
+                    </button>
+                    <button class="category-btn bg-gray-800 hover:bg-gray-700 px-4 py-2 rounded-full text-sm font-medium transition-colors" data-category="security">
+                        Security
+                    </button>
+                    <button class="category-btn bg-gray-800 hover:bg-gray-700 px-4 py-2 rounded-full text-sm font-medium transition-colors" data-category="converter">
+                        Converter
+                    </button>
+                    <button class="category-btn bg-gray-800 hover:bg-gray-700 px-4 py-2 rounded-full text-sm font-medium transition-colors" data-category="utility">
+                        Utility
+                    </button>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Tools Grid -->
+        <section class="mb-16">
+            <div class="grid grid-cols-2 md:grid-cols-3 gap-6" id="tools-grid">
+                <!-- Password Generator -->
+                <div class="tool-card glass-effect rounded-xl p-6 text-center" data-category="security">
+                    <div class="w-16 h-16 bg-gradient-to-br from-primary-500 to-primary-600 rounded-xl flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-key text-2xl text-white"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3">Password Generator</h3>
+                    <p class="text-gray-400 text-sm mb-4">Generate secure passwords with custom settings</p>
+                    <a href="https://password.vinnesia.my.id" class="inline-block bg-primary-600 hover:bg-primary-700 px-6 py-2 rounded-lg font-medium transition-colors ripple-effect">
+                        Open Tool
+                    </a>
+                </div>
+                
+                <!-- QR Scanner -->
+                <div class="tool-card glass-effect rounded-xl p-6 text-center" data-category="utility">
+                    <div class="w-16 h-16 bg-gradient-to-br from-green-500 to-green-600 rounded-xl flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-qrcode text-2xl text-white"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3">QR Scanner</h3>
+                    <p class="text-gray-400 text-sm mb-4">Scan and decode QR codes instantly</p>
+                    <a href="https://scan.vinnesia.my.id" class="inline-block bg-primary-600 hover:bg-primary-700 px-6 py-2 rounded-lg font-medium transition-colors ripple-effect">
+                        Open Tool
+                    </a>
+                </div>
+                
+                <!-- Image Converter -->
+                <div class="tool-card glass-effect rounded-xl p-6 text-center" data-category="converter">
+                    <div class="w-16 h-16 bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-image text-2xl text-white"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3">Image Converter</h3>
+                    <p class="text-gray-400 text-sm mb-4">Convert images between different formats</p>
+                    <a href="https://image.vinnesia.my.id" class="inline-block bg-primary-600 hover:bg-primary-700 px-6 py-2 rounded-lg font-medium transition-colors ripple-effect">
+                        Open Tool
+                    </a>
+                </div>
+                
+                <!-- Currency Converter -->
+                <div class="tool-card glass-effect rounded-xl p-6 text-center" data-category="converter">
+                    <div class="w-16 h-16 bg-gradient-to-br from-yellow-500 to-yellow-600 rounded-xl flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-dollar-sign text-2xl text-white"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3">Currency Converter</h3>
+                    <p class="text-gray-400 text-sm mb-4">Convert currencies with real-time rates</p>
+                    <a href="https://currency.vinnesia.my.id" class="inline-block bg-primary-600 hover:bg-primary-700 px-6 py-2 rounded-lg font-medium transition-colors ripple-effect">
+                        Open Tool
+                    </a>
+                </div>
+                
+                <!-- QR Generator -->
+                <div class="tool-card glass-effect rounded-xl p-6 text-center" data-category="utility">
+                    <div class="w-16 h-16 bg-gradient-to-br from-purple-500 to-purple-600 rounded-xl flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-qrcode text-2xl text-white"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3">QR Generator</h3>
+                    <p class="text-gray-400 text-sm mb-4">Create custom QR codes for any content</p>
+                    <a href="https://qr.vinnesia.my.id" class="inline-block bg-primary-600 hover:bg-primary-700 px-6 py-2 rounded-lg font-medium transition-colors ripple-effect">
+                        Open Tool
+                    </a>
+                </div>
+                
+                <!-- JSON Formatter -->
+                <div class="tool-card glass-effect rounded-xl p-6 text-center" data-category="utility">
+                    <div class="w-16 h-16 bg-gradient-to-br from-red-500 to-red-600 rounded-xl flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-code text-2xl text-white"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3">JSON Formatter</h3>
+                    <p class="text-gray-400 text-sm mb-4">Format and validate JSON data easily</p>
+                    <a href="https://json.vinnesia.my.id" class="inline-block bg-primary-600 hover:bg-primary-700 px-6 py-2 rounded-lg font-medium transition-colors ripple-effect">
+                        Open Tool
+                    </a>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Statistics Section -->
+        <section class="mb-16">
+            <div class="glass-effect rounded-2xl p-8">
+                <h3 class="text-3xl font-bold text-center mb-8 gradient-text">Trusted by Users Worldwide</h3>
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+                    <div>
+                        <div class="text-4xl font-bold text-primary-400 mb-2" data-counter="125000">0</div>
+                        <div class="text-gray-400">Total Users</div>
+                    </div>
+                    <div>
+                        <div class="text-4xl font-bold text-primary-400 mb-2" data-counter="500000">0</div>
+                        <div class="text-gray-400">Tools Used</div>
+                    </div>
+                    <div>
+                        <div class="text-4xl font-bold text-primary-400 mb-2" data-counter="99">0</div>
+                        <div class="text-gray-400">Uptime %</div>
+                    </div>
+                    <div>
+                        <div class="text-4xl font-bold text-primary-400 mb-2" data-counter="24">0</div>
+                        <div class="text-gray-400">Countries</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Recently Used Tools -->
+        <section class="mb-16">
+            <h3 class="text-2xl font-bold mb-6 gradient-text">Recently Used Tools</h3>
+            <div class="glass-effect rounded-xl p-6">
+                <div id="recent-tools" class="text-gray-400 text-center py-4">
+                    No recently used tools
+                </div>
+            </div>
+        </section>
+        
+        <!-- Donation Section -->
+        <section class="text-center mb-16">
+            <div class="glass-effect rounded-2xl p-8 max-w-2xl mx-auto">
+                <div class="w-20 h-20 bg-gradient-to-br from-red-500 to-pink-500 rounded-full flex items-center justify-center mx-auto mb-6">
+                    <i class="fas fa-heart text-3xl text-white"></i>
+                </div>
+                <h3 class="text-3xl font-bold mb-4 gradient-text">Support Our Mission</h3>
+                <p class="text-gray-300 mb-6 leading-relaxed">
+                    Help us maintain and improve these free tools. Your voluntary donation supports development, server costs, and keeps all tools completely free for everyone.
+                </p>
+                <button class="bg-gradient-to-r from-red-500 to-pink-500 hover:from-red-600 hover:to-pink-600 px-8 py-3 rounded-lg font-medium text-lg transition-all ripple-effect">
+                    <i class="fas fa-heart mr-2"></i>Make a Donation
+                </button>
+            </div>
+        </section>
+    </main>
+    
+    <!-- Footer -->
+    <footer class="bg-gray-900 border-t border-gray-800">
+        <div class="container mx-auto px-4 py-12">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Navigation -->
+                <div>
+                    <h4 class="flex items-center text-lg font-semibold mb-4 text-primary-400">
+                        <i class="fas fa-compass mr-2"></i>Navigation
+                    </h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-300 hover:text-primary-400 transition-colors">Homepage</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Help -->
+                <div>
+                    <h4 class="flex items-center text-lg font-semibold mb-4 text-primary-400">
+                        <i class="fas fa-book mr-2"></i>Help
+                    </h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-300 hover:text-primary-400 transition-colors">How to Use Tools</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Legal -->
+                <div>
+                    <h4 class="flex items-center text-lg font-semibold mb-4 text-primary-400">
+                        <i class="fas fa-balance-scale mr-2"></i>Legal
+                    </h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-300 hover:text-primary-400 transition-colors">Privacy Policy</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-primary-400 transition-colors">Terms of Service</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Contact -->
+                <div>
+                    <h4 class="flex items-center text-lg font-semibold mb-4 text-primary-400">
+                        <i class="fas fa-envelope mr-2"></i>Contact
+                    </h4>
+                    <ul class="space-y-2">
+                        <li><a href="mailto:admin@vinnesia.my.id" class="text-green-400 hover:text-green-300 underline transition-colors">admin@vinnesia.my.id</a></li>
+                        <li><a href="mailto:support@vinnesia.my.id" class="text-green-400 hover:text-green-300 underline transition-colors">support@vinnesia.my.id</a></li>
+                        <li><a href="mailto:privacy@vinnesia.my.id" class="text-green-400 hover:text-green-300 underline transition-colors">privacy@vinnesia.my.id</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- Social Media & Donation -->
+            <div class="flex flex-col md:flex-row justify-between items-center pt-8 mt-8 border-t border-gray-800">
+                <div class="flex items-center space-x-4 mb-4 md:mb-0">
+                    <a href="#" class="text-yellow-400 hover:text-yellow-300 text-2xl transition-colors">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="#" class="text-yellow-400 hover:text-yellow-300 text-2xl transition-colors">
+                        <i class="fab fa-whatsapp"></i>
+                    </a>
+                </div>
+                
+                <button class="bg-gradient-to-r from-red-500 to-pink-500 hover:from-red-600 hover:to-pink-600 px-6 py-2 rounded-lg font-medium transition-all ripple-effect">
+                    <i class="fas fa-heart mr-2"></i>Donate
+                </button>
+            </div>
+            
+            <!-- Copyright -->
+            <div class="text-center pt-8 mt-8 border-t border-gray-800">
+                <p class="text-gray-400">
+                    © 2025 VIN NESIA. All rights reserved. Built with <span class="text-red-500">❤️</span> for everyone.
+                </p>
+            </div>
+        </div>
+    </footer>
+    
+    <!-- Cookie Consent Banner -->
+    <div id="cookie-banner" class="cookie-banner fixed bottom-0 left-0 right-0 bg-gray-900 border-t border-gray-700 p-4 z-50">
+        <div class="container mx-auto flex flex-col md:flex-row items-center justify-between">
+            <p class="text-sm text-gray-300 mb-4 md:mb-0">
+                We use cookies to enhance your experience. By continuing to visit this site you agree to our use of cookies.
+            </p>
+            <div class="flex space-x-3">
+                <button id="accept-cookies" class="bg-primary-600 hover:bg-primary-700 px-4 py-2 rounded-lg text-sm font-medium transition-colors">
+                    Accept
+                </button>
+                <button id="decline-cookies" class="bg-gray-700 hover:bg-gray-600 px-4 py-2 rounded-lg text-sm font-medium transition-colors">
+                    Decline
+                </button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Loading Screen -->
+    <div id="loading-screen" class="fixed inset-0 bg-gray-900 flex items-center justify-center z-50">
+        <div class="text-center">
+            <div class="w-16 h-16 border-4 border-primary-200 border-t-primary-600 rounded-full animate-spin mb-4"></div>
+            <p class="text-gray-300">Loading VIN NESIA...</p>
+        </div>
+    </div>
+    
+    <!-- Custom JavaScript -->
+    <script src="script.js"></script>
+</body>
+</html>
