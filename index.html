@@ -1,462 +1,238 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>VIN NESIA - Professional Online Tools | Free Web Utilities</title>
+    <title>VIN NESIA - Online Tools for Everyone</title>
 
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net https://www.googletagmanager.com https://cdnjs.cloudflare.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://*.supabase.co https://www.google-analytics.com;">
-    <meta http-equiv="X-Content-Type-Options" content="nosniff">
-    <meta http-equiv="X-Frame-Options" content="DENY">
-    <meta http-equiv="X-XSS-Protection" content="1; mode=block">
-    <meta name="referrer" content="strict-origin-when-cross-origin">
-
-    <meta name="description" content="VIN NESIA offers free professional online tools including password generator, QR scanner, image converter, currency calculator, and JSON formatter. Fast, secure, and mobile-friendly.">
-    <meta name="keywords" content="online tools, password generator, QR scanner, image converter, currency calculator, JSON formatter, free web utilities, VIN NESIA">
+    <!-- SEO & Social Media Meta Tags -->
+    <meta name="description" content="VIN NESIA provides a suite of popular online tools for daily tasks, including password generation, currency conversion, QR code creation, and more. Fast, free, and privacy-first.">
+    <meta name="keywords" content="online tools, free tools, password generator, QR code generator, currency converter, image optimizer, JSON formatter, security tools, developer tools, web tools">
     <meta name="author" content="VIN NESIA">
     <meta name="robots" content="index, follow">
-    <meta name="theme-color" content="#8B5CF6">
+    <link rel="canonical" href="https://www.vinnesia.my.id/">
 
-    <link rel="canonical" href="https://vinnesia.my.id/">
-
+    <meta property="og:title" content="VIN NESIA - Online Tools for Everyone">
+    <meta property="og:description" content="A suite of popular online tools for your daily needs. Fast, free, and secure.">
+    <meta property="og:url" content="https://www.vinnesia.my.id/">
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://vinnesia.my.id/">
-    <meta property="og:title" content="VIN NESIA - Professional Online Tools">
-    <meta property="og:description" content="Free professional online tools for everyday use. Password generator, QR scanner, image converter, and more.">
-    <meta property="og:image" content="https://vinnesia.my.id/og-image.jpg">
-    <meta property="og:site_name" content="VIN NESIA">
+    <meta property="og:image" content="https://www.vinnesia.my.id/logo.png">
+    
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="VIN NESIA - Online Tools for Everyone">
+    <meta name="twitter:description" content="A suite of popular online tools for your daily needs. Fast, free, and secure.">
+    <meta name="twitter:image" content="https://www.vinnesia.my.id/logo.png">
+    
+    <!-- Favicon & PWA -->
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="manifest" href="/manifest.json">
+    
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-3PYZXZFNER"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-3PYZXZFNER');
+    </script>
 
-    <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:url" content="https://vinnesia.my.id/">
-    <meta property="twitter:title" content="VIN NESIA - Professional Online Tools">
-    <meta property="twitter:description" content="Free professional online tools for everyday use. Password generator, QR scanner, image converter, and more.">
-    <meta property="twitter:image" content="https://vinnesia.my.id/og-image.jpg">
+    <!-- Preloading Critical Resources -->
+    <link rel="preload" href="/style.css" as="style">
+    <link rel="preload" href="/script.js" as="script">
+    <link rel="preload" href="/logo.png" as="image">
 
-    <link rel="icon" type="image/x-icon" href="favicon.ico">
-    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
-    <link rel="manifest" href="manifest.json">
-
+    <!-- CSS -->
+    <link rel="stylesheet" href="/style.css">
+    
+    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preconnect" href="https://www.googletagmanager.com">
-    <link rel="preconnect" href="https://cdn.jsdelivr.net">
-
-    <link rel="dns-prefetch" href="//www.google-analytics.com">
-
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div class="loading-screen">
-        <div class="loading-spinner"></div>
-    </div>
-    
-    <a href="#main-content" class="skip-link" id="skip-link">Skip to main content</a>
-    
-    <div class="progress-bar" id="progressBar"></div>
+    <a href="#main-content" class="skip-link">Skip to content</a>
 
-    <div class="cookie-banner" id="cookie-banner">
-        <div class="cookie-content">
-            <p class="cookie-text">
-                Kami menggunakan cookie untuk memastikan situs ini berfungsi dengan baik. Dengan melanjutkan, Anda menyetujui penggunaan cookie kami.
-                <a href="#" class="text-primary hover:underline">Pelajari lebih lanjut</a>.
-            </p>
-            <div class="cookie-actions">
-                <button class="cookie-reject" id="cookie-reject">Tolak</button>
-                <button class="cookie-accept" id="cookie-accept">Terima</button>
-            </div>
-        </div>
+    <div class="cookie-consent-banner" id="cookie-banner">
+        <p>This website uses cookies to ensure you get the best experience. By continuing to use our site, you agree to our <a href="#">privacy policy</a>.</p>
+        <button id="accept-cookies">Accept</button>
     </div>
 
-    <header>
-        <div class="header-container">
-            <a href="/" class="logo">
-                <img src="https://vinnesia.my.id/vinnesia-icon.png" alt="VIN NESIA Logo">
-                <span class="logo-text">VIN NESIA</span>
-            </a>
-            <nav class="nav-desktop">
-                <a href="#home">Home</a>
-                <a href="#tools">Tools</a>
-                <a href="#features">Features</a>
-                <a href="#about">About</a>
-                <a href="#contact">Contact</a>
-            </nav>
-            <div class="header-actions">
-                <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">
-                    <span class="icon-sun"></span>
-                </button>
-                <div class="lang-toggle">
-                    <button class="lang-btn active" data-lang="id">ID</button>
-                    <button class="lang-btn" data-lang="en">EN</button>
-                </div>
-                <button class="search-toggle" id="search-toggle" aria-label="Toggle search">
-                    <span class="icon-search"></span>
-                </button>
-                
-                <div class="auth-section">
-                    <div class="user-info" id="user-info">
-                        <span class="user-avatar">V</span>
-                        <span class="user-menu-toggle icon-chevron-down"></span>
-                    </div>
-                    <div class="user-dropdown" id="user-dropdown">
-                        <a href="/dashboard">Dashboard</a>
-                        <a href="/profile">Profil</a>
-                        <hr>
-                        <button id="logout-btn">Keluar</button>
-                    </div>
-                </div>
-
-                <button class="mobile-menu-btn" id="mobile-menu-btn" aria-label="Open menu">
-                    <span class="hamburger"></span>
-                    <span class="hamburger"></span>
-                    <span class="hamburger"></span>
-                </button>
-            </div>
+    <header class="main-header" id="main-header">
+        <div class="logo-container">
+            <img src="/logo.png" alt="VIN NESIA Logo" class="site-logo">
+            <h1 class="site-name">VIN NESIA</h1>
         </div>
+        <nav class="main-nav">
+            <button class="menu-toggle" id="menu-toggle" aria-expanded="false" aria-controls="nav-links">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </button>
+            <ul class="nav-links" id="nav-links">
+                <li><a href="#" class="nav-link active">Homepage</a></li>
+                <li><a href="#tools" class="nav-link">Tools</a></li>
+                <li><a href="#about" class="nav-link">About</a></li>
+                <li><a href="#contact" class="nav-link">Contact</a></li>
+            </ul>
+        </nav>
     </header>
 
-    <div class="search-overlay" id="search-overlay">
-        <div class="search-container">
-            <input type="text" class="search-input" id="search-input" placeholder="Cari alat...">
-            <button class="search-close" id="search-close" aria-label="Close search">
-                <span class="icon-x"></span>
-            </button>
-        </div>
-        <div class="search-results" id="search-results">
-            </div>
-    </div>
-    
-    <div class="mobile-menu" id="mobile-menu">
-        <div class="mobile-overlay" id="mobile-overlay"></div>
-        <div class="mobile-menu-content">
-            <div class="mobile-menu-header">
-                <div class="mobile-menu-logo">
-                    <img src="https://vinnesia.my.id/vinnesia-icon.png" alt="VIN NESIA Logo" width="30">
-                    <span class="mobile-logo-text">VIN NESIA</span>
-                </div>
-                <button class="mobile-menu-close" id="mobile-menu-close" aria-label="Close menu">
-                    <span class="icon-x"></span>
-                </button>
-            </div>
-            <nav class="mobile-nav">
-                <div class="mobile-nav-section">
-                    <a href="#home"><span class="nav-icon icon-home"></span> Home</a>
-                    <a href="#tools"><span class="nav-icon icon-tool"></span> Tools</a>
-                    <a href="#features"><span class="nav-icon icon-zap"></span> Features</a>
-                    <a href="#about"><span class="nav-icon icon-info"></span> About</a>
-                    <a href="#contact"><span class="nav-icon icon-mail"></span> Contact</a>
-                </div>
-                <div class="mobile-nav-section">
-                    <h3 class="mobile-nav-title">Tools</h3>
-                    <a href="/password-generator"><span class="nav-icon icon-lock"></span> Password Generator</a>
-                    <a href="/qr-code-scanner"><span class="nav-icon icon-qr-code"></span> QR Code Scanner</a>
-                    <a href="/image-converter"><span class="nav-icon icon-image"></span> Image Converter</a>
-                    <a href="/currency-calculator"><span class="nav-icon icon-dollar-sign"></span> Currency Calculator</a>
-                    <a href="/json-formatter"><span class="nav-icon icon-code"></span> JSON Formatter</a>
-                </div>
-            </nav>
-            <div class="mobile-menu-footer">
-                <div class="mobile-social-links">
-                    <a href="https://github.com/vinnesia" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
-                        <span class="icon-github"></span>
-                    </a>
-                    <a href="https://www.linkedin.com/in/vinnesia" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
-                        <span class="icon-linkedin"></span>
-                    </a>
-                </div>
-                <p class="mobile-copyright">&copy; 2024 VIN NESIA. All Rights Reserved.</p>
-            </div>
-        </div>
-    </div>
-
     <main id="main-content">
-        <div class="breadcrumb">
-            <nav aria-label="Breadcrumb">
-                <ol class="flex items-center">
-                    <li><a href="/">Home</a></li>
-                    <li class="breadcrumb-separator">/</li>
-                    <li><span class="breadcrumb-current">Tools</span></li>
-                </ol>
-            </nav>
-        </div>
+        <section class="hero">
+            <h2 data-lang-en="The Only Tools You'll Ever Need" data-lang-id="Tools Lengkap yang Anda Butuhkan"></h2>
+            <p data-lang-en="Access a powerful suite of online tools for free. Fast, secure, and easy to use." data-lang-id="Akses berbagai tools online canggih secara gratis. Cepat, aman, dan mudah digunakan."></p>
+            <div class="language-selector">
+                <button id="lang-en" class="lang-button active">EN</button>
+                <button id="lang-id" class="lang-button">ID</button>
+            </div>
+        </section>
 
-        <section class="hero" id="home">
-            <div class="hero-container">
-                <h1 class="hero-title">Free Professional Online Tools</h1>
-                <p class="hero-subtitle">
-                    A collection of fast, secure, and mobile-friendly web utilities for your everyday needs.
-                </p>
-                <div class="hero-cta">
-                    <a href="#tools" class="btn-primary ripple">
-                        Explore Tools <span class="icon-arrow-right"></span>
-                    </a>
-                    <a href="#features" class="btn-secondary ripple">
-                        Learn More <span class="icon-info"></span>
-                    </a>
+        <section class="tools-grid-section" id="tools">
+            <h2 class="section-title" data-lang-en="Popular Tools" data-lang-id="Tools Populer"></h2>
+            <div class="tools-grid">
+                <div class="tool-card" id="tool-1">
+                    <div class="skeleton"></div>
+                    <div class="tool-content">
+                        <h3 data-lang-en="Password Generator 🔐" data-lang-id="Generator Kata Sandi 🔐"></h3>
+                        <p data-lang-en="Create strong, random passwords to protect your accounts." data-lang-id="Buat kata sandi yang kuat dan acak untuk melindungi akun Anda."></p>
+                        <a href="#" class="tool-link ripple" data-lang-en="Use Tool" data-lang-id="Gunakan Tool"></a>
+                    </div>
+                </div>
+                <div class="tool-card" id="tool-2">
+                    <div class="skeleton"></div>
+                    <div class="tool-content">
+                        <h3 data-lang-en="QR Scanner 📱" data-lang-id="Pemindai QR 📱"></h3>
+                        <p data-lang-en="Quickly scan QR codes from images or your camera." data-lang-id="Pindai kode QR dengan cepat dari gambar atau kamera Anda."></p>
+                        <a href="#" class="tool-link ripple" data-lang-en="Use Tool" data-lang-id="Gunakan Tool"></a>
+                    </div>
+                </div>
+                <div class="tool-card" id="tool-3">
+                    <div class="skeleton"></div>
+                    <div class="tool-content">
+                        <h3 data-lang-en="Image Converter 🖼️" data-lang-id="Pengonversi Gambar 🖼️"></h3>
+                        <p data-lang-en="Compress and convert your images without losing quality." data-lang-id="Kompres dan konversi gambar Anda tanpa kehilangan kualitas."></p>
+                        <a href="#" class="tool-link ripple" data-lang-en="Use Tool" data-lang-id="Gunakan Tool"></a>
+                    </div>
+                </div>
+                <div class="tool-card" id="tool-4">
+                    <div class="skeleton"></div>
+                    <div class="tool-content">
+                        <h3 data-lang-en="Currency Calculator 💱" data-lang-id="Kalkulator Mata Uang 💱"></h3>
+                        <p data-lang-en="Convert between different currencies with real-time exchange rates." data-lang-id="Konversi antar mata uang dengan nilai tukar real-time."></p>
+                        <a href="#" class="tool-link ripple" data-lang-en="Use Tool" data-lang-id="Gunakan Tool"></a>
+                    </div>
+                </div>
+                <div class="tool-card" id="tool-5">
+                    <div class="skeleton"></div>
+                    <div class="tool-content">
+                        <h3 data-lang-en="QR Generator 📄" data-lang-id="Generator QR 📄"></h3>
+                        <p data-lang-en="Easily create QR codes for websites, text, and more." data-lang-id="Mudah membuat kode QR untuk situs web, teks, dan lainnya."></p>
+                        <a href="#" class="tool-link ripple" data-lang-en="Use Tool" data-lang-id="Gunakan Tool"></a>
+                    </div>
+                </div>
+                <div class="tool-card" id="tool-6">
+                    <div class="skeleton"></div>
+                    <div class="tool-content">
+                        <h3 data-lang-en="JSON Formatter ⚡" data-lang-id="Pemformat JSON ⚡"></h3>
+                        <p data-lang-en="Format and validate your JSON data instantly." data-lang-id="Format dan validasi data JSON Anda secara instan."></p>
+                        <a href="#" class="tool-link ripple" data-lang-en="Use Tool" data-lang-id="Gunakan Tool"></a>
+                    </div>
                 </div>
             </div>
         </section>
 
-        <section class="stats">
+        <section class="stats-section" id="about">
+            <h2 class="section-title" data-lang-en="Our Trust and Statistics" data-lang-id="Kepercayaan dan Statistik Kami"></h2>
             <div class="stats-container">
-                <div class="stat-item" data-target="15">
-                    <span class="stat-number" id="stat1">0</span>
-                    <span class="stat-label">Tools Available</span>
+                <div class="stat-card">
+                    <p class="stat-number" id="user-counter">0</p>
+                    <p class="stat-label" data-lang-en="Total Users" data-lang-id="Total Pengguna"></p>
                 </div>
-                <div class="stat-item" data-target="20000">
-                    <span class="stat-number" id="stat2">0</span>
-                    <span class="stat-label">Monthly Users</span>
+                <div class="stat-card">
+                    <p class="stat-number" id="tool-usage-stats">0</p>
+                    <p class="stat-label" data-lang-en="Tools Used Today" data-lang-id="Tools Digunakan Hari Ini"></p>
                 </div>
-                <div class="stat-item" data-target="99.9">
-                    <span class="stat-number" id="stat3">0</span><span class="stat-label">%</span>
-                    <span class="stat-label">Uptime</span>
+                <div class="stat-card trust-badge">
+                    <p data-lang-en="Privacy First" data-lang-id="Prioritas Privasi"></p>
                 </div>
-                <div class="stat-item" data-target="50000">
-                    <span class="stat-number" id="stat4">0</span>
-                    <span class="stat-label">Tools Used</span>
+                <div class="stat-card trust-badge">
+                    <p data-lang-en="Always Free" data-lang-id="Selalu Gratis"></p>
                 </div>
             </div>
         </section>
 
-        <section class="tools" id="tools">
-            <div class="tools-container">
-                <div class="section-header">
-                    <h2 class="section-title">Our Tools</h2>
-                    <p class="section-subtitle">
-                        Find the perfect tool for your task. Fast, secure, and reliable.
-                    </p>
-                </div>
-                <div class="tools-grid">
-                    <a href="/password-generator" class="tool-card reveal">
-                        <div class="tool-icon">
-                            <span class="icon-lock"></span>
-                        </div>
-                        <h3 class="tool-title">Password Generator</h3>
-                        <p class="tool-description">
-                            Create strong, random, and secure passwords instantly.
-                        </p>
-                        <div class="tool-features">
-                            <span class="feature-tag">Security</span>
-                            <span class="feature-tag">Free</span>
-                            <span class="feature-tag">No Login</span>
-                        </div>
-                    </a>
-
-                    <a href="/qr-code-scanner" class="tool-card reveal">
-                        <div class="tool-icon">
-                            <span class="icon-qr-code"></span>
-                        </div>
-                        <h3 class="tool-title">QR Code Scanner</h3>
-                        <p class="tool-description">
-                            Scan QR codes directly from your camera or an image file.
-                        </p>
-                        <div class="tool-features">
-                            <span class="feature-tag">Camera Support</span>
-                            <span class="feature-tag">Local Scan</span>
-                        </div>
-                        <span class="usage-indicator">Popular</span>
-                    </a>
-
-                    <a href="/image-converter" class="tool-card reveal">
-                        <div class="tool-icon">
-                            <span class="icon-image"></span>
-                        </div>
-                        <h3 class="tool-title">Image Converter</h3>
-                        <p class="tool-description">
-                            Convert images between various formats like JPG, PNG, WEBP, and more.
-                        </p>
-                        <div class="tool-features">
-                            <span class="feature-tag">Multiple Formats</span>
-                            <span class="feature-tag">Fast</span>
-                        </div>
-                    </a>
-
-                    <a href="/currency-calculator" class="tool-card reveal">
-                        <div class="tool-icon">
-                            <span class="icon-dollar-sign"></span>
-                        </div>
-                        <h3 class="tool-title">Currency Calculator</h3>
-                        <p class="tool-description">
-                            Calculate real-time currency conversions with live exchange rates.
-                        </p>
-                        <div class="tool-features">
-                            <span class="feature-tag">Live Rates</span>
-                            <span class="feature-tag">Global</span>
-                        </div>
-                    </a>
-
-                    <a href="/json-formatter" class="tool-card reveal">
-                        <div class="tool-icon">
-                            <span class="icon-code"></span>
-                        </div>
-                        <h3 class="tool-title">JSON Formatter</h3>
-                        <p class="tool-description">
-                            Format and validate your JSON data with a user-friendly interface.
-                        </p>
-                        <div class="tool-features">
-                            <span class="feature-tag">Validation</span>
-                            <span class="feature-tag">Clean Code</span>
-                        </div>
-                    </a>
-
-                    <a href="/base64-converter" class="tool-card reveal">
-                        <div class="tool-icon">
-                            <span class="icon-hash"></span>
-                        </div>
-                        <h3 class="tool-title">Base64 Converter</h3>
-                        <p class="tool-description">
-                            Encode and decode text or images to and from Base64 format.
-                        </p>
-                        <div class="tool-features">
-                            <span class="feature-tag">Text & Image</span>
-                            <span class="feature-tag">Fast</span>
-                        </div>
-                    </a>
-
-                    </div>
-                <div class="tools-actions">
-                    <a href="#" class="btn-secondary load-more ripple">
-                        Lihat Semua Tools <span class="icon-arrow-right"></span>
-                    </a>
-                </div>
-            </div>
-        </section>
-
-        <section class="features" id="features">
-            <div class="features-container">
-                <div class="section-header">
-                    <h2 class="section-title">Why Choose VIN NESIA?</h2>
-                    <p class="section-subtitle">
-                        We are committed to providing the best experience with our powerful and easy-to-use tools.
-                    </p>
-                </div>
-                <div class="features-grid">
-                    <div class="feature-card reveal">
-                        <span class="feature-icon icon-zap" style="color: var(--primary);"></span>
-                        <h3 class="feature-title">Fast & Efficient</h3>
-                        <p class="feature-description">
-                            Our tools are optimized for speed, delivering results instantly without any lag.
-                        </p>
-                    </div>
-                    <div class="feature-card reveal">
-                        <span class="feature-icon icon-lock" style="color: var(--success);"></span>
-                        <h3 class="feature-title">Secure & Private</h3>
-                        <p class="feature-description">
-                            We prioritize your privacy. All data processing is done locally on your browser.
-                        </p>
-                    </div>
-                    <div class="feature-card reveal">
-                        <span class="feature-icon icon-monitor" style="color: var(--secondary);"></span>
-                        <h3 class="feature-title">Mobile-Friendly</h3>
-                        <p class="feature-description">
-                            Access and use our tools seamlessly on any device, from desktops to smartphones.
-                        </p>
-                    </div>
-                    <div class="feature-card reveal">
-                        <span class="feature-icon icon-heart" style="color: var(--error);"></span>
-                        <h3 class="feature-title">Free to Use</h3>
-                        <p class="feature-description">
-                            All our tools are completely free, with no hidden costs or subscriptions.
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section class="donation">
-            <div class="donation-container">
-                <h2 class="donation-title">Support Our Mission</h2>
-                <p class="donation-description">
-                    VIN NESIA is a free service. Your donation helps us keep the tools running, secure, and add more features.
-                </p>
-                <a href="#" class="btn-donate ripple">
-                    <span class="icon-heart"></span> Donate Now
-                </a>
-            </div>
-        </section>
-
-        <section class="newsletter">
-            <div class="newsletter-container">
-                <h2 class="newsletter-title">Subscribe to Our Newsletter</h2>
-                <p class="newsletter-description">
-                    Get updates on new tools, features, and tips directly to your inbox.
-                </p>
-                <form class="newsletter-form" id="newsletter-form">
-                    <input type="email" class="newsletter-input" placeholder="Enter your email address" required>
-                    <button type="submit" class="btn-primary newsletter-submit ripple">Subscribe</button>
-                </form>
+        <section class="donation-section">
+            <div class="donation-content">
+                <h2 data-lang-en="Support Our Development" data-lang-id="Dukung Pengembangan Kami"></h2>
+                <p data-lang-en="VIN NESIA is a free service, built with love for everyone. Your voluntary donation helps us maintain and develop new tools for the community. Thank you for your support!" data-lang-id="VIN NESIA adalah layanan gratis, dibuat dengan cinta untuk semua orang. Donasi sukarela Anda membantu kami memelihara dan mengembangkan tools baru untuk komunitas. Terima kasih atas dukungan Anda!"></p>
+                <button class="donate-button ripple" data-lang-en="Donate Now" data-lang-id="Donasi Sekarang"></button>
             </div>
         </section>
     </main>
 
-    <footer>
-        <div class="footer-container">
-            <div class="footer-content">
-                <div class="footer-section brand">
-                    <h3 class="flex items-center">
-                        <img src="https://vinnesia.my.id/vinnesia-icon.png" alt="VIN NESIA Logo" width="30" class="mr-2">
-                        VIN NESIA
-                    </h3>
-                    <p class="footer-description">
-                        A collection of free professional online tools for developers and everyday users.
-                    </p>
-                    <div class="social-links mt-4 flex gap-4">
-                        <a href="https://github.com/vinnesia" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
-                            <span class="icon-github"></span>
-                        </a>
-                        <a href="https://www.linkedin.com/in/vinnesia" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
-                            <span class="icon-linkedin"></span>
-                        </a>
-                    </div>
-                </div>
-                <div class="footer-section">
-                    <h3>Tools</h3>
-                    <ul class="footer-links">
-                        <li><a href="/password-generator">Password Generator</a></li>
-                        <li><a href="/qr-code-scanner">QR Code Scanner</a></li>
-                        <li><a href="/image-converter">Image Converter</a></li>
-                        <li><a href="/currency-calculator">Currency Calculator</a></li>
-                        <li><a href="/json-formatter">JSON Formatter</a></li>
-                    </ul>
-                </div>
-                <div class="footer-section">
-                    <h3>Company</h3>
-                    <ul class="footer-links">
-                        <li><a href="#about">About Us</a></li>
-                        <li><a href="/privacy-policy">Privacy Policy</a></li>
-                        <li><a href="/terms-of-service">Terms of Service</a></li>
-                        <li><a href="#contact">Contact</a></li>
-                        <li><a href="/sitemap">Sitemap</a></li>
-                    </ul>
-                </div>
-                <div class="footer-section">
-                    <h3>Support</h3>
-                    <ul class="footer-links">
-                        <li><a href="/help-center">Help Center</a></li>
-                        <li><a href="/bug-report">Report a Bug</a></li>
-                        <li><a href="/feature-request">Request a Feature</a></li>
-                        <li><a href="#">FAQ</a></li>
-                    </ul>
-                </div>
+    <footer class="main-footer" id="contact">
+        <div class="footer-grid">
+            <div class="footer-column">
+                <h3><span class="icon">🧭</span> <span data-lang-en="Navigation" data-lang-id="Navigasi"></span></h3>
+                <ul class="footer-links">
+                    <li><a href="#" class="purple-link" data-lang-en="Homepage" data-lang-id="Beranda"></a></li>
+                    <li><a href="#tools" class="purple-link" data-lang-en="Tools" data-lang-id="Tools"></a></li>
+                    <li><a href="#about" class="purple-link" data-lang-en="About Us" data-lang-id="Tentang Kami"></a></li>
+                </ul>
             </div>
-            <div class="text-center mt-8 pt-4 border-t border-border">
-                <p class="text-sm text-text-muted">
-                    &copy; 2024 <a href="https://vinnesia.my.id/" class="text-primary hover:underline">VIN NESIA</a>. All Rights Reserved.
-                </p>
-                <p class="text-xs text-text-muted mt-2">
-                    Crafted with ❤️ by <a href="https://github.com/vinnesia" target="_blank" rel="noopener noreferrer" class="text-primary hover:underline">VIN NESIA Team</a>
-                </p>
+            <div class="footer-column">
+                <h3><span class="icon">📖</span> <span data-lang-en="Help" data-lang-id="Bantuan"></span></h3>
+                <ul class="footer-links">
+                    <li><a href="#" class="purple-link" data-lang-en="How to Use Tools" data-lang-id="Cara Pakai Tools"></a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3><span class="icon">⚖️</span> <span data-lang-en="Legal" data-lang-id="Hukum"></span></h3>
+                <ul class="footer-links">
+                    <li><a href="#" class="purple-link" data-lang-en="Privacy Policy" data-lang-id="Kebijakan Privasi"></a></li>
+                    <li><a href="#" class="purple-link" data-lang-en="Terms of Service" data-lang-id="Ketentuan Layanan"></a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3><span class="icon">✉️</span> <span data-lang-en="Contact" data-lang-id="Hubungi Kami"></span></h3>
+                <ul class="footer-links">
+                    <li><a href="mailto:admin@vinnesia.my.id" class="green-link underline">admin@vinnesia.my.id</a></li>
+                    <li><a href="mailto:support@vinnesia.my.id" class="green-link underline">support@vinnesia.my.id</a></li>
+                    <li><a href="mailto:privacy@vinnesia.my.id" class="green-link underline">privacy@vinnesia.my.id</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3><span class="icon">📱</span> <span data-lang-en="Social Media" data-lang-id="Media Sosial"></span></h3>
+                <div class="social-icons">
+                    <a href="https://instagram.com/vinnesia" target="_blank" rel="noopener noreferrer" class="social-icon yellow-link instagram-icon"></a>
+                    <a href="https://wa.me/628123456789" target="_blank" rel="noopener noreferrer" class="social-icon yellow-link whatsapp-icon"></a>
+                </div>
             </div>
         </div>
+        <div class="footer-bottom">
+            <p data-lang-en="© 2025 VIN NESIA. All rights reserved. Built with ❤️ for everyone." data-lang-id="© 2025 VIN NESIA. Semua hak dilindungi. Dibangun dengan ❤️ untuk semua orang."></p>
+        </div>
     </footer>
+
+    <!-- Breadcrumb Navigation -->
+    <nav class="breadcrumb-nav" aria-label="breadcrumb">
+        <ul class="breadcrumb">
+            <li><a href="#" data-lang-en="Home" data-lang-id="Beranda"></a></li>
+            <li><a href="#tools" data-lang-en="Tools" data-lang-id="Tools"></a></li>
+        </ul>
+    </nav>
     
-    <script src="https://cdn.jsdelivr.net/npm/inter-font@3.19.0/dist/Inter-3.19.0.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/ionicons@7.1.2/dist/ionicons/ionicons.esm.js" type="module"></script>
-    <script src="https://cdn.jsdelivr.net/npm/ionicons@7.1.2/dist/ionicons/ionicons.js" nomodule></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/localforage/1.10.0/localforage.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/supabase/dist/umd/supabase.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.29.0/feather.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/js-cookie@3.0.5/dist/js.cookie.min.js"></script>
-    <script src="https://www.googletagmanager.com/gtag/js?id=G-XXXXX"></script>
+    <script src="/script.js"></script>
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/sw.js').then(registration => {
+                    console.log('Service Worker registered: ', registration);
+                }).catch(err => {
+                    console.log('Service Worker registration failed: ', err);
+                });
+            });
+        }
+    </script>
 </body>
 </html>
