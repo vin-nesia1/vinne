@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -42,7 +42,7 @@
     <link rel="preload" href="/logo.png" as="image">
 
     <!-- CSS -->
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="/style.css">
     
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -75,16 +75,16 @@
                 <li><a href="#contact" class="nav-link" data-lang-en="Contact" data-lang-id="Kontak"></a></li>
             </ul>
         </nav>
+        <div class="language-selector">
+            <button id="lang-en" class="lang-button">EN</button>
+            <button id="lang-id" class="lang-button active">ID</button>
+        </div>
     </header>
 
     <main id="main-content">
         <section class="hero">
             <h2 data-lang-en="The Only Tools You'll Ever Need" data-lang-id="Tools Lengkap yang Anda Butuhkan"></h2>
             <p data-lang-en="Access a powerful suite of online tools for free. Fast, secure, and easy to use." data-lang-id="Akses berbagai tools online canggih secara gratis. Cepat, aman, dan mudah digunakan."></p>
-            <div class="language-selector">
-                <button id="lang-en" class="lang-button">EN</button>
-                <button id="lang-id" class="lang-button active">ID</button>
-            </div>
         </section>
 
         <section class="tools-grid-section" id="tools">
@@ -222,7 +222,7 @@
         </ul>
     </nav>
     
-    <script src="script.js"></script>
+    <script src="/script.js"></script>
     <script>
         if ('serviceWorker' in navigator) {
             window.addEventListener('load', () => {
