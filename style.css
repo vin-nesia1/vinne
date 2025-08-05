@@ -1,57 +1,57 @@
 /* Critical above-the-fold CSS */
-:root {
-    --primary: #8B5CF6;
-    --primary-dark: #7C3AED;
-    --secondary: #F59E0B;
-    --bg-dark: #0F0F0F;
-    --bg-card: #1A1A1A;
-    --text-primary: #FFFFFF;
-    --text-secondary: #A3A3A3;
-    --border: #2A2A2A;
-    --gradient: linear-gradient(135deg, #8B5CF6 0%, #7C3AED 100%);
-}
-
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-body {
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-    background: var(--bg-dark);
-    color: var(--text-primary);
-    line-height: 1.6;
-    overflow-x: hidden;
-}
-
-.loading-screen {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: var(--bg-dark);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 9999;
-    transition: opacity 0.5s ease;
-}
-
-.loading-spinner {
-    width: 50px;
-    height: 50px;
-    border: 3px solid var(--border);
-    border-top: 3px solid var(--primary);
-    border-radius: 50%;
-    animation: spin 1s linear infinite;
-}
-
-@keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
-}
+        :root {
+            --primary: #8B5CF6;
+            --primary-dark: #7C3AED;
+            --secondary: #F59E0B;
+            --bg-dark: #0F0F0F;
+            --bg-card: #1A1A1A;
+            --text-primary: #FFFFFF;
+            --text-secondary: #A3A3A3;
+            --border: #2A2A2A;
+            --gradient: linear-gradient(135deg, #8B5CF6 0%, #7C3AED 100%);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg-dark);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        .loading-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--bg-dark);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            transition: opacity 0.5s ease;
+        }
+        
+        .loading-spinner {
+            width: 50px;
+            height: 50px;
+            border: 3px solid var(--border);
+            border-top: 3px solid var(--primary);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
 /* VIN NESIA - Professional Online Tools Stylesheet */
 /* =================================================== */
 
@@ -66,19 +66,19 @@ body {
     --error: #EF4444;
     --warning: #F59E0B;
     --info: #3B82F6;
-
+    
     /* Background Colors */
     --bg-dark: #0F0F0F;
     --bg-card: #1A1A1A;
     --bg-hover: #2A2A2A;
     --bg-muted: #161616;
-
+    
     /* Text Colors */
     --text-primary: #FFFFFF;
     --text-secondary: #A3A3A3;
     --text-muted: #737373;
     --text-disabled: #525252;
-
+    
     /* Border & Shadow */
     --border: #2A2A2A;
     --border-light: #374151;
@@ -86,12 +86,12 @@ body {
     --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
     --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
     --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
-
+    
     /* Gradients */
     --gradient: linear-gradient(135deg, #8B5CF6 0%, #7C3AED 100%);
     --gradient-secondary: linear-gradient(135deg, #F59E0B 0%, #F97316 100%);
     --gradient-radial: radial-gradient(ellipse at center, rgba(139, 92, 246, 0.1) 0%, transparent 70%);
-
+    
     /* Spacing */
     --space-xs: 0.25rem;
     --space-sm: 0.5rem;
@@ -100,7 +100,7 @@ body {
     --space-xl: 2rem;
     --space-2xl: 3rem;
     --space-3xl: 4rem;
-
+    
     /* Border Radius */
     --radius-sm: 4px;
     --radius: 8px;
@@ -108,12 +108,12 @@ body {
     --radius-xl: 16px;
     --radius-2xl: 20px;
     --radius-full: 9999px;
-
+    
     /* Transitions */
     --transition-fast: 0.15s ease;
     --transition: 0.3s ease;
     --transition-slow: 0.5s ease;
-
+    
     /* Z-index layers */
     --z-dropdown: 1000;
     --z-sticky: 1020;
@@ -501,7 +501,6 @@ header {
 
 .search-input {
     flex: 1;
-    min-width: 0;
     padding: var(--space-lg) var(--space-xl);
     background: var(--bg-card);
     border: 2px solid var(--border);
@@ -1539,118 +1538,14 @@ footer {
     padding-left: var(--space-sm);
 }
 
-.footer-social h3 {
-    color: var(--text-primary);
-}
-
-.social-links {
-    display: flex;
-    gap: var(--space-md);
-    margin-top: var(--space-md);
-}
-
-.social-links a {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 40px;
-    height: 40px;
-    background: var(--bg-card);
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
-    color: var(--text-secondary);
-    font-size: 1.125rem;
-    transition: var(--transition);
-}
-
-.social-links a:hover {
-    background: var(--primary);
-    border-color: var(--primary);
-    color: white;
-    transform: translateY(-2px);
-}
-
-.footer-bottom {
-    text-align: center;
-    padding-top: var(--space-lg);
-    border-top: 1px solid var(--border);
-    margin-top: var(--space-lg);
-}
-
-.footer-copyright {
-    color: var(--text-muted);
+.text-sm {
     font-size: 0.875rem;
-    margin: 0;
 }
 
-/* Back to top button */
-.back-to-top {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    width: 44px;
-    height: 44px;
-    background: var(--gradient);
-    border-radius: var(--radius-full);
-    color: white;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.25rem;
-    cursor: pointer;
-    transition: var(--transition);
-    z-index: var(--z-fixed);
-    opacity: 0;
-    visibility: hidden;
-    transform: translateY(20px);
+.text-xs {
+    font-size: 0.75rem;
 }
 
-.back-to-top.show {
-    opacity: 1;
-    visibility: visible;
-    transform: translateY(0);
-}
-
-.back-to-top:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 25px rgba(139, 92, 246, 0.3);
-}
-
-/* Animations */
-@keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
-}
-
-@keyframes fadeInUp {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-
-@keyframes fadeInRight {
-    from { opacity: 0; transform: translateX(-20px); }
-    to { opacity: 1; transform: translateX(0); }
-}
-
-/* Media Queries */
-
-@media (min-width: 768px) {
-    .nav-desktop {
-        display: flex;
-    }
-
-    .mobile-menu-btn {
-        display: none;
-    }
-}
-
-@media (max-width: 767px) {
-    .header-container {
-        padding: 0 var(--space-md);
-        height: 60px;
-    }
-
-    .hero {
-        padding: var(--space-xl) var(--space-md);
-    }
+.text-text-muted {
+    color: var(--text-muted);
 }
