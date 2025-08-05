@@ -23,12 +23,9 @@ document.addEventListener('DOMContentLoaded', () => {
     // Language Selector with Data Attributes
     const langButtons = document.querySelectorAll('.lang-button');
     
-    // Function to set the language of the page
     function setLanguage(lang) {
-        // Set the main document language attribute
         document.documentElement.lang = lang;
         
-        // Update meta tags' content based on language
         document.querySelectorAll('meta[data-lang-en]').forEach(meta => {
             const translation = meta.getAttribute(`data-lang-${lang}`);
             if (translation) {
@@ -36,10 +33,8 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
 
-        // Update all other elements with data-lang attributes
         document.querySelectorAll('[data-lang-en]').forEach(el => {
             const translation = el.getAttribute(`data-lang-${lang}`);
-            // Check if element has an alt or placeholder attribute to be translated
             if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
                 el.placeholder = translation;
             } else if (el.tagName === 'IMG') {
@@ -51,17 +46,14 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
 
-        // Update active state for language buttons
         langButtons.forEach(btn => btn.classList.remove('active'));
         document.getElementById(`lang-${lang}`).classList.add('active');
         localStorage.setItem('lang', lang);
     }
     
-    // Set initial language from local storage or default to 'id'
     const savedLang = localStorage.getItem('lang') || 'id';
     setLanguage(savedLang);
 
-    // Add event listeners to language buttons
     langButtons.forEach(button => {
         button.addEventListener('click', () => {
             const lang = button.id.split('-')[1];
@@ -77,14 +69,12 @@ document.addEventListener('DOMContentLoaded', () => {
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
-                // Staggered loading for tool cards
                 if (entry.target.classList.contains('tool-card')) {
                     setTimeout(() => {
                         entry.target.classList.add('loaded');
                         observer.unobserve(entry.target);
                     }, Math.random() * 500); 
                 }
-                // Staggered animation for stats cards
                 if (entry.target === statsSection) {
                     statsCards.forEach((card, index) => {
                         setTimeout(() => {
@@ -159,6 +149,24 @@ document.addEventListener('DOMContentLoaded', () => {
             document.querySelector(this.getAttribute('href')).scrollIntoView({
                 behavior: 'smooth'
             });
+        });
+    });
+
+    // New Feature: Tool Search Functionality
+    const toolSearchInput = document.getElementById('tool-search');
+    const allToolCards = document.querySelectorAll('.tool-card');
+
+    toolSearchInput.addEventListener('input', (e) => {
+        const searchTerm = e.target.value.toLowerCase().trim();
+        allToolCards.forEach(card => {
+            const title = card.querySelector('h3').textContent.toLowerCase();
+            const description = card.querySelector('p').textContent.toLowerCase();
+            
+            if (title.includes(searchTerm) || description.includes(searchTerm)) {
+                card.style.display = ''; // Tampilkan kartu jika cocok
+            } else {
+                card.style.display = 'none'; // Sembunyikan kartu jika tidak cocok
+            }
         });
     });
 });
