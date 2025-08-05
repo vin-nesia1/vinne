@@ -1,363 +1,277 @@
-'use strict';
+// VIN NESIA - Main Javascript
+// =============================
 
-/**
- * VIN NESIA - Professional Online Tools
- * Main JavaScript File
- * ==============================================
- * Refactored for performance, accessibility, and maintainability.
- */
-
-// --- CONFIGURATION ---
-const CONFIG = {
-    supabase: {
-        url: 'https://your-project.supabase.co', // Ganti dengan URL Supabase Anda
-        anonKey: 'your-anon-key' // Ganti dengan kunci anon Supabase Anda
-    },
-    analytics: {
-        gtag: 'G-3PYZXZFNER' // ID Google Analytics Anda
-    },
-    ui: {
-        animationDuration: 300,
-        toastDuration: 5000,
-        scrollThreshold: 200,
-        lazyLoadOffset: '200px'
-    },
-    pwa: {
-        enabled: true,
-        serviceWorkerPath: '/sw.js'
-    }
-};
-
-// --- APPLICATION STATE ---
-const AppState = {
-    user: null,
-    isOnline: navigator.onLine,
-    currentLanguage: 'en',
-    currentTheme: 'dark',
-    isMenuOpen: false,
-    isSearchOpen: false,
-    isModalOpen: false,
-};
-
-// --- DOM ELEMENT CACHE ---
-const DOM = {};
-
-/**
- * Caches frequently accessed DOM elements.
- */
-function cacheDOMElements() {
-    const elementSelectors = {
-        loadingScreen: '#loading-screen',
-        progressBar: '#progress-bar',
-        cookieBanner: '#cookie-banner',
-        cookieAcceptBtn: '#cookie-accept',
-        cookieRejectBtn: '#cookie-reject',
-        header: 'header',
-        themeToggle: '#theme-toggle',
-        langEnBtn: '#lang-en',
-        langIdBtn: '#lang-id',
-        searchToggle: '#search-toggle',
-        searchOverlay: '#search-overlay',
-        searchInput: '#search-input',
-        searchClose: '#search-close',
-        searchResults: '#search-results',
-        mobileMenuBtn: '#mobile-menu-btn',
-        mobileMenu: '#mobile-menu',
-        mobileOverlay: '#mobile-overlay',
-        mobileMenuClose: '#mobile-menu-close',
-        authButtons: '#auth-buttons',
-        loginBtn: '#login-btn',
-        userInfo: '#user-info',
-        userName: '#user-name',
-        userAvatar: '#user-avatar',
-        userMenuToggle: '#user-menu-toggle',
-        userDropdown: '#user-dropdown',
-        logoutBtn: '#logout-btn',
-        notificationContainer: '#notification-container',
-        backToTop: '#back-to-top',
-        offlineIndicator: '#offline-indicator',
-        dynamicContent: '#dynamic-content',
-        footer: 'footer',
-    };
-
-    for (const key in elementSelectors) {
-        DOM[key] = document.querySelector(elementSelectors[key]);
-    }
-}
-
-// --- UTILITY FUNCTIONS ---
-
-/**
- * Debounces a function to limit the rate at which it gets called.
- * @param {Function} func The function to debounce.
- * @param {number} delay The delay in milliseconds.
- * @returns {Function} The debounced function.
- */
-function debounce(func, delay = 250) {
-    let timeoutId;
-    return (...args) => {
-        clearTimeout(timeoutId);
-        timeoutId = setTimeout(() => func.apply(this, args), delay);
-    };
-}
-
-/**
- * Tracks an event with Google Analytics.
- * @param {string} action The event action.
- * @param {string} category The event category.
- * @param {string} label The event label.
- */
-function trackEvent(action, category, label) {
-    if (window.gtag) {
-        window.gtag('event', action, {
-            'event_category': category,
-            'event_label': label,
-        });
-    }
-}
-
-// --- CORE MODULES ---
-
-const ThemeManager = {
-    init() {
-        const savedTheme = localStorage.getItem('theme') || 'dark';
-        this.setTheme(savedTheme, false);
-        DOM.themeToggle?.addEventListener('click', () => this.toggleTheme());
-    },
-    setTheme(theme, track = true) {
-        AppState.currentTheme = theme;
-        document.documentElement.setAttribute('data-theme', theme);
-        localStorage.setItem('theme', theme);
-        this.updateIcon();
-        if (track) {
-            trackEvent('toggle_theme', 'UI', theme);
-        }
-    },
-    toggleTheme() {
-        const newTheme = AppState.currentTheme === 'dark' ? 'light' : 'dark';
-        this.setTheme(newTheme);
-    },
-    updateIcon() {
-        if (!DOM.themeToggle) return;
-        const icon = DOM.themeToggle.querySelector('.theme-icon');
-        if (icon) {
-            icon.textContent = AppState.currentTheme === 'dark' ? '🌙' : '☀️';
-        }
-    }
-};
-
-const LanguageManager = {
-    init() {
-        const savedLang = localStorage.getItem('language') || 'en';
-        this.setLanguage(savedLang, false);
-        DOM.langEnBtn?.addEventListener('click', () => this.setLanguage('en'));
-        DOM.langIdBtn?.addEventListener('click', () => this.setLanguage('id'));
-    },
-    setLanguage(lang, track = true) {
-        AppState.currentLanguage = lang;
-        document.documentElement.lang = lang;
-        localStorage.setItem('language', lang);
-
-        document.querySelectorAll('[data-lang]').forEach(el => {
-            el.style.display = el.dataset.lang === lang ? '' : 'none';
-        });
-
-        DOM.langEnBtn?.classList.toggle('active', lang === 'en');
-        DOM.langIdBtn?.classList.toggle('active', lang === 'id');
-        DOM.langEnBtn?.setAttribute('aria-pressed', lang === 'en');
-        DOM.langIdBtn?.setAttribute('aria-pressed', lang === 'id');
-
-        if (track) {
-            trackEvent('change_language', 'UI', lang);
-        }
-    }
-};
-
-const ScrollManager = {
-    init() {
-        window.addEventListener('scroll', this.handleScroll, { passive: true });
-        DOM.backToTop?.addEventListener('click', this.scrollToTop);
-    },
-    handleScroll() {
-        const scrollY = window.scrollY;
-        
-        // Progress Bar
-        const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-        const progress = (scrollY / docHeight) * 100;
-        DOM.progressBar.style.width = `${progress}%`;
-
-        // Back to Top Button
-        DOM.backToTop?.toggleAttribute('hidden', scrollY < CONFIG.ui.scrollThreshold);
-    },
-    scrollToTop() {
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-        trackEvent('click', 'Navigation', 'Back to Top');
-    }
-};
-
-const LazyLoader = {
-    init() {
-        this.lazyLoadSections();
-        this.lazyLoadImages();
-    },
-    createObserver(callback) {
-        return new IntersectionObserver((entries, observer) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    callback(entry.target);
-                    observer.unobserve(entry.target);
-                }
-            });
-        }, { rootMargin: CONFIG.ui.lazyLoadOffset });
-    },
-    lazyLoadSections() {
-        const observer = this.createObserver(this.loadSection);
-        if (DOM.dynamicContent) {
-            observer.observe(DOM.dynamicContent);
-        }
-    },
-    async loadSection(target) {
-        // In a real app, you would fetch this content. Here we'll just unhide it.
-        // For demonstration, we'll create the content dynamically.
-        const statsHTML = `
-            <section class="stats" role="region" aria-label="Statistics">
-                <div class="stats-container container">
-                    <!-- Stat items will be added here -->
-                </div>
-            </section>`;
-        const toolsHTML = `
-            <section class="tools" id="tools" role="region" aria-label="Tools">
-                <div class="tools-container container">
-                    <div class="section-header">
-                        <h2 class="section-title" data-lang="en">Popular Tools</h2>
-                        <h2 class="section-title" data-lang="id" style="display: none;">Tools Populer</h2>
-                        <p class="section-subtitle" data-lang="en">Discover our most loved tools.</p>
-                        <p class="section-subtitle" data-lang="id" style="display: none;">Temukan tools yang paling kami sukai.</p>
-                    </div>
-                    <div class="tools-grid" role="list">
-                        <!-- Tool cards will be added here -->
-                    </div>
-                </div>
-            </section>`;
-        
-        target.innerHTML = statsHTML + toolsHTML;
-        LanguageManager.setLanguage(AppState.currentLanguage, false); // Re-apply language
-        AnimationManager.initStats();
-        AnimationManager.initToolCards();
-    },
-    lazyLoadImages() {
-        const observer = this.createObserver(img => {
-            img.src = img.dataset.src;
-            img.removeAttribute('data-src');
-        });
-        document.querySelectorAll('img[data-src]').forEach(img => observer.observe(img));
-    }
-};
-
-const AnimationManager = {
-    init() {
-        // Initial animations can be triggered here if needed
-    },
-    initStats() {
-        const statsContainer = document.querySelector('.stats-container');
-        if (!statsContainer) return;
-
-        const statsData = [
-            { count: 150000, labelEn: 'Happy Users', labelId: 'Pengguna Senang' },
-            { count: 6, labelEn: 'Powerful Tools', labelId: 'Tools Canggih' },
-            { count: 99, labelEn: '% Uptime', labelId: '% Waktu Aktif' },
-            { count: 24, labelEn: '/ 7 Support', labelId: '/ 7 Dukungan' }
-        ];
-
-        statsData.forEach(stat => {
-            const item = document.createElement('div');
-            item.className = 'stat-item';
-            item.innerHTML = `
-                <span class="stat-number" data-count="${stat.count}">0</span>
-                <span class="stat-label" data-lang="en">${stat.labelEn}</span>
-                <span class="stat-label" data-lang="id" style="display: none;">${stat.labelId}</span>
-            `;
-            statsContainer.appendChild(item);
-        });
-        
-        const observer = LazyLoader.createObserver(this.animateStat);
-        document.querySelectorAll('.stat-item').forEach(item => observer.observe(item));
-    },
-    animateStat(item) {
-        item.classList.add('visible');
-        const numberEl = item.querySelector('.stat-number');
-        const target = parseInt(numberEl.dataset.count, 10);
-        let current = 0;
-        const duration = 2000;
-        const stepTime = 20;
-        const increment = target / (duration / stepTime);
-
-        const timer = setInterval(() => {
-            current += increment;
-            if (current >= target) {
-                clearInterval(timer);
-                numberEl.textContent = target.toLocaleString();
-            } else {
-                numberEl.textContent = Math.floor(current).toLocaleString();
-            }
-        }, stepTime);
-    },
-    initToolCards() {
-        // This would be populated from an API in a real app
-        const toolsData = [
-            { titleEn: 'Password Generator', titleId: 'Generator Password', descEn: 'Generate strong, secure passwords.', descId: 'Buat password yang kuat dan aman.', features: ['Secure', 'Customizable'] },
-            { titleEn: 'QR Code Scanner', titleId: 'Pemindai Kode QR', descEn: 'Scan QR codes instantly.', descId: 'Pindai kode QR secara instan.', features: ['Camera', 'Instant'] },
-            { titleEn: 'Image Converter', titleId: 'Konverter Gambar', descEn: 'Convert images between formats.', descId: 'Konversi gambar antar format.', features: ['Multi-format', 'Batch'] },
-        ];
-        
-        const grid = document.querySelector('.tools-grid');
-        if(!grid) return;
-        
-        toolsData.forEach(tool => {
-            const card = document.createElement('a');
-            card.href = '#'; // Placeholder
-            card.className = 'tool-card';
-            card.setAttribute('role', 'listitem');
-            card.innerHTML = `
-                <div class="tool-icon" aria-hidden="true">🔐</div>
-                <h3 class="tool-title"><span data-lang="en">${tool.titleEn}</span><span data-lang="id" style="display:none">${tool.titleId}</span></h3>
-                <p class="tool-description"><span data-lang="en">${tool.descEn}</span><span data-lang="id" style="display:none">${tool.descId}</span></p>
-                <div class="tool-features">${tool.features.map(f => `<span class="feature-tag">${f}</span>`).join('')}</div>
-            `;
-            grid.appendChild(card);
-        });
-
-        const observer = LazyLoader.createObserver(card => card.classList.add('visible'));
-        document.querySelectorAll('.tool-card').forEach(card => observer.observe(card));
-    }
-};
-
-
-// --- INITIALIZATION ---
 document.addEventListener('DOMContentLoaded', () => {
-    cacheDOMElements();
-    
-    // Hide loader immediately
-    DOM.loadingScreen?.setAttribute('hidden', 'true');
+    // === Variables ===
+    const body = document.body;
+    const loadingScreen = document.getElementById('loading-screen');
+    const themeToggleBtn = document.getElementById('theme-toggle');
+    const searchToggleBtn = document.getElementById('search-toggle');
+    const searchOverlay = document.getElementById('search-overlay');
+    const searchCloseBtn = document.getElementById('search-close');
+    const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const mobileMenuClose = document.getElementById('mobile-menu-close');
+    const backToTopBtn = document.getElementById('back-to-top');
+    const progressBar = document.querySelector('.progress-bar');
+    const sections = document.querySelectorAll('.fade-in-section');
+    const statItems = document.querySelectorAll('.stat-item');
+    const toolCards = document.querySelectorAll('.tool-card');
+    const cookieBanner = document.getElementById('cookie-banner');
+    const cookieAcceptBtn = document.getElementById('cookie-accept');
+    const cookieRejectBtn = document.getElementById('cookie-reject');
 
-    ThemeManager.init();
-    LanguageManager.init();
-    ScrollManager.init();
-    LazyLoader.init();
-    AnimationManager.init();
+    // === Initial Setup ===
+    function setInitialTheme() {
+        const storedTheme = localStorage.getItem('theme');
+        if (storedTheme) {
+            body.setAttribute('data-theme', storedTheme);
+        } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches) {
+            body.setAttribute('data-theme', 'light');
+        } else {
+            body.setAttribute('data-theme', 'dark');
+        }
+    }
+    setInitialTheme();
 
-    // Event listeners
-    DOM.searchToggle?.addEventListener('click', () => {
-        DOM.searchOverlay?.toggleAttribute('hidden');
-        DOM.searchInput?.focus();
+    // Hide loading screen after 1 second
+    setTimeout(() => {
+        if (loadingScreen) {
+            loadingScreen.classList.add('hidden');
+        }
+    }, 1000);
+
+    // === Event Listeners ===
+
+    // Theme Toggle
+    if (themeToggleBtn) {
+        themeToggleBtn.addEventListener('click', () => {
+            const currentTheme = body.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            body.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+        });
+    }
+
+    // Search Toggle
+    if (searchToggleBtn && searchOverlay && searchCloseBtn) {
+        searchToggleBtn.addEventListener('click', () => {
+            searchOverlay.classList.add('active');
+            setTimeout(() => {
+                const searchInput = document.getElementById('search-input');
+                if (searchInput) {
+                    searchInput.focus();
+                }
+            }, 300);
+        });
+
+        searchCloseBtn.addEventListener('click', () => {
+            searchOverlay.classList.remove('active');
+        });
+
+        searchOverlay.addEventListener('click', (e) => {
+            if (e.target === searchOverlay) {
+                searchOverlay.classList.remove('active');
+            }
+        });
+    }
+
+    // Mobile Menu Toggle
+    if (mobileMenuBtn && mobileMenu && mobileMenuClose) {
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('active');
+            mobileMenuBtn.classList.toggle('active');
+        });
+        mobileMenuClose.addEventListener('click', () => {
+            mobileMenu.classList.remove('active');
+            mobileMenuBtn.classList.remove('active');
+        });
+        mobileMenu.addEventListener('click', (e) => {
+            if (e.target.classList.contains('mobile-menu')) {
+                mobileMenu.classList.remove('active');
+                mobileMenuBtn.classList.remove('active');
+            }
+        });
+    }
+
+    // Back to top button
+    window.addEventListener('scroll', () => {
+        if (backToTopBtn) {
+            if (window.scrollY > 300) {
+                backToTopBtn.classList.add('show');
+            } else {
+                backToTopBtn.classList.remove('show');
+            }
+        }
     });
-    DOM.searchClose?.addEventListener('click', () => DOM.searchOverlay?.setAttribute('hidden', 'true'));
-    
-    DOM.mobileMenuBtn?.addEventListener('click', () => {
-        const isExpanded = DOM.mobileMenuBtn.getAttribute('aria-expanded') === 'true';
-        DOM.mobileMenuBtn.setAttribute('aria-expanded', !isExpanded);
-        DOM.mobileMenu?.toggleAttribute('hidden');
+
+    if (backToTopBtn) {
+        backToTopBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+    }
+
+    // Page progress bar
+    window.addEventListener('scroll', () => {
+        const scrollTop = document.documentElement.scrollTop;
+        const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+        const scrolled = (scrollTop / scrollHeight) * 100;
+        if (progressBar) {
+            progressBar.style.width = scrolled + '%';
+        }
     });
 
-    console.log('VIN NESIA Initialized');
+    // Intersection Observer for fade-in sections
+    const observerOptions = {
+        root: null,
+        rootMargin: '0px',
+        threshold: 0.2
+    };
+
+    const sectionObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+                observer.unobserve(entry.target);
+            }
+        });
+    }, observerOptions);
+
+    sections.forEach(section => {
+        sectionObserver.observe(section);
+    });
+
+    // Intersection Observer for tool cards
+    const cardObserverOptions = {
+        root: null,
+        rootMargin: '0px',
+        threshold: 0.1
+    };
+
+    const cardObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+                observer.unobserve(entry.target);
+            }
+        });
+    }, cardObserverOptions);
+
+    toolCards.forEach((card, index) => {
+        card.style.animationDelay = `${index * 0.1}s`;
+        cardObserver.observe(card);
+    });
+
+    // Intersection Observer for stats counter
+    const statObserverOptions = {
+        root: null,
+        rootMargin: '0px',
+        threshold: 0.5
+    };
+
+    const statObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const number = entry.target.querySelector('.stat-number');
+                if (number) {
+                    animateValue(number, 0, number.getAttribute('data-val'), 1500);
+                }
+                entry.target.classList.add('visible');
+                observer.unobserve(entry.target);
+            }
+        });
+    }, statObserverOptions);
+
+    statItems.forEach(item => {
+        statObserver.observe(item);
+    });
+
+    function animateValue(obj, start, end, duration) {
+        let startTimestamp = null;
+        const step = (timestamp) => {
+            if (!startTimestamp) startTimestamp = timestamp;
+            const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+            obj.innerText = Math.floor(progress * (end - start) + start).toLocaleString();
+            if (progress < 1) {
+                window.requestAnimationFrame(step);
+            }
+        };
+        window.requestAnimationFrame(step);
+    }
+
+    // Cookie Banner
+    function showCookieBanner() {
+        if (!localStorage.getItem('cookieConsent')) {
+            setTimeout(() => {
+                if (cookieBanner) {
+                    cookieBanner.classList.add('show');
+                }
+            }, 2000);
+        }
+    }
+
+    if (cookieAcceptBtn) {
+        cookieAcceptBtn.addEventListener('click', () => {
+            localStorage.setItem('cookieConsent', 'accepted');
+            cookieBanner.classList.remove('show');
+        });
+    }
+
+    if (cookieRejectBtn) {
+        cookieRejectBtn.addEventListener('click', () => {
+            localStorage.setItem('cookieConsent', 'rejected');
+            cookieBanner.classList.remove('show');
+        });
+    }
+
+    showCookieBanner();
+
+    // Smooth scroll for nav links (optional)
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            const targetId = this.getAttribute('href');
+            document.querySelector(targetId).scrollIntoView({
+                behavior: 'smooth'
+            });
+        });
+    });
+
+    // Theme toggle icon update based on initial theme (optional)
+    const updateThemeIcon = () => {
+        const currentTheme = body.getAttribute('data-theme');
+        if (themeToggleBtn) {
+            themeToggleBtn.innerHTML = currentTheme === 'dark' ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
+        }
+    };
+    updateThemeIcon();
+    if (themeToggleBtn) {
+        themeToggleBtn.addEventListener('click', updateThemeIcon);
+    }
+
+    // Attach ripple effect to buttons
+    const buttons = document.querySelectorAll('.ripple');
+    buttons.forEach(button => {
+        button.addEventListener('click', function(e) {
+            const circle = document.createElement('span');
+            const diameter = Math.max(this.clientWidth, this.clientHeight);
+            const radius = diameter / 2;
+            circle.style.width = circle.style.height = `${diameter}px`;
+            circle.style.left = `${e.clientX - (this.offsetLeft + radius)}px`;
+            circle.style.top = `${e.clientY - (this.offsetTop + radius)}px`;
+            circle.classList.add('ripple-effect');
+            this.appendChild(circle);
+            setTimeout(() => circle.remove(), 600);
+        });
+    });
+
+    // Language toggle functionality (optional, for demo)
+    const langBtns = document.querySelectorAll('.lang-btn');
+    langBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            langBtns.forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+        });
+    });
 });
