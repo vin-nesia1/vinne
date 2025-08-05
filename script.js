@@ -22,28 +22,46 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Language Selector with Data Attributes
     const langButtons = document.querySelectorAll('.lang-button');
-
+    
+    // Function to set the language of the page
     function setLanguage(lang) {
+        // Set the main document language attribute
         document.documentElement.lang = lang;
-        const elementsToTranslate = document.querySelectorAll('[data-lang-en]');
         
-        elementsToTranslate.forEach(el => {
+        // Update meta tags' content based on language
+        document.querySelectorAll('meta[data-lang-en]').forEach(meta => {
+            const translation = meta.getAttribute(`data-lang-${lang}`);
+            if (translation) {
+                meta.setAttribute('content', translation);
+            }
+        });
+
+        // Update all other elements with data-lang attributes
+        document.querySelectorAll('[data-lang-en]').forEach(el => {
             const translation = el.getAttribute(`data-lang-${lang}`);
-            if (el.tagName === 'A' || el.tagName === 'BUTTON') {
+            // Check if element has an alt or placeholder attribute to be translated
+            if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
+                el.placeholder = translation;
+            } else if (el.tagName === 'IMG') {
+                el.alt = translation;
+            } else if (el.tagName === 'A' || el.tagName === 'BUTTON') {
                 el.textContent = translation;
             } else {
                 el.innerHTML = translation;
             }
         });
 
+        // Update active state for language buttons
         langButtons.forEach(btn => btn.classList.remove('active'));
         document.getElementById(`lang-${lang}`).classList.add('active');
         localStorage.setItem('lang', lang);
     }
     
-    const savedLang = localStorage.getItem('lang') || 'en';
+    // Set initial language from local storage or default to 'id'
+    const savedLang = localStorage.getItem('lang') || 'id';
     setLanguage(savedLang);
 
+    // Add event listeners to language buttons
     langButtons.forEach(button => {
         button.addEventListener('click', () => {
             const lang = button.id.split('-')[1];
