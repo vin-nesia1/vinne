@@ -1,27 +1,24 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dark">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>VIN NESIA - Professional Online Tools | Free Web Utilities</title>
 
-    <!-- Security Headers -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net https://www.googletagmanager.com https://cdnjs.cloudflare.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://*.supabase.co https://www.google-analytics.com;">
     <meta http-equiv="X-Content-Type-Options" content="nosniff">
     <meta http-equiv="X-Frame-Options" content="DENY">
     <meta http-equiv="X-XSS-Protection" content="1; mode=block">
     <meta name="referrer" content="strict-origin-when-cross-origin">
 
-    <!-- SEO Meta Tags -->
     <meta name="description" content="VIN NESIA offers free professional online tools including password generator, QR scanner, image converter, currency calculator, and JSON formatter. Fast, secure, and mobile-friendly.">
     <meta name="keywords" content="online tools, password generator, QR scanner, image converter, currency calculator, JSON formatter, free web utilities, VIN NESIA">
     <meta name="author" content="VIN NESIA">
     <meta name="robots" content="index, follow">
     <meta name="theme-color" content="#8B5CF6">
 
-    <!-- Canonical URL -->
     <link rel="canonical" href="https://vinnesia.my.id/">
 
-    <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://vinnesia.my.id/">
     <meta property="og:title" content="VIN NESIA - Professional Online Tools">
@@ -29,34 +26,37 @@
     <meta property="og:image" content="https://vinnesia.my.id/og-image.jpg">
     <meta property="og:site_name" content="VIN NESIA">
 
-    <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
     <meta property="twitter:url" content="https://vinnesia.my.id/">
     <meta property="twitter:title" content="VIN NESIA - Professional Online Tools">
     <meta property="twitter:description" content="Free professional online tools for everyday use. Password generator, QR scanner, image converter, and more.">
     <meta property="twitter:image" content="https://vinnesia.my.id/og-image.jpg">
 
-    <!-- Favicon -->
     <link rel="icon" type="image/x-icon" href="favicon.ico">
     <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
     <link rel="manifest" href="manifest.json">
 
-    <!-- Resource Hints for Performance -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://www.googletagmanager.com">
     <link rel="preconnect" href="https://cdn.jsdelivr.net">
+
     <link rel="dns-prefetch" href="//www.google-analytics.com">
 
-    <!-- Optimized Font Loading -->
-    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
-    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"></noscript>
+    <style>
+        /* This content is now in style.css */
+    </style>
 
-    <!-- Main Stylesheet -->
+    <link rel="preload" href="style.css" as="style">
+    <link rel="preload" href="script.js" as="script">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" as="style">
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
     <link rel="stylesheet" href="style.css">
 
-    <!-- Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-3PYZXZFNER"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
@@ -68,7 +68,6 @@
         });
     </script>
 
-    <!-- Structured Data -->
     <script type="application/ld+json">
     {
         "@context": "https://schema.org",
@@ -89,33 +88,26 @@
     </script>
 </head>
 <body>
-    <!-- Loading Screen -->
-    <div class="loading-screen" id="loading-screen" aria-hidden="true">
+    <div class="loading-screen" id="loading-screen">
         <div class="loading-spinner"></div>
     </div>
 
-    <!-- Skip to content -->
     <a href="#main-content" class="skip-link">Skip to main content</a>
 
-    <!-- Progress Bar -->
     <div class="progress-bar" id="progress-bar"></div>
 
-    <!-- Cookie Banner -->
-    <div class="cookie-banner" id="cookie-banner" role="dialog" aria-modal="true" aria-labelledby="cookie-heading" aria-describedby="cookie-text" hidden>
+    <div class="cookie-banner" id="cookie-banner" role="banner" aria-label="Cookie consent">
         <div class="cookie-content">
-            <div>
-                <h2 id="cookie-heading" class="sr-only">Cookie Consent</h2>
-                <p id="cookie-text" class="cookie-text">
-                    <span data-lang="en">We use cookies to enhance your experience. By continuing to visit this site you agree to our use of cookies.</span>
-                    <span data-lang="id" style="display: none;">Kami menggunakan cookie untuk meningkatkan pengalaman Anda. Dengan melanjutkan mengunjungi situs ini, Anda menyetujui penggunaan cookie kami.</span>
-                </p>
-            </div>
+            <p class="cookie-text">
+                <span data-lang="en">We use cookies to enhance your experience. By continuing to visit this site you agree to our use of cookies.</span>
+                <span data-lang="id" style="display: none;">Kami menggunakan cookie untuk meningkatkan pengalaman Anda. Dengan melanjutkan mengunjungi situs ini, Anda menyetujui penggunaan cookie kami.</span>
+            </p>
             <div class="cookie-actions">
-                <button id="cookie-accept" class="btn-primary cookie-accept" aria-label="Accept cookies">
+                <button onclick="acceptCookies()" class="btn-primary cookie-accept" aria-label="Accept cookies">
                     <span data-lang="en">Accept</span>
                     <span data-lang="id" style="display: none;">Terima</span>
                 </button>
-                <button id="cookie-reject" class="btn-secondary cookie-reject" aria-label="Reject cookies">
+                <button onclick="rejectCookies()" class="btn-secondary cookie-reject" aria-label="Reject cookies">
                     <span data-lang="en">Reject</span>
                     <span data-lang="id" style="display: none;">Tolak</span>
                 </button>
@@ -123,7 +115,6 @@
         </div>
     </div>
 
-    <!-- Header -->
     <header role="banner">
         <div class="header-container">
             <a href="/" class="logo" aria-label="VIN NESIA Homepage">
@@ -143,90 +134,183 @@
             </nav>
 
             <div class="header-actions">
-                <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme" title="Switch theme">
-                    <span class="theme-icon" aria-hidden="true">🌙</span>
+                <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme" title="Switch theme">
+                    <span class="theme-icon">🌙</span>
                 </button>
 
                 <div class="lang-toggle" role="group" aria-label="Language selection">
-                    <button id="lang-en" class="lang-btn active" aria-pressed="true">EN</button>
-                    <button id="lang-id" class="lang-btn" aria-pressed="false">ID</button>
+                    <button onclick="setLanguage('en')" class="lang-btn active" id="lang-en" aria-pressed="true">EN</button>
+                    <button onclick="setLanguage('id')" class="lang-btn" id="lang-id" aria-pressed="false">ID</button>
                 </div>
 
-                <button class="search-toggle" id="search-toggle" aria-label="Search" title="Search tools" aria-haspopup="true" aria-controls="search-overlay">
-                    <span aria-hidden="true">🔍</span>
+                <button class="search-toggle" onclick="toggleSearch()" aria-label="Search" title="Search tools">
+                    <span>🔍</span>
                 </button>
 
                 <div class="auth-section">
                     <div class="auth-buttons" id="auth-buttons">
-                        <button class="btn-auth" id="login-btn" aria-label="Login">
+                        <button class="btn-auth" onclick="showLoginModal()" aria-label="Login">
                             <span data-lang="en">Login</span>
                             <span data-lang="id" style="display: none;">Masuk</span>
                         </button>
                     </div>
 
                     <div class="user-info" id="user-info" style="display: none;">
-                        <div class="user-avatar" id="user-avatar" aria-hidden="true"></div>
+                        <div class="user-avatar" id="user-avatar"></div>
                         <span id="user-name"></span>
-                        <button class="user-menu-toggle" id="user-menu-toggle" aria-label="User menu" aria-haspopup="true" aria-expanded="false" aria-controls="user-dropdown">▼</button>
-                        <div class="user-dropdown" id="user-dropdown" role="menu" hidden>
-                            <a href="/profile" role="menuitem" data-lang="en">Profile</a>
-                            <a href="/profile" role="menuitem" data-lang="id" style="display: none;">Profil</a>
-                            <a href="/settings" role="menuitem" data-lang="en">Settings</a>
-                            <a href="/settings" role="menuitem" data-lang="id" style="display: none;">Pengaturan</a>
-                            <hr role="separator">
-                            <button id="logout-btn" role="menuitem" data-lang="en">Logout</button>
-                            <button id="logout-btn-id" role="menuitem" data-lang="id" style="display: none;">Keluar</button>
+                        <button class="user-menu-toggle" onclick="toggleUserMenu()" aria-label="User menu">▼</button>
+                        <div class="user-dropdown" id="user-dropdown">
+                            <a href="/profile" data-lang="en">Profile</a>
+                            <a href="/profile" data-lang="id" style="display: none;">Profil</a>
+                            <a href="/settings" data-lang="en">Settings</a>
+                            <a href="/settings" data-lang="id" style="display: none;">Pengaturan</a>
+                            <hr>
+                            <button onclick="logout()" data-lang="en">Logout</button>
+                            <button onclick="logout()" data-lang="id" style="display: none;">Keluar</button>
                         </div>
                     </div>
                 </div>
 
-                <button class="mobile-menu-btn" id="mobile-menu-btn" aria-label="Toggle mobile menu" aria-expanded="false" aria-controls="mobile-menu">
+                <button class="mobile-menu-btn" onclick="toggleMobileMenu()" aria-label="Toggle mobile menu" aria-expanded="false">
                     <span class="hamburger"></span>
                     <span class="hamburger"></span>
                     <span class="hamburger"></span>
                 </button>
             </div>
         </div>
+
+        <div class="search-overlay" id="search-overlay">
+            <div class="search-container">
+                <input type="search" class="search-input" placeholder="Search tools..." aria-label="Search tools" id="search-input">
+                <button class="search-close" onclick="toggleSearch()" aria-label="Close search">✕</button>
+            </div>
+            <div class="search-results" id="search-results"></div>
+        </div>
+
+        <div class="mobile-menu" id="mobile-menu" role="navigation" aria-label="Mobile navigation">
+            <div class="mobile-overlay" onclick="toggleMobileMenu()"></div>
+            <div class="mobile-menu-content">
+                <div class="mobile-menu-header">
+                    <div class="mobile-menu-logo">
+                        <img src="logo.png" alt="VIN NESIA" width="32" height="32">
+                        <span class="mobile-logo-text">VIN NESIA</span>
+                    </div>
+                    <button class="mobile-menu-close" onclick="toggleMobileMenu()" aria-label="Close menu">✕</button>
+                </div>
+
+                <nav class="mobile-nav">
+                    <div class="mobile-nav-section">
+                        <h4 class="mobile-nav-title">
+                            <span data-lang="en">Navigation</span>
+                            <span data-lang="id" style="display: none;">Navigasi</span>
+                        </h4>
+                        <a href="#home" onclick="navigateAndClose('#home')">
+                            <span class="nav-icon">🏠</span>
+                            <span data-lang="en">Home</span>
+                            <span data-lang="id" style="display: none;">Beranda</span>
+                        </a>
+                        <a href="#tools" onclick="navigateAndClose('#tools')">
+                            <span class="nav-icon">🛠️</span>
+                            <span data-lang="en">All Tools</span>
+                            <span data-lang="id" style="display: none;">Semua Tools</span>
+                        </a>
+                        <a href="/blog" onclick="navigateAndClose('/blog')">
+                            <span class="nav-icon">📝</span>
+                            <span data-lang="en">Blog</span>
+                            <span data-lang="id" style="display: none;">Blog</span>
+                        </a>
+                        <a href="/about" onclick="navigateAndClose('/about')">
+                            <span class="nav-icon">ℹ️</span>
+                            <span data-lang="en">About Us</span>
+                            <span data-lang="id" style="display: none;">Tentang Kami</span>
+                        </a>
+                    </div>
+
+                    <div class="mobile-nav-section">
+                        <h4 class="mobile-nav-title">
+                            <span data-lang="en">Tools</span>
+                            <span data-lang="id" style="display: none;">Tools</span>
+                        </h4>
+                        <a href="https://password.vinnesia.my.id" target="_blank" rel="noopener">
+                            <span class="nav-icon">🔐</span>
+                            <span data-lang="en">Password Generator</span>
+                            <span data-lang="id" style="display: none;">Generator Password</span>
+                        </a>
+                        <a href="https://scan.vinnesia.my.id" target="_blank" rel="noopener">
+                            <span class="nav-icon">📱</span>
+                            <span data-lang="en">QR Scanner</span>
+                            <span data-lang="id" style="display: none;">Pemindai QR</span>
+                        </a>
+                        <a href="https://image.vinnesia.my.id" target="_blank" rel="noopener">
+                            <span class="nav-icon">🖼️</span>
+                            <span data-lang="en">Image Converter</span>
+                            <span data-lang="id" style="display: none;">Konverter Gambar</span>
+                        </a>
+                    </div>
+
+                    <div class="mobile-nav-section">
+                        <h4 class="mobile-nav-title">
+                            <span data-lang="en">Support</span>
+                            <span data-lang="id" style="display: none;">Dukungan</span>
+                        </h4>
+                        <a href="/faq" onclick="navigateAndClose('/faq')">
+                            <span class="nav-icon">❓</span>
+                            <span data-lang="en">FAQ</span>
+                            <span data-lang="id" style="display: none;">FAQ</span>
+                        </a>
+                        <a href="#" onclick="showDonationModal(); toggleMobileMenu()">
+                            <span class="nav-icon">💝</span>
+                            <span data-lang="en">Donate</span>
+                            <span data-lang="id" style="display: none;">Donasi</span>
+                        </a>
+                        <a href="/contact" onclick="navigateAndClose('/contact')">
+                            <span class="nav-icon">📧</span>
+                            <span data-lang="en">Contact</span>
+                            <span data-lang="id" style="display: none;">Kontak</span>
+                        </a>
+                    </div>
+
+                    <div class="mobile-nav-section">
+                        <h4 class="mobile-nav-title">
+                            <span data-lang="en">Legal</span>
+                            <span data-lang="id" style="display: none;">Hukum</span>
+                        </h4>
+                        <a href="/privacy" onclick="navigateAndClose('/privacy')">
+                            <span class="nav-icon">🔒</span>
+                            <span data-lang="en">Privacy Policy</span>
+                            <span data-lang="id" style="display: none;">Kebijakan Privasi</span>
+                        </a>
+                        <a href="/terms" onclick="navigateAndClose('/terms')">
+                            <span class="nav-icon">📋</span>
+                            <span data-lang="en">Terms of Service</span>
+                            <span data-lang="id" style="display: none;">Syarat Layanan</span>
+                        </a>
+                    </div>
+                </nav>
+
+                <div class="mobile-menu-footer">
+                    <div class="mobile-social-links">
+                        <a href="https://instagram.com/vinnesia.official" target="_blank" rel="noopener" aria-label="Instagram">📷</a>
+                        <a href="https://wa.me/6281234567890" target="_blank" rel="noopener" aria-label="WhatsApp">📱</a>
+                        <a href="https://github.com/vinnesia" target="_blank" rel="noopener" aria-label="GitHub">💻</a>
+                    </div>
+                    <p class="mobile-copyright">© 2025 VIN NESIA</p>
+                </div>
+            </div>
+        </div>
     </header>
 
-    <!-- Search Overlay -->
-    <div class="search-overlay" id="search-overlay" role="dialog" aria-modal="true" aria-labelledby="search-label" hidden>
-        <div class="search-container">
-            <label for="search-input" id="search-label" class="sr-only">Search tools</label>
-            <input type="search" class="search-input" id="search-input" placeholder="Search tools...">
-            <button class="search-close" id="search-close" aria-label="Close search">✕</button>
-        </div>
-        <div class="search-results" id="search-results" aria-live="polite"></div>
+    <div class="breadcrumb" role="navigation" aria-label="Breadcrumb">
+        <nav>
+            <a href="/" data-lang="en">Home</a>
+            <a href="/" data-lang="id" style="display: none;">Beranda</a>
+            <span class="breadcrumb-separator" aria-hidden="true"> / </span>
+            <span class="breadcrumb-current" data-lang="en">Tools</span>
+            <span class="breadcrumb-current" data-lang="id" style="display: none;">Alat</span>
+        </nav>
     </div>
 
-    <!-- Mobile Menu -->
-    <div class="mobile-menu" id="mobile-menu" role="dialog" aria-modal="true" aria-labelledby="mobile-menu-title" hidden>
-        <div class="mobile-overlay" id="mobile-overlay"></div>
-        <div class="mobile-menu-content">
-            <div class="mobile-menu-header">
-                <div class="mobile-menu-logo">
-                    <img src="logo.png" alt="" width="32" height="32" aria-hidden="true">
-                    <span id="mobile-menu-title" class="mobile-logo-text">VIN NESIA</span>
-                </div>
-                <button class="mobile-menu-close" id="mobile-menu-close" aria-label="Close menu">✕</button>
-            </div>
-            <nav class="mobile-nav" aria-label="Mobile navigation">
-                <!-- Navigation sections will be populated by script.js -->
-            </nav>
-            <div class="mobile-menu-footer">
-                <div class="mobile-social-links">
-                    <a href="https://instagram.com/vinnesia.official" target="_blank" rel="noopener" aria-label="Instagram">📷</a>
-                    <a href="https://wa.me/6281234567890" target="_blank" rel="noopener" aria-label="WhatsApp">📱</a>
-                    <a href="https://github.com/vinnesia" target="_blank" rel="noopener" aria-label="GitHub">💻</a>
-                </div>
-                <p class="mobile-copyright">© 2025 VIN NESIA</p>
-            </div>
-        </div>
-    </div>
-
-    <!-- Main Content -->
     <main id="main-content" role="main">
-        <!-- Hero Section -->
         <section class="hero" id="home">
             <div class="hero-container">
                 <h1 class="hero-title">
@@ -238,7 +322,7 @@
                     <span data-lang="id" style="display: none;">Utilitas web yang cepat, aman, dan gratis untuk penggunaan sehari-hari. Tanpa registrasi, bekerja di semua perangkat.</span>
                 </p>
                 <div class="hero-cta">
-                    <a href="#tools" class="btn-primary ripple">
+                    <a href="#tools" class="btn-primary ripple" onclick="trackEvent('cta_click', 'explore_tools')">
                         <span data-lang="en">🚀 Explore Tools</span>
                         <span data-lang="id" style="display: none;">🚀 Jelajahi Tools</span>
                     </a>
@@ -250,41 +334,548 @@
             </div>
         </section>
 
-        <!-- Dynamic sections will be loaded here via JS to improve FCP -->
-        <div id="dynamic-content">
-            <!-- Placeholder for sections to be loaded lazily -->
-        </div>
+        <section class="stats" role="region" aria-label="Statistics">
+            <div class="stats-container">
+                <div class="stat-item" data-stat="users">
+                    <span class="stat-number" data-count="150000">0</span>
+                    <span class="stat-label" data-lang="en">Happy Users</span>
+                    <span class="stat-label" data-lang="id" style="display: none;">Pengguna Senang</span>
+                </div>
+                <div class="stat-item" data-stat="tools">
+                    <span class="stat-number" data-count="6">0</span>
+                    <span class="stat-label" data-lang="en">Powerful Tools</span>
+                    <span class="stat-label" data-lang="id" style="display: none;">Tools Canggih</span>
+                </div>
+                <div class="stat-item" data-stat="uptime">
+                    <span class="stat-number" data-count="99">0</span>
+                    <span class="stat-label" data-lang="en">% Uptime</span>
+                    <span class="stat-label" data-lang="id" style="display: none;">% Waktu Aktif</span>
+                </div>
+                <div class="stat-item" data-stat="support">
+                    <span class="stat-number" data-count="24">0</span>
+                    <span class="stat-label" data-lang="en">/ 7 Support</span>
+                    <span class="stat-label" data-lang="id" style="display: none;">/ 7 Dukungan</span>
+                </div>
+            </div>
+        </section>
+
+        <section class="tools" id="tools" role="region" aria-label="Tools">
+            <div class="tools-container">
+                <div class="section-header">
+                    <h2 class="section-title">
+                        <span data-lang="en">Popular Tools</span>
+                        <span data-lang="id" style="display: none;">Tools Populer</span>
+                    </h2>
+                    <p class="section-subtitle">
+                        <span data-lang="en">Discover our most loved and frequently used tools designed to make your life easier</span>
+                        <span data-lang="id" style="display: none;">Temukan tools yang paling dicintai dan sering digunakan untuk memudahkan hidup Anda</span>
+                    </p>
+                </div>
+
+                <div class="tools-grid" role="list">
+                    <a href="https://password.vinnesia.my.id" class="tool-card" target="_blank" rel="noopener" role="listitem" onclick="trackEvent('tool_click', 'password_generator')">
+                        <div class="tool-icon" aria-hidden="true">🔐</div>
+                        <h3 class="tool-title">
+                            <span data-lang="en">Password Generator</span>
+                            <span data-lang="id" style="display: none;">Generator Password</span>
+                        </h3>
+                        <p class="tool-description">
+                            <span data-lang="en">Generate strong, secure passwords with customizable options including length, symbols, and numbers.</span>
+                            <span data-lang="id" style="display: none;">Buat password yang kuat dan aman dengan opsi yang dapat disesuaikan termasuk panjang, simbol, dan angka.</span>
+                        </p>
+                        <div class="tool-features">
+                            <span class="feature-tag" data-lang="en">Secure</span>
+                            <span class="feature-tag" data-lang="id" style="display: none;">Aman</span>
+                            <span class="feature-tag" data-lang="en">Customizable</span>
+                            <span class="feature-tag" data-lang="id" style="display: none;">Dapat Disesuaikan</span>
+                            <span class="feature-tag" data-lang="en">No Storage</span>
+                            <span class="feature-tag" data-lang="id" style="display: none;">Tanpa Penyimpanan</span>
+                        </div>
+                        <div class="usage-indicator">
+                            <span data-lang="en">Most Used</span>
+                            <span data-lang="id" style="display: none;">Paling Digunakan</span>
+                        </div>
+                    </a>
+
+                    <a href="https://scan.vinnesia.my.id" class="tool-card" target="_blank" rel="noopener" role="listitem" onclick="trackEvent('tool_click', 'qr_scanner')">
+                        <div class="tool-icon" aria-hidden="true">📱</div>
+                        <h3 class="tool-title">
+                            <span data-lang="en">QR Code Scanner</span>
+                            <span data-lang="id" style="display: none;">Pemindai Kode QR</span>
+                        </h3>
+                        <p class="tool-description">
+                            <span data-lang="en">Scan QR codes instantly using your camera or upload image files. Fast and accurate scanning.</span>
+                            <span data-lang="id" style="display: none;">Pindai kode QR secara instan menggunakan kamera atau unggah file gambar. Pemindaian cepat dan akurat.</span>
+                        </p>
+                        <div class="tool-features">
+                            <span class="feature-tag" data-lang="en">Camera</span>
+                            <span class="feature-tag" data-lang="id" style="display: none;">Kamera</span>
+                            <span class="feature-tag" data-lang="en">Upload</span>
+                            <span class="feature-tag" data-lang="id" style="display: none;">Unggah</span>
+                            <span class="feature-tag" data-lang="en">Instant</span>
+                            <span class="feature-tag" data-lang="id" style="display: none;">Instan</span>
+                        </div>
+                    </a>
+
+                    <a href="https://image.vinnesia.my.id" class="tool-card" target="_blank" rel="noopener" role="listitem" onclick="trackEvent('tool_click', 'image_converter')">
+                        <div class="tool-icon" aria-hidden="true">🖼️</div>
+                        <h3 class="tool-title">
+                            <span data-lang="en">Image Converter</span>
+                            <span data-lang="id" style="display: none;">Konverter Gambar</span>
+                        </h3>
+                        <p class="tool-description">
+                            <span data-lang="en">Convert images between different formats (JPG, PNG, WebP, etc.) with quality control and batch processing.</span>
+                            <span data-lang="id" style="display: none;">Konversi gambar antara format berbeda (JPG, PNG, WebP, dll.) dengan kontrol kualitas dan pemrosesan batch.</span>
+                        </p>
+                        <div class="tool-features">
+                            <span class="feature-tag" data-lang="en">Multi-format</span>
+                            <span class="feature-tag" data-lang="id" style="display: none;">Multi-format</span>
+                            <span class="feature-tag" data-lang="en">Quality Control</span>
+                            <span class="feature-tag" data-lang="id" style="display: none;">Kontrol Kualitas</span>
+                            <span class="feature-tag" data-lang="en">Batch</span>
+                            <span class="feature-tag" data-lang="id" style="display: none;">Batch</span>
+                        </div>
+                    </a>
+
+                    <a href="https://currency.vinnesia.my.id" class="tool-card" target="_blank" rel="noopener" role="listitem" onclick="trackEvent('tool_click', 'currency_calculator')">
+                        <div class="tool-icon" aria-hidden="true">💰</div>
+                        <h3 class="tool-title">
+                            <span data-lang="en">Currency Calculator</span>
+                            <span data-lang="id" style="display: none;">Kalkulator Mata Uang</span>
+                        </h3>
+                        <p class="tool-description">
+                            <span data-lang="en">Real-time currency conversion with up-to-date exchange rates from reliable financial sources.</span>
+                            <span data-lang="id" style="display: none;">Konversi mata uang real-time dengan nilai tukar terkini dari sumber keuangan terpercaya.</span>
+                        </p>
+                        <div class="tool-features">
+                            <span class="feature-tag" data-lang="en">Real-time</span>
+                            <span class="feature-tag" data-lang="id" style="display: none;">Real-time</span>
+                            <span class="feature-tag" data-lang="en">170+ Currencies</span>
+                            <span class="feature-tag" data-lang="id" style="display: none;">170+ Mata Uang</span>
+                            <span class="feature-tag" data-lang="en">Accurate</span>
+                            <span class="feature-tag" data-lang="id" style="display: none;">Akurat</span>
+                        </div>
+                    </a>
+
+                    <a href="https://qr.vinnesia.my.id" class="tool-card" target="_blank" rel="noopener" role="listitem" onclick="trackEvent('tool_click', 'qr_generator')">
+                        <div class="tool-icon" aria-hidden="true">📄</div>
+                        <h3 class="tool-title">
+                            <span data-lang="en">QR Code Generator</span>
+                            <span data-lang="id" style="display: none;">Generator Kode QR</span>
+                        </h3>
+                        <p class="tool-description">
+                            <span data-lang="en">Create custom QR codes for URLs, text, WiFi, contact info, and more with styling options.</span>
+                            <span data-lang="id" style="display: none;">Buat kode QR khusus untuk URL, teks, WiFi, info kontak, dan lainnya dengan opsi styling.</span>
+                        </p>
+                        <div class="tool-features">
+                            <span class="feature-tag" data-lang="en">Customizable</span>
+                            <span class="feature-tag" data-lang="id" style="display: none;">Dapat Disesuaikan</span>
+                            <span class="feature-tag" data-lang="en">Multiple Types</span>
+                            <span class="feature-tag" data-lang="id" style="display: none;">Berbagai Jenis</span>
+                            <span class="feature-tag" data-lang="en">High Quality</span>
+                            <span class="feature-tag" data-lang="id" style="display: none;">Kualitas Tinggi</span>
+                        </div>
+                    </a>
+
+                    <a href="https://json.vinnesia.my.id" class="tool-card" target="_blank" rel="noopener" role="listitem" onclick="trackEvent('tool_click', 'json_formatter')">
+                        <div class="tool-icon" aria-hidden="true">🔧</div>
+                        <h3 class="tool-title">
+                            <span data-lang="en">JSON Formatter</span>
+                            <span data-lang="id" style="display: none;">Formatter JSON</span>
+                        </h3>
+                        <p class="tool-description">
+                            <span data-lang="en">Format, validate, and beautify JSON data with syntax highlighting and error detection.</span>
+                            <span data-lang="id" style="display: none;">Format, validasi, dan percantik data JSON dengan highlighting sintaks dan deteksi error.</span>
+                        </p>
+                        <div class="tool-features">
+                            <span class="feature-tag" data-lang="en">Syntax Highlight</span>
+                            <span class="feature-tag" data-lang="id" style="display: none;">Highlight Sintaks</span>
+                            <span class="feature-tag" data-lang="en">Validation</span>
+                            <span class="feature-tag" data-lang="id" style="display: none;">Validasi</span>
+                            <span class="feature-tag" data-lang="en">Beautify</span>
+                            <span class="feature-tag" data-lang="id" style="display: none;">Percantik</span>
+                        </div>
+                    </a>
+                </div>
+
+                <div class="tools-actions">
+                    <button class="btn-secondary load-more" onclick="loadMoreTools()" data-lang="en">
+                        Load More Tools
+                    </button>
+                    <button class="btn-secondary load-more" onclick="loadMoreTools()" data-lang="id" style="display: none;">
+                        Muat Lebih Banyak Tools
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <section class="features" role="region" aria-label="Features">
+            <div class="features-container">
+                <div class="section-header">
+                    <h2 class="section-title">
+                        <span data-lang="en">Why Choose VIN NESIA?</span>
+                        <span data-lang="id" style="display: none;">Mengapa Pilih VIN NESIA?</span>
+                    </h2>
+                    <p class="section-subtitle">
+                        <span data-lang="en">Built with modern technology and user experience in mind</span>
+                        <span data-lang="id" style="display: none;">Dibangun dengan teknologi modern dan pengalaman pengguna yang baik</span>
+                    </p>
+                </div>
+
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon">⚡</div>
+                        <h3 class="feature-title" data-lang="en">Lightning Fast</h3>
+                        <h3 class="feature-title" data-lang="id" style="display: none;">Super Cepat</h3>
+                        <p class="feature-description" data-lang="en">Optimized for speed with instant results and minimal loading times.</p>
+                        <p class="feature-description" data-lang="id" style="display: none;">Dioptimalkan untuk kecepatan dengan hasil instan dan waktu loading minimal.</p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="feature-icon">🔒</div>
+                        <h3 class="feature-title" data-lang="en">100% Secure</h3>
+                        <h3 class="feature-title" data-lang="id" style="display: none;">100% Aman</h3>
+                        <p class="feature-description" data-lang="en">Your data never leaves your device. All processing happens locally.</p>
+                        <p class="feature-description" data-lang="id" style="display: none;">Data Anda tidak pernah meninggalkan perangkat. Semua proses terjadi secara lokal.</p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="feature-icon">📱</div>
+                        <h3 class="feature-title" data-lang="en">Mobile Friendly</h3>
+                        <h3 class="feature-title" data-lang="id" style="display: none;">Mobile Friendly</h3>
+                        <p class="feature-description" data-lang="en">Works perfectly on all devices - desktop, tablet, and mobile.</p>
+                        <p class="feature-description" data-lang="id" style="display: none;">Bekerja sempurna di semua perangkat - desktop, tablet, dan mobile.</p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="feature-icon">🆓</div>
+                        <h3 class="feature-title" data-lang="en">Always Free</h3>
+                        <h3 class="feature-title" data-lang="id" style="display: none;">Selalu Gratis</h3>
+                        <p class="feature-description" data-lang="en">No hidden fees, no subscriptions. All tools are completely free to use.</p>
+                        <p class="feature-description" data-lang="id" style="display: none;">Tanpa biaya tersembunyi, tanpa berlangganan. Semua tools gratis digunakan.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="donation" role="region" aria-label="Donation">
+            <div class="donation-container">
+                <h2 class="donation-title">
+                    <span data-lang="en">💝 Support Our Work</span>
+                    <span data-lang="id" style="display: none;">💝 Dukung Karya Kami</span>
+                </h2>
+                <p class="donation-description">
+                    <span data-lang="en">Your voluntary donations help us maintain and improve these free tools for everyone. Every contribution, no matter how small, makes a difference in keeping our services running and developing new features.</span>
+                    <span data-lang="id" style="display: none;">Donasi sukarela Anda membantu kami memelihara dan meningkatkan tools gratis ini untuk semua orang. Setiap kontribusi, tidak peduli sekecil apapun, membuat perbedaan dalam menjalankan layanan kami dan mengembangkan fitur baru.</span>
+                </p>
+                <button class="btn-donate ripple" onclick="showDonationModal(); trackEvent('donation_click', 'support_button')">
+                    <span data-lang="en">☕ Buy Us Coffee</span>
+                    <span data-lang="id" style="display: none;">☕ Belikan Kami Kopi</span>
+                </button>
+            </div>
+        </section>
+
+        <section class="newsletter" role="region" aria-label="Newsletter">
+            <div class="newsletter-container">
+                <h2 class="newsletter-title">
+                    <span data-lang="en">Stay Updated</span>
+                    <span data-lang="id" style="display: none;">Tetap Update</span>
+                </h2>
+                <p class="newsletter-description">
+                    <span data-lang="en">Get notified about new tools and updates</span>
+                    <span data-lang="id" style="display: none;">Dapatkan notifikasi tentang tools baru dan pembaruan</span>
+                </p>
+                <form class="newsletter-form" onsubmit="subscribeNewsletter(event)">
+                    <input type="email" class="newsletter-input" placeholder="Enter your email" required aria-label="Email address">
+                    <button type="submit" class="btn-primary newsletter-submit">
+                        <span data-lang="en">Subscribe</span>
+                        <span data-lang="id" style="display: none;">Berlangganan</span>
+                    </button>
+                </form>
+            </div>
+        </section>
     </main>
 
-    <!-- Footer -->
     <footer role="contentinfo">
-        <!-- Footer content will be loaded lazily -->
+        <div class="footer-container">
+            <div class="footer-content">
+                <div class="footer-section brand">
+                    <h3>VIN NESIA</h3>
+                    <p class="footer-description">
+                        <span data-lang="en">Professional online tools for everyone, everywhere.</span>
+                        <span data-lang="id" style="display: none;">Tools online profesional untuk semua orang, di mana saja.</span>
+                    </p>
+                    <div class="social-links">
+                        <a href="https://instagram.com/vinnesia.official" target="_blank" rel="noopener" aria-label="Instagram">📷</a>
+                        <a href="https://wa.me/6281234567890" target="_blank" rel="noopener" aria-label="WhatsApp">📱</a>
+                        <a href="https://github.com/vinnesia" target="_blank" rel="noopener" aria-label="GitHub">💻</a>
+                        <a href="https://twitter.com/vinnesia" target="_blank" rel="noopener" aria-label="Twitter">🐦</a>
+                    </div>
+                </div>
+
+                <div class="footer-section">
+                    <h3>
+                        🧭 <span data-lang="en">Navigation</span>
+                        <span data-lang="id" style="display: none;">Navigasi</span>
+                    </h3>
+                    <ul class="footer-links">
+                        <li><a href="/" data-lang="en">Home</a><a href="/" data-lang="id" style="display: none;">Beranda</a></li>
+                        <li><a href="#tools" data-lang="en">All Tools</a><a href="#tools" data-lang="id" style="display: none;">Semua Tools</a></li>
+                        <li><a href="/blog" data-lang="en">Blog</a><a href="/blog" data-lang="id" style="display: none;">Blog</a></li>
+                        <li><a href="/about" data-lang="en">About Us</a><a href="/about" data-lang="id" style="display: none;">Tentang Kami</a></li>
+                        <li><a href="/sitemap.xml" data-lang="en">Sitemap</a><a href="/sitemap.xml" data-lang="id" style="display: none;">Peta Situs</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h3>
+                        📚 <span data-lang="en">Help</span>
+                        <span data-lang="id" style="display: none;">Bantuan</span>
+                    </h3>
+                    <ul class="footer-links">
+                        <li><a href="/how-to-use" data-lang="en">How to Use Tools</a><a href="/how-to-use" data-lang="id" style="display: none;">Cara Pakai Tools</a></li>
+                        <li><a href="/faq" data-lang="en">FAQ</a><a href="/faq" data-lang="id" style="display: none;">FAQ</a></li>
+                        <li><a href="/contact" data-lang="en">Contact Us</a><a href="/contact" data-lang="id" style="display: none;">Kontak Kami</a></li>
+                        <li><a href="/feedback" data-lang="en">Feedback</a><a href="/feedback" data-lang="id" style="display: none;">Masukan</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h3>⚖️ Legal</h3>
+                    <ul class="footer-links">
+                        <li><a href="/privacy" data-lang="en">Privacy Policy</a><a href="/privacy" data-lang="id" style="display: none;">Kebijakan Privasi</a></li>
+                        <li><a href="/terms" data-lang="en">Terms of Service</a><a href="/terms" data-lang="id" style="display: none;">Syarat Layanan</a></li>
+                        <li><a href="/cookies" data-lang="en">Cookie Policy</a><a href="/cookies" data-lang="id" style="display: none;">Kebijakan Cookie</a></li>
+                        <li><a href="/disclaimer" data-lang="en">Disclaimer</a><a href="/disclaimer" data-lang="id" style="display: none;">Penafian</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h3>📧 Contact</h3>
+                    <ul class="footer-links">
+                        <li><a href="mailto:admin@vinnesia.my.id">admin@vinnesia.my.id</a></li>
+                        <li><a href="mailto:support@vinnesia.my.id">support@vinnesia.my.id</a></li>
+                        <li><a href="mailto:privacy@vinnesia.my.id">privacy@vinnesia.my.id</a></li>
+                        <li><a href="mailto:business@vinnesia.my.id">business@vinnesia.my.id</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <div class="footer-bottom-content">
+                    <p class="copyright">© 2025 VIN NESIA. All rights reserved. Built with ❤️ for everyone.</p>
+                    <div class="footer-bottom-links">
+                        <a href="/security" data-lang="en">Security</a>
+                        <a href="/security" data-lang="id" style="display: none;">Keamanan</a>
+                        <span class="separator">•</span>
+                        <a href="/status" data-lang="en">Status</a>
+                        <a href="/status" data-lang="id" style="display: none;">Status</a>
+                        <span class="separator">•</span>
+                        <a href="/api" data-lang="en">API</a>
+                        <a href="/api" data-lang="id" style="display: none;">API</a>
+                    </div>
+                </div>
+                <p class="disclaimer">
+                    <span data-lang="en">VIN NESIA is not responsible for misuse of tools. Use at your own discretion.</span>
+                    <span data-lang="id" style="display: none;">VIN NESIA tidak bertanggung jawab atas penyalahgunaan tools. Gunakan dengan kebijaksanaan sendiri.</span>
+                </p>
+            </div>
+        </div>
     </footer>
 
-    <!-- Modals -->
-    <div id="login-modal" class="modal" role="dialog" aria-modal="true" aria-labelledby="login-title" hidden>
-        <!-- Login modal content will be loaded lazily -->
-    </div>
-    <div id="donation-modal" class="modal" role="dialog" aria-modal="true" aria-labelledby="donation-title" hidden>
-        <!-- Donation modal content will be loaded lazily -->
+    <div id="login-modal" class="modal" role="dialog" aria-labelledby="login-title" aria-hidden="true">
+        <div class="modal-overlay" onclick="hideLoginModal()"></div>
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="login-title">
+                    <span data-lang="en">Login to VIN NESIA</span>
+                    <span data-lang="id" style="display: none;">Masuk ke VIN NESIA</span>
+                </h2>
+                <button class="modal-close" onclick="hideLoginModal()" aria-label="Close modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <p class="modal-description">
+                    <span data-lang="en">Choose your preferred login method:</span>
+                    <span data-lang="id" style="display: none;">Pilih metode login yang Anda sukai:</span>
+                </p>
+
+                <div class="social-login-buttons">
+                    <button id="login-github" class="social-btn github" data-provider="github">
+                        <span class="social-icon">🐙</span>
+                        <span>GitHub</span>
+                        <div class="btn-loading" style="display: none;">⏳</div>
+                    </button>
+                    <button id="login-discord" class="social-btn discord" data-provider="discord">
+                        <span class="social-icon">💬</span>
+                        <span>Discord</span>
+                        <div class="btn-loading" style="display: none;">⏳</div>
+                    </button>
+                    <button id="login-google" class="social-btn google" data-provider="google">
+                        <span class="social-icon">🔍</span>
+                        <span>Google</span>
+                        <div class="btn-loading" style="display: none;">⏳</div>
+                    </button>
+                </div>
+
+                <div class="login-divider">
+                    <span data-lang="en">or</span>
+                    <span data-lang="id" style="display: none;">atau</span>
+                </div>
+
+                <form class="email-login-form" onsubmit="handleEmailLogin(event)">
+                    <input type="email" class="form-input" placeholder="Email" required aria-label="Email">
+                    <input type="password" class="form-input" placeholder="Password" required aria-label="Password">
+                    <button type="submit" class="btn-primary form-submit">
+                        <span data-lang="en">Login</span>
+                        <span data-lang="id" style="display: none;">Masuk</span>
+                    </button>
+                </form>
+
+                <div class="login-footer">
+                    <p>
+                        <span data-lang="en">Don't have an account? </span>
+                        <span data-lang="id" style="display: none;">Belum punya akun? </span>
+                        <a href="#" onclick="showRegisterModal()">
+                            <span data-lang="en">Sign up</span>
+                            <span data-lang="id" style="display: none;">Daftar</span>
+                        </a>
+                    </p>
+                </div>
+            </div>
+        </div>
     </div>
 
-    <!-- Notification Container -->
+    <div id="donation-modal" class="modal" role="dialog" aria-labelledby="donation-title" aria-hidden="true">
+        <div class="modal-overlay" onclick="hideDonationModal()"></div>
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="donation-title">
+                    <span data-lang="en">Support VIN NESIA</span>
+                    <span data-lang="id" style="display: none;">Dukung VIN NESIA</span>
+                </h2>
+                <button class="modal-close" onclick="hideDonationModal()" aria-label="Close modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <p class="modal-description">
+                    <span data-lang="en">Thank you for considering to support our work! Your donations help us keep these tools free and improve them continuously.</span>
+                    <span data-lang="id" style="display: none;">Terima kasih telah mempertimbangkan untuk mendukung karya kami! Donasi Anda membantu kami menjaga tools ini tetap gratis dan terus meningkatkannya.</span>
+                </p>
+
+                <div class="donation-options">
+                    <button class="donation-btn" data-amount="3" onclick="processDonation(3)">
+                        <span class="donation-icon">☕</span>
+                        <span class="donation-amount">$3</span>
+                        <span class="donation-label" data-lang="en">Coffee</span>
+                        <span class="donation-label" data-lang="id" style="display: none;">Kopi</span>
+                    </button>
+                    <button class="donation-btn" data-amount="10" onclick="processDonation(10)">
+                        <span class="donation-icon">🍕</span>
+                        <span class="donation-amount">$10</span>
+                        <span class="donation-label" data-lang="en">Pizza</span>
+                        <span class="donation-label" data-lang="id" style="display: none;">Pizza</span>
+                    </button>
+                    <button class="donation-btn" data-amount="25" onclick="processDonation(25)">
+                        <span class="donation-icon">💝</span>
+                        <span class="donation-amount">$25</span>
+                        <span class="donation-label" data-lang="en">Generous</span>
+                        <span class="donation-label" data-lang="id" style="display: none;">Murah Hati</span>
+                    </button>
+                    <button class="donation-btn custom" onclick="showCustomDonation()">
+                        <span class="donation-icon">🚀</span>
+                        <span class="donation-label" data-lang="en">Custom Amount</span>
+                        <span class="donation-label" data-lang="id" style="display: none;">Jumlah Khusus</span>
+                    </button>
+                </div>
+
+                <div class="custom-donation" id="custom-donation" style="display: none;">
+                    <input type="number" class="custom-amount-input" placeholder="Enter amount" min="1" aria-label="Custom donation amount">
+                    <button class="btn-primary" onclick="processCustomDonation()">
+                        <span data-lang="en">Donate</span>
+                        <span data-lang="id" style="display: none;">Donasi</span>
+                    </button>
+                </div>
+
+                <div class="payment-methods">
+                    <h4>
+                        <span data-lang="en">Payment Methods</span>
+                        <span data-lang="id" style="display: none;">Metode Pembayaran</span>
+                    </h4>
+                    <div class="payment-icons">
+                        <span class="payment-icon" title="PayPal">💳</span>
+                        <span class="payment-icon" title="Stripe">💎</span>
+                        <span class="payment-icon" title="Crypto">₿</span>
+                        <span class="payment-icon" title="Bank Transfer">🏦</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <div id="notification-container" class="notification-container" aria-live="polite"></div>
 
-    <!-- Back to Top Button -->
-    <button id="back-to-top" class="back-to-top" aria-label="Back to top" hidden>
+    <button id="back-to-top" class="back-to-top" onclick="scrollToTop()" aria-label="Back to top" style="display: none;">
         ↑
     </button>
 
-    <!-- Offline Indicator -->
-    <div id="offline-indicator" class="offline-indicator" role="status" aria-live="assertive" hidden>
+    <div id="offline-indicator" class="offline-indicator" style="display: none;">
         <span data-lang="en">You're offline. Some features may not work.</span>
         <span data-lang="id" style="display: none;">Anda sedang offline. Beberapa fitur mungkin tidak bekerja.</span>
     </div>
 
-    <!-- Scripts -->
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script src="script.js" defer></script>
+
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', function() {
+                navigator.serviceWorker.register('/sw.js')
+                    .then(registration => console.log('SW registered'))
+                    .catch(error => console.log('SW registration failed'));
+            });
+        }
+    </script>
+
+    <script>
+        document.addEventListener('keydown', function(e) {
+            // ESC key handlers
+            if (e.key === 'Escape') {
+                const modals = document.querySelectorAll('.modal');
+                modals.forEach(modal => {
+                    if (modal.style.display !== 'none') {
+                        const closeBtn = modal.querySelector('.modal-close');
+                        if (closeBtn) closeBtn.click();
+                    }
+                });
+                
+                // Close mobile menu
+                const mobileMenu = document.getElementById('mobile-menu');
+                if (mobileMenu.classList.contains('active')) {
+                    toggleMobileMenu();
+                }
+                
+                // Close search
+                const searchOverlay = document.getElementById('search-overlay');
+                if (searchOverlay.classList.contains('active')) {
+                    toggleSearch();
+                }
+            }
+            
+            // Ctrl/Cmd + K for search
+            if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
+                e.preventDefault();
+                toggleSearch();
+            }
+            
+            // Alt + L for language toggle
+            if (e.altKey && e.key === 'l') {
+                e.preventDefault();
+                const currentLang = document.documentElement.lang;
+                setLanguage(currentLang === 'en' ? 'id' : 'en');
+            }
+            /**
+              * This content is now in script.js
+              */
+        });
+    </script>    
 </body>
 </html>
